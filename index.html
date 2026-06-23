@@ -359,6 +359,73 @@
     .cmd-palette-item .cmd-shortcut { margin-left: auto; font-size: 0.7rem; color: var(--text-secondary); background: var(--bg); padding: 0.15rem 0.4rem; border-radius: 4px; }
     .cmd-hint { text-align: center; padding: 0.5rem; font-size: 0.7rem; color: var(--text-secondary); border-top: 1px solid var(--border); }
 
+    /* Calculator */
+    .calc-display { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: right; margin-bottom: 0.75rem; min-height: 60px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .calc-display .calc-expr { font-size: 0.8rem; color: var(--text-secondary); min-height: 1.2em; }
+    .calc-display .calc-result { font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; }
+    .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .calc-grid button { padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; background: var(--surface); color: var(--text); transition: all var(--transition); }
+    .calc-grid button:hover { background: var(--bg); transform: scale(1.05); }
+    .calc-grid button:active { transform: scale(0.95); }
+    .calc-grid .calc-op { background: rgba(99,102,241,0.1); color: var(--primary); font-weight: 600; }
+    .calc-grid .calc-eq { background: var(--primary); color: #fff; }
+    .calc-grid .calc-eq:hover { background: var(--primary-hover); }
+    .calc-grid .calc-clear { background: rgba(239,68,68,0.1); color: var(--danger); }
+
+    /* Password Generator */
+    .pwd-output { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .pwd-output input { flex: 1; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'SF Mono', monospace; font-size: 0.9rem; background: var(--bg); color: var(--text); outline: none; }
+    .pwd-options { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+    .pwd-option { display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; }
+    .pwd-option label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+    .pwd-option input[type="checkbox"] { accent-color: var(--primary); }
+    .pwd-option input[type="range"] { width: 120px; accent-color: var(--primary); }
+    .pwd-strength { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin-top: 0.5rem; }
+    .pwd-strength-bar { height: 100%; border-radius: 3px; transition: width 0.3s, background 0.3s; }
+
+    /* Typing Test */
+    .typing-stats { display: flex; gap: 1.5rem; margin-bottom: 1rem; }
+    .typing-stat { text-align: center; }
+    .typing-stat .value { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+    .typing-stat .label { font-size: 0.75rem; color: var(--text-secondary); }
+    .typing-text { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; font-size: 1rem; line-height: 1.8; margin-bottom: 0.75rem; min-height: 80px; user-select: none; }
+    .typing-text .correct { color: var(--success); }
+    .typing-text .incorrect { color: var(--danger); text-decoration: underline; }
+    .typing-text .cursor { border-left: 2px solid var(--primary); animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .typing-text .upcoming { color: var(--text-secondary); }
+    .typing-input { width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--surface); color: var(--text); outline: none; }
+    .typing-input:focus { border-color: var(--primary); }
+
+    /* Color Palette */
+    .palette-display { display: flex; border-radius: 8px; overflow: hidden; height: 120px; margin-bottom: 1rem; cursor: pointer; }
+    .palette-color { flex: 1; transition: flex 0.3s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.5rem; }
+    .palette-color:hover { flex: 1.5; }
+    .palette-color span { font-size: 0.7rem; color: #fff; background: rgba(0,0,0,0.4); padding: 0.2rem 0.4rem; border-radius: 4px; opacity: 0; transition: opacity 0.2s; }
+    .palette-color:hover span { opacity: 1; }
+    .palette-options { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .palette-options button { padding: 0.4rem 0.8rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all var(--transition); }
+    .palette-options button:hover { border-color: var(--primary); color: var(--primary); }
+    .palette-options button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .palette-history { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .palette-history-item { width: 32px; height: 32px; border-radius: 6px; cursor: pointer; border: 2px solid var(--border); transition: transform 0.2s; }
+    .palette-history-item:hover { transform: scale(1.2); }
+
+    /* Countdown Timer */
+    .countdown-display { text-align: center; margin-bottom: 1.5rem; }
+    .countdown-display .countdown-time { font-size: 3rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 2px; }
+    .countdown-display .countdown-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.3rem; }
+    .countdown-inputs { display: flex; gap: 0.5rem; margin-bottom: 1rem; align-items: center; justify-content: center; }
+    .countdown-inputs input { width: 60px; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-size: 1rem; background: var(--surface); color: var(--text); outline: none; }
+    .countdown-inputs input:focus { border-color: var(--primary); }
+    .countdown-inputs span { font-size: 0.8rem; color: var(--text-secondary); }
+    .countdown-presets { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .countdown-presets button { padding: 0.35rem 0.7rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.75rem; transition: all var(--transition); }
+    .countdown-presets button:hover { border-color: var(--primary); color: var(--primary); }
+    .countdown-controls { display: flex; gap: 0.75rem; justify-content: center; }
+    .countdown-progress { height: 4px; background: var(--border); border-radius: 2px; margin-top: 1rem; overflow: hidden; }
+    .countdown-progress-bar { height: 100%; background: var(--primary); border-radius: 2px; transition: width 1s linear; }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -580,6 +647,152 @@
           <button onclick="changePage(-1)" id="prevPage">上一页</button>
           <button onclick="changePage(1)" id="nextPage">下一页</button>
         </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🧮</span>
+        计算器
+      </div>
+      <div class="calc-display">
+        <div class="calc-expr" id="calcExpr"></div>
+        <div class="calc-result" id="calcResult">0</div>
+      </div>
+      <div class="calc-grid">
+        <button class="calc-clear" onclick="calcClear()">C</button>
+        <button class="calc-op" onclick="calcInput('(')">(</button>
+        <button class="calc-op" onclick="calcInput(')')">)</button>
+        <button class="calc-op" onclick="calcInput('/')">÷</button>
+        <button onclick="calcInput('7')">7</button>
+        <button onclick="calcInput('8')">8</button>
+        <button onclick="calcInput('9')">9</button>
+        <button class="calc-op" onclick="calcInput('*')">×</button>
+        <button onclick="calcInput('4')">4</button>
+        <button onclick="calcInput('5')">5</button>
+        <button onclick="calcInput('6')">6</button>
+        <button class="calc-op" onclick="calcInput('-')">−</button>
+        <button onclick="calcInput('1')">1</button>
+        <button onclick="calcInput('2')">2</button>
+        <button onclick="calcInput('3')">3</button>
+        <button class="calc-op" onclick="calcInput('+')">+</button>
+        <button onclick="calcInput('0')">0</button>
+        <button onclick="calcInput('.')">.</button>
+        <button class="calc-op" onclick="calcBackspace()">⌫</button>
+        <button class="calc-eq" onclick="calcEval()">=</button>
+      </div>
+    </div>
+
+    <!-- Password Generator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">🔐</span>
+        密码生成器
+      </div>
+      <div class="pwd-output">
+        <input type="text" id="pwdOutput" readonly placeholder="点击生成密码">
+        <button class="btn btn-primary" onclick="generatePassword()">生成</button>
+        <button class="btn btn-secondary" onclick="copyPassword()">复制</button>
+      </div>
+      <div class="pwd-options">
+        <div class="pwd-option">
+          <span>长度: <strong id="pwdLenLabel">16</strong></span>
+          <input type="range" id="pwdLength" min="6" max="64" value="16" oninput="document.getElementById('pwdLenLabel').textContent=this.value">
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdUpper" checked> 大写字母 (A-Z)</label>
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdLower" checked> 小写字母 (a-z)</label>
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdNumbers" checked> 数字 (0-9)</label>
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdSymbols" checked> 符号 (!@#$...)</label>
+        </div>
+      </div>
+      <div class="pwd-strength">
+        <div class="pwd-strength-bar" id="pwdStrengthBar" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Typing Speed Test -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">⌨️</span>
+        打字速度测试
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="resetTyping()">重新开始</button>
+      </div>
+      <div class="typing-stats">
+        <div class="typing-stat">
+          <div class="value" id="typingWPM">0</div>
+          <div class="label">WPM</div>
+        </div>
+        <div class="typing-stat">
+          <div class="value" id="typingAccuracy">100%</div>
+          <div class="label">准确率</div>
+        </div>
+        <div class="typing-stat">
+          <div class="value" id="typingTime">0s</div>
+          <div class="label">用时</div>
+        </div>
+      </div>
+      <div class="typing-text" id="typingText"></div>
+      <input type="text" class="typing-input" id="typingInput" placeholder="开始打字..." oninput="handleTyping()" autocomplete="off" autocorrect="off" spellcheck="false">
+    </div>
+
+    <!-- Color Palette Generator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🎨</span>
+        调色板生成器
+      </div>
+      <div class="palette-display" id="paletteDisplay" onclick="generatePalette()"></div>
+      <div class="palette-options">
+        <button class="active" onclick="setPaletteMode('random', this)">随机</button>
+        <button onclick="setPaletteMode('warm', this)">暖色</button>
+        <button onclick="setPaletteMode('cool', this)">冷色</button>
+        <button onclick="setPaletteMode('pastel', this)">柔和</button>
+        <button onclick="setPaletteMode('monochrome', this)">单色</button>
+      </div>
+      <p style="font-size:0.75rem;color:var(--text-secondary);margin-bottom:0.5rem">点击色块复制色值 · 点击调色板刷新</p>
+      <div class="palette-history" id="paletteHistory"></div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(239,68,68,0.1)">⏳</span>
+        倒计时
+      </div>
+      <div class="countdown-display">
+        <div class="countdown-time" id="countdownTime">00:00:00</div>
+        <div class="countdown-label" id="countdownLabel">设置时间开始倒计时</div>
+      </div>
+      <div class="countdown-inputs" id="countdownInputs">
+        <input type="number" id="cdHours" min="0" max="99" value="0" placeholder="时">
+        <span>时</span>
+        <input type="number" id="cdMinutes" min="0" max="59" value="5" placeholder="分">
+        <span>分</span>
+        <input type="number" id="cdSeconds" min="0" max="59" value="0" placeholder="秒">
+        <span>秒</span>
+      </div>
+      <div class="countdown-presets">
+        <button onclick="setCountdownPreset(1)">1分钟</button>
+        <button onclick="setCountdownPreset(3)">3分钟</button>
+        <button onclick="setCountdownPreset(5)">5分钟</button>
+        <button onclick="setCountdownPreset(10)">10分钟</button>
+        <button onclick="setCountdownPreset(30)">30分钟</button>
+        <button onclick="setCountdownPreset(60)">1小时</button>
+      </div>
+      <div class="countdown-controls">
+        <button class="btn btn-primary" id="cdStartBtn" onclick="toggleCountdown()">开始</button>
+        <button class="btn btn-secondary" onclick="resetCountdown()">重置</button>
+      </div>
+      <div class="countdown-progress">
+        <div class="countdown-progress-bar" id="cdProgressBar" style="width:0%"></div>
       </div>
     </div>
 
@@ -1192,6 +1405,271 @@
       });
     }
 
+    // === Calculator ===
+    let calcExpr = '';
+
+    function calcInput(val) {
+      calcExpr += val;
+      document.getElementById('calcExpr').textContent = calcExpr.replace(/\*/g, '×').replace(/\//g, '÷');
+    }
+
+    function calcClear() {
+      calcExpr = '';
+      document.getElementById('calcExpr').textContent = '';
+      document.getElementById('calcResult').textContent = '0';
+    }
+
+    function calcBackspace() {
+      calcExpr = calcExpr.slice(0, -1);
+      document.getElementById('calcExpr').textContent = calcExpr.replace(/\*/g, '×').replace(/\//g, '÷');
+    }
+
+    function calcEval() {
+      try {
+        const result = Function('"use strict"; return (' + calcExpr + ')')();
+        const formatted = Number.isFinite(result) ? parseFloat(result.toFixed(10)).toString() : 'Error';
+        document.getElementById('calcResult').textContent = formatted;
+        calcExpr = formatted === 'Error' ? '' : formatted;
+      } catch {
+        document.getElementById('calcResult').textContent = 'Error';
+        calcExpr = '';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if ('0123456789.+-*/()'.includes(e.key)) calcInput(e.key);
+      else if (e.key === 'Enter') calcEval();
+      else if (e.key === 'Backspace') calcBackspace();
+      else if (e.key === 'Escape') calcClear();
+    });
+
+    // === Password Generator ===
+    function generatePassword() {
+      const len = parseInt(document.getElementById('pwdLength').value);
+      let chars = '';
+      if (document.getElementById('pwdUpper').checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      if (document.getElementById('pwdLower').checked) chars += 'abcdefghijklmnopqrstuvwxyz';
+      if (document.getElementById('pwdNumbers').checked) chars += '0123456789';
+      if (document.getElementById('pwdSymbols').checked) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+      if (!chars) { notify('请至少选择一种字符类型', 'warning'); return; }
+
+      let pwd = '';
+      const arr = new Uint32Array(len);
+      crypto.getRandomValues(arr);
+      for (let i = 0; i < len; i++) pwd += chars[arr[i] % chars.length];
+
+      document.getElementById('pwdOutput').value = pwd;
+      updatePwdStrength(pwd);
+      notify('密码已生成', 'success');
+    }
+
+    function copyPassword() {
+      const pwd = document.getElementById('pwdOutput').value;
+      if (!pwd) { notify('请先生成密码', 'warning'); return; }
+      navigator.clipboard.writeText(pwd).then(() => notify('已复制到剪贴板', 'success'));
+    }
+
+    function updatePwdStrength(pwd) {
+      let score = 0;
+      if (pwd.length >= 8) score++;
+      if (pwd.length >= 12) score++;
+      if (pwd.length >= 20) score++;
+      if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) score++;
+      if (/\d/.test(pwd)) score++;
+      if (/[^a-zA-Z0-9]/.test(pwd)) score++;
+
+      const pct = Math.min(score / 6 * 100, 100);
+      const bar = document.getElementById('pwdStrengthBar');
+      bar.style.width = pct + '%';
+      bar.style.background = pct < 40 ? 'var(--danger)' : pct < 70 ? 'var(--warning)' : 'var(--success)';
+    }
+
+    // === Typing Speed Test ===
+    const typingSentences = [
+      'The quick brown fox jumps over the lazy dog near the riverbank.',
+      'A journey of a thousand miles begins with a single step forward.',
+      'To be or not to be, that is the question we must answer today.',
+      'All that glitters is not gold, but it certainly catches the eye.',
+      'Practice makes perfect, so keep typing to improve your speed.',
+    ];
+    let typingText = '', typingIndex = 0, typingStartTime = null, typingErrors = 0, typingFinished = false;
+
+    function initTyping() {
+      typingText = typingSentences[Math.floor(Math.random() * typingSentences.length)];
+      typingIndex = 0; typingStartTime = null; typingErrors = 0; typingFinished = false;
+      document.getElementById('typingInput').value = '';
+      document.getElementById('typingInput').disabled = false;
+      document.getElementById('typingWPM').textContent = '0';
+      document.getElementById('typingAccuracy').textContent = '100%';
+      document.getElementById('typingTime').textContent = '0s';
+      renderTypingText();
+    }
+
+    function renderTypingText() {
+      const input = document.getElementById('typingInput').value;
+      let html = '';
+      for (let i = 0; i < typingText.length; i++) {
+        if (i < input.length) {
+          html += input[i] === typingText[i]
+            ? `<span class="correct">${typingText[i]}</span>`
+            : `<span class="incorrect">${typingText[i]}</span>`;
+        } else if (i === input.length) {
+          html += `<span class="cursor">${typingText[i]}</span>`;
+        } else {
+          html += `<span class="upcoming">${typingText[i]}</span>`;
+        }
+      }
+      document.getElementById('typingText').innerHTML = html;
+    }
+
+    function handleTyping() {
+      if (typingFinished) return;
+      const input = document.getElementById('typingInput').value;
+      if (!typingStartTime && input.length > 0) typingStartTime = Date.now();
+
+      renderTypingText();
+
+      let errors = 0;
+      for (let i = 0; i < input.length; i++) {
+        if (input[i] !== typingText[i]) errors++;
+      }
+      typingErrors = errors;
+
+      if (typingStartTime) {
+        const elapsed = (Date.now() - typingStartTime) / 1000;
+        const words = input.length / 5;
+        const wpm = elapsed > 0 ? Math.round(words / (elapsed / 60)) : 0;
+        const accuracy = input.length > 0 ? Math.round(((input.length - errors) / input.length) * 100) : 100;
+
+        document.getElementById('typingWPM').textContent = wpm;
+        document.getElementById('typingAccuracy').textContent = accuracy + '%';
+        document.getElementById('typingTime').textContent = Math.round(elapsed) + 's';
+      }
+
+      if (input.length >= typingText.length) {
+        typingFinished = true;
+        document.getElementById('typingInput').disabled = true;
+        notify('打字完成！', 'success');
+      }
+    }
+
+    function resetTyping() { initTyping(); }
+
+    // === Color Palette Generator ===
+    let paletteMode = 'random';
+    let paletteHistory = [];
+
+    function hslToHex(h, s, l) {
+      s /= 100; l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = n => { const k = (n + h / 30) % 12; const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1); return Math.round(255 * color).toString(16).padStart(2, '0'); };
+      return `#${f(0)}${f(8)}${f(4)}`;
+    }
+
+    function generatePalette() {
+      let colors = [];
+      switch (paletteMode) {
+        case 'warm':
+          colors = Array.from({length: 5}, () => hslToHex(Math.random() * 60 + 0, 60 + Math.random() * 30, 45 + Math.random() * 25));
+          break;
+        case 'cool':
+          colors = Array.from({length: 5}, () => hslToHex(Math.random() * 80 + 180, 50 + Math.random() * 40, 40 + Math.random() * 30));
+          break;
+        case 'pastel':
+          colors = Array.from({length: 5}, () => hslToHex(Math.random() * 360, 40 + Math.random() * 20, 75 + Math.random() * 15));
+          break;
+        case 'monochrome':
+          const baseHue = Math.random() * 360;
+          colors = Array.from({length: 5}, (_, i) => hslToHex(baseHue, 50 + Math.random() * 30, 20 + i * 15));
+          break;
+        default:
+          colors = Array.from({length: 5}, () => '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0'));
+      }
+
+      const display = document.getElementById('paletteDisplay');
+      display.innerHTML = colors.map(c => `<div class="palette-color" style="background:${c}" onclick="event.stopPropagation();copyColor('${c}')"><span>${c}</span></div>`).join('');
+
+      paletteHistory.unshift(colors);
+      if (paletteHistory.length > 5) paletteHistory.pop();
+      renderPaletteHistory();
+    }
+
+    function copyColor(color) {
+      navigator.clipboard.writeText(color).then(() => notify(`已复制 ${color}`, 'success'));
+    }
+
+    function setPaletteMode(mode, btn) {
+      paletteMode = mode;
+      document.querySelectorAll('.palette-options button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      generatePalette();
+    }
+
+    function renderPaletteHistory() {
+      const container = document.getElementById('paletteHistory');
+      container.innerHTML = paletteHistory.slice(1).map(colors =>
+        colors.map(c => `<div class="palette-history-item" style="background:${c}" title="${c}" onclick="copyColor('${c}')"></div>`).join('')
+      ).join('');
+    }
+
+    // === Countdown Timer ===
+    let cdInterval = null, cdSeconds = 0, cdTotal = 0, cdRunning = false;
+
+    function setCountdownPreset(minutes) {
+      document.getElementById('cdHours').value = Math.floor(minutes / 60);
+      document.getElementById('cdMinutes').value = minutes % 60;
+      document.getElementById('cdSeconds').value = 0;
+    }
+
+    function toggleCountdown() {
+      if (cdRunning) {
+        clearInterval(cdInterval); cdRunning = false;
+        document.getElementById('cdStartBtn').textContent = '继续';
+        document.getElementById('countdownLabel').textContent = '已暂停';
+      } else {
+        if (cdSeconds <= 0) {
+          const h = parseInt(document.getElementById('cdHours').value) || 0;
+          const m = parseInt(document.getElementById('cdMinutes').value) || 0;
+          const s = parseInt(document.getElementById('cdSeconds').value) || 0;
+          cdTotal = h * 3600 + m * 60 + s;
+          cdSeconds = cdTotal;
+          if (cdTotal <= 0) { notify('请设置倒计时时间', 'warning'); return; }
+        }
+        cdRunning = true;
+        document.getElementById('cdStartBtn').textContent = '暂停';
+        document.getElementById('countdownLabel').textContent = '倒计时进行中...';
+        cdInterval = setInterval(() => {
+          cdSeconds--;
+          updateCountdownDisplay();
+          if (cdSeconds <= 0) {
+            clearInterval(cdInterval); cdRunning = false;
+            document.getElementById('cdStartBtn').textContent = '开始';
+            document.getElementById('countdownLabel').textContent = '时间到！';
+            notify('倒计时结束！', 'success');
+          }
+        }, 1000);
+        updateCountdownDisplay();
+      }
+    }
+
+    function resetCountdown() {
+      clearInterval(cdInterval); cdRunning = false; cdSeconds = 0; cdTotal = 0;
+      document.getElementById('cdStartBtn').textContent = '开始';
+      document.getElementById('countdownLabel').textContent = '设置时间开始倒计时';
+      document.getElementById('countdownTime').textContent = '00:00:00';
+      document.getElementById('cdProgressBar').style.width = '0%';
+    }
+
+    function updateCountdownDisplay() {
+      const h = Math.floor(cdSeconds / 3600);
+      const m = Math.floor((cdSeconds % 3600) / 60);
+      const s = cdSeconds % 60;
+      document.getElementById('countdownTime').textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+      const pct = cdTotal > 0 ? ((cdTotal - cdSeconds) / cdTotal) * 100 : 0;
+      document.getElementById('cdProgressBar').style.width = pct + '%';
+    }
+
     // === Init ===
     document.getElementById('notesEditor').value = `# 欢迎使用 Markdown 笔记\n\n这是一个**实时预览**的编辑器。\n\n## 功能\n\n- 支持标题、列表、粗体\n- 实时渲染预览\n- 代码高亮 \`inline code\`\n\n> 引用文字样式\n\n### 开始编辑吧！\n\n在左侧输入 Markdown，右侧即时预览效果。`;
 
@@ -1203,6 +1681,9 @@
     renderTable();
     renderNotes();
     updateTimerDisplay();
+    initTyping();
+    generatePalette();
+    generatePassword();
 
     window.addEventListener('resize', () => {
       const canvas = document.getElementById('drawingCanvas');
