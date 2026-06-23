@@ -482,6 +482,79 @@
     .quiz-progress { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-secondary); }
     .quiz-score { font-weight: 600; color: var(--primary); }
 
+    /* Weather Widget */
+    .weather-display { text-align: center; padding: 1rem 0; }
+    .weather-icon { font-size: 4rem; margin-bottom: 0.5rem; }
+    .weather-temp { font-size: 2.5rem; font-weight: 700; }
+    .weather-desc { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.3rem; }
+    .weather-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1rem; }
+    .weather-detail { text-align: center; padding: 0.5rem; background: var(--bg); border-radius: 8px; }
+    .weather-detail .wd-value { font-weight: 600; font-size: 0.9rem; }
+    .weather-detail .wd-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .weather-forecast { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .weather-forecast-day { flex: 1; text-align: center; padding: 0.5rem; background: var(--bg); border-radius: 8px; font-size: 0.75rem; }
+    .weather-forecast-day .wf-icon { font-size: 1.2rem; margin: 0.2rem 0; }
+    .weather-city { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .weather-city input { flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .weather-city input:focus { border-color: var(--primary); }
+
+    /* Bookmark Manager */
+    .bookmark-form { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .bookmark-form input { flex: 1; min-width: 100px; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .bookmark-form input:focus { border-color: var(--primary); }
+    .bookmark-list { display: flex; flex-direction: column; gap: 0.5rem; max-height: 250px; overflow-y: auto; }
+    .bookmark-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; transition: all var(--transition); }
+    .bookmark-item:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+    .bookmark-item .bm-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; background: rgba(99,102,241,0.1); }
+    .bookmark-item .bm-info { flex: 1; overflow: hidden; }
+    .bookmark-item .bm-title { font-size: 0.85rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bookmark-item .bm-url { font-size: 0.7rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bookmark-item .bm-delete { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1rem; opacity: 0; transition: opacity 0.2s; }
+    .bookmark-item:hover .bm-delete { opacity: 1; }
+    .bookmark-tags { display: flex; gap: 0.3rem; margin-top: 0.5rem; flex-wrap: wrap; }
+    .bookmark-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 4px; background: rgba(99,102,241,0.1); color: var(--primary); cursor: pointer; }
+    .bookmark-tag:hover { background: var(--primary); color: #fff; }
+
+    /* Progress Tracker */
+    .progress-list { display: flex; flex-direction: column; gap: 1rem; }
+    .progress-item { display: flex; flex-direction: column; gap: 0.4rem; }
+    .progress-item-header { display: flex; justify-content: space-between; align-items: center; }
+    .progress-item-header .pi-title { font-size: 0.85rem; font-weight: 500; }
+    .progress-item-header .pi-pct { font-size: 0.8rem; font-weight: 600; color: var(--primary); }
+    .progress-bar-bg { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .progress-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    .progress-add input { flex: 1; padding: 0.4rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; }
+    .progress-add input:focus { border-color: var(--primary); }
+
+    /* Emoji Picker */
+    .emoji-search { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .emoji-search input { flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .emoji-search input:focus { border-color: var(--primary); }
+    .emoji-categories { display: flex; gap: 0.3rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .emoji-categories button { padding: 0.3rem 0.5rem; border: none; background: transparent; font-size: 1.1rem; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+    .emoji-categories button:hover { background: var(--border); }
+    .emoji-categories button.active { background: rgba(99,102,241,0.15); }
+    .emoji-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.3rem; max-height: 200px; overflow-y: auto; }
+    .emoji-cell { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; padding: 0.4rem; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .emoji-cell:hover { background: var(--border); transform: scale(1.2); }
+    .emoji-recent { display: flex; gap: 0.3rem; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .emoji-recent-label { font-size: 0.7rem; color: var(--text-secondary); width: 100%; margin-bottom: 0.2rem; }
+    .emoji-copied { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: var(--text); color: var(--bg); padding: 0.5rem 1rem; border-radius: 8px; font-size: 1rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1002; }
+    .emoji-copied.show { opacity: 1; }
+
+    /* JSON Formatter */
+    .json-input { width: 100%; height: 120px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; resize: vertical; background: var(--surface); color: var(--text); outline: none; }
+    .json-input:focus { border-color: var(--primary); }
+    .json-toolbar { display: flex; gap: 0.5rem; margin: 0.75rem 0; flex-wrap: wrap; }
+    .json-output { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; max-height: 250px; overflow: auto; white-space: pre-wrap; word-break: break-all; line-height: 1.5; }
+    .json-output .json-key { color: var(--primary); }
+    .json-output .json-string { color: var(--success); }
+    .json-output .json-number { color: var(--accent); }
+    .json-output .json-bool { color: var(--warning); }
+    .json-output .json-null { color: var(--danger); }
+    .json-error { color: var(--danger); font-size: 0.8rem; margin-top: 0.5rem; }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -971,6 +1044,80 @@
       </div>
       <div class="quiz-question" id="quizQuestion">点击"重新开始"开始答题</div>
       <div class="quiz-options" id="quizOptions"></div>
+    </div>
+
+    <!-- Weather Widget -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🌤</span>
+        天气模拟
+      </div>
+      <div class="weather-city">
+        <input type="text" id="weatherCity" placeholder="输入城市名..." value="北京" onkeydown="if(event.key==='Enter')refreshWeather()">
+        <button class="btn btn-primary btn-sm" onclick="refreshWeather()">刷新</button>
+      </div>
+      <div class="weather-display" id="weatherDisplay"></div>
+    </div>
+
+    <!-- Bookmark Manager -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🔖</span>
+        书签管理
+      </div>
+      <div class="bookmark-form">
+        <input type="text" id="bmTitle" placeholder="标题">
+        <input type="text" id="bmUrl" placeholder="链接 (如 example.com)">
+        <button class="btn btn-primary btn-sm" onclick="addBookmark()">添加</button>
+      </div>
+      <div class="bookmark-tags" id="bmTags"></div>
+      <div class="bookmark-list" id="bookmarkList"></div>
+    </div>
+
+    <!-- Progress Tracker -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">📊</span>
+        进度追踪
+      </div>
+      <div class="progress-list" id="progressList"></div>
+      <div class="progress-add">
+        <input type="text" id="progressName" placeholder="目标名称" onkeydown="if(event.key==='Enter')addProgress()">
+        <button class="btn btn-primary btn-sm" onclick="addProgress()">添加</button>
+      </div>
+    </div>
+
+    <!-- Emoji Picker -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">😊</span>
+        Emoji 选择器
+      </div>
+      <div class="emoji-search">
+        <input type="text" id="emojiSearch" placeholder="搜索 emoji..." oninput="filterEmojis()">
+      </div>
+      <div class="emoji-categories" id="emojiCategories"></div>
+      <div class="emoji-grid" id="emojiGrid"></div>
+      <div class="emoji-recent">
+        <span class="emoji-recent-label">最近使用</span>
+        <div id="emojiRecent"></div>
+      </div>
+    </div>
+
+    <!-- JSON Formatter -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">{ }</span>
+        JSON 格式化
+      </div>
+      <textarea class="json-input" id="jsonInput" placeholder='粘贴 JSON 内容，如 {"name":"hello","value":123}...'></textarea>
+      <div class="json-toolbar">
+        <button class="btn btn-primary btn-sm" onclick="formatJSON()">格式化</button>
+        <button class="btn btn-secondary btn-sm" onclick="minifyJSON()">压缩</button>
+        <button class="btn btn-secondary btn-sm" onclick="copyJSON()">复制结果</button>
+        <button class="btn btn-danger btn-sm" onclick="clearJSON()">清空</button>
+      </div>
+      <div class="json-output" id="jsonOutput">结果将显示在这里...</div>
     </div>
   </main>
 
@@ -2076,6 +2223,257 @@
       setTimeout(() => { quizIndex++; showQuizQuestion(); }, 1500);
     }
 
+    // === Weather Widget ===
+    const weatherConditions = [
+      { icon: '☀️', desc: '晴天', tempRange: [25, 38] },
+      { icon: '⛅', desc: '多云', tempRange: [18, 28] },
+      { icon: '☁️', desc: '阴天', tempRange: [15, 22] },
+      { icon: '🌧', desc: '小雨', tempRange: [12, 20] },
+      { icon: '⛈', desc: '雷阵雨', tempRange: [18, 30] },
+      { icon: '🌨', desc: '小雪', tempRange: [-5, 2] },
+      { icon: '🌫', desc: '雾', tempRange: [5, 15] },
+      { icon: '💨', desc: '大风', tempRange: [10, 20] },
+    ];
+    const forecastDays = ['今天', '明天', '后天', '大后天', '第五天'];
+
+    function refreshWeather() {
+      const city = document.getElementById('weatherCity').value.trim() || '未知';
+      const cond = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+      const temp = Math.floor(Math.random() * (cond.tempRange[1] - cond.tempRange[0])) + cond.tempRange[0];
+      const humidity = Math.floor(Math.random() * 50) + 30;
+      const wind = Math.floor(Math.random() * 30) + 1;
+      const uv = Math.floor(Math.random() * 11);
+
+      let forecast = forecastDays.map(day => {
+        const fc = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+        const ft = Math.floor(Math.random() * (fc.tempRange[1] - fc.tempRange[0])) + fc.tempRange[0];
+        return `<div class="weather-forecast-day"><div>${day}</div><div class="wf-icon">${fc.icon}</div><div>${ft}°</div></div>`;
+      }).join('');
+
+      document.getElementById('weatherDisplay').innerHTML = `
+        <div class="weather-icon">${cond.icon}</div>
+        <div class="weather-temp">${temp}°C</div>
+        <div class="weather-desc">${city} · ${cond.desc}</div>
+        <div class="weather-details">
+          <div class="weather-detail"><div class="wd-value">${humidity}%</div><div class="wd-label">湿度</div></div>
+          <div class="weather-detail"><div class="wd-value">${wind} km/h</div><div class="wd-label">风速</div></div>
+          <div class="weather-detail"><div class="wd-value">${uv}</div><div class="wd-label">UV指数</div></div>
+        </div>
+        <div class="weather-forecast">${forecast}</div>`;
+      notify(`${city}天气已刷新`, 'info');
+    }
+
+    // === Bookmark Manager ===
+    let bookmarks = [
+      { id: 1, title: 'GitHub', url: 'github.com', tag: '开发' },
+      { id: 2, title: 'MDN', url: 'developer.mozilla.org', tag: '文档' },
+      { id: 3, title: 'Stack Overflow', url: 'stackoverflow.com', tag: '开发' },
+      { id: 4, title: 'Dribbble', url: 'dribbble.com', tag: '设计' },
+    ];
+
+    function renderBookmarks(filter) {
+      const list = document.getElementById('bookmarkList');
+      const filtered = filter ? bookmarks.filter(b => b.tag === filter) : bookmarks;
+      list.innerHTML = filtered.map(bm => `
+        <div class="bookmark-item">
+          <div class="bm-icon">🔗</div>
+          <div class="bm-info">
+            <div class="bm-title">${bm.title}</div>
+            <div class="bm-url">${bm.url}</div>
+          </div>
+          <button class="bm-delete" onclick="deleteBookmark(${bm.id})">×</button>
+        </div>`).join('');
+
+      const tags = [...new Set(bookmarks.map(b => b.tag))];
+      document.getElementById('bmTags').innerHTML = `<span class="bookmark-tag" onclick="renderBookmarks()">全部</span>` +
+        tags.map(t => `<span class="bookmark-tag" onclick="renderBookmarks('${t}')">${t}</span>`).join('');
+    }
+
+    function addBookmark() {
+      const title = document.getElementById('bmTitle').value.trim();
+      const url = document.getElementById('bmUrl').value.trim();
+      if (!title || !url) { notify('请填写标题和链接', 'warning'); return; }
+      bookmarks.push({ id: Date.now(), title, url, tag: '未分类' });
+      document.getElementById('bmTitle').value = '';
+      document.getElementById('bmUrl').value = '';
+      renderBookmarks();
+      notify(`书签"${title}"已添加`, 'success');
+    }
+
+    function deleteBookmark(id) {
+      bookmarks = bookmarks.filter(b => b.id !== id);
+      renderBookmarks();
+      notify('书签已删除', 'info');
+    }
+
+    // === Progress Tracker ===
+    let progressItems = [
+      { id: 1, name: '学习 TypeScript', progress: 65 },
+      { id: 2, name: '完成毕业论文', progress: 40 },
+      { id: 3, name: '健身计划', progress: 80 },
+      { id: 4, name: '阅读 10 本书', progress: 30 },
+    ];
+
+    function renderProgress() {
+      const list = document.getElementById('progressList');
+      const colors = ['var(--primary)', 'var(--success)', 'var(--accent)', 'var(--warning)'];
+      list.innerHTML = progressItems.map((item, i) => `
+        <div class="progress-item">
+          <div class="progress-item-header">
+            <span class="pi-title">${item.name}</span>
+            <span class="pi-pct">${item.progress}%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width:${item.progress}%;background:${colors[i % colors.length]}"></div>
+          </div>
+          <div style="display:flex;gap:0.3rem;margin-top:0.2rem">
+            <button class="btn btn-sm btn-secondary" onclick="updateProgress(${item.id},-10)">-10</button>
+            <button class="btn btn-sm btn-primary" onclick="updateProgress(${item.id},10)">+10</button>
+            <button class="btn btn-sm btn-danger" onclick="removeProgress(${item.id})" style="margin-left:auto">删除</button>
+          </div>
+        </div>`).join('');
+    }
+
+    function updateProgress(id, delta) {
+      const item = progressItems.find(p => p.id === id);
+      item.progress = Math.max(0, Math.min(100, item.progress + delta));
+      renderProgress();
+      if (item.progress >= 100) notify(`"${item.name}" 已完成！`, 'success');
+    }
+
+    function addProgress() {
+      const name = document.getElementById('progressName').value.trim();
+      if (!name) return;
+      progressItems.push({ id: Date.now(), name, progress: 0 });
+      document.getElementById('progressName').value = '';
+      renderProgress();
+      notify(`已添加目标：${name}`, 'success');
+    }
+
+    function removeProgress(id) {
+      progressItems = progressItems.filter(p => p.id !== id);
+      renderProgress();
+    }
+
+    // === Emoji Picker ===
+    const emojiData = {
+      '😀': { name: 'smile', cat: 'face' }, '😂': { name: 'laugh', cat: 'face' }, '🥰': { name: 'love', cat: 'face' },
+      '😎': { name: 'cool', cat: 'face' }, '🤔': { name: 'think', cat: 'face' }, '😴': { name: 'sleep', cat: 'face' },
+      '🤯': { name: 'explode', cat: 'face' }, '😤': { name: 'angry', cat: 'face' }, '🥺': { name: 'plead', cat: 'face' },
+      '👍': { name: 'up', cat: 'hand' }, '👎': { name: 'down', cat: 'hand' }, '👋': { name: 'wave', cat: 'hand' },
+      '✌️': { name: 'peace', cat: 'hand' }, '🤝': { name: 'handshake', cat: 'hand' }, '👏': { name: 'clap', cat: 'hand' },
+      '💪': { name: 'strong', cat: 'hand' }, '🙏': { name: 'pray', cat: 'hand' },
+      '❤️': { name: 'heart', cat: 'symbol' }, '⭐': { name: 'star', cat: 'symbol' }, '🔥': { name: 'fire', cat: 'symbol' },
+      '✨': { name: 'sparkle', cat: 'symbol' }, '💯': { name: 'hundred', cat: 'symbol' }, '🎉': { name: 'party', cat: 'symbol' },
+      '💡': { name: 'idea', cat: 'symbol' }, '⚡': { name: 'bolt', cat: 'symbol' },
+      '🐶': { name: 'dog', cat: 'animal' }, '🐱': { name: 'cat', cat: 'animal' }, '🦊': { name: 'fox', cat: 'animal' },
+      '🐼': { name: 'panda', cat: 'animal' }, '🦋': { name: 'butterfly', cat: 'animal' }, '🐢': { name: 'turtle', cat: 'animal' },
+      '🍎': { name: 'apple', cat: 'food' }, '🍕': { name: 'pizza', cat: 'food' }, '🍺': { name: 'beer', cat: 'food' },
+      '☕': { name: 'coffee', cat: 'food' }, '🍰': { name: 'cake', cat: 'food' }, '🍜': { name: 'noodle', cat: 'food' },
+    };
+    const emojiCategories = { face: '😀', hand: '👍', symbol: '❤️', animal: '🐶', food: '🍎' };
+    let currentEmojiCat = null, recentEmojis = [];
+
+    function initEmojiPicker() {
+      const catContainer = document.getElementById('emojiCategories');
+      catContainer.innerHTML = `<button class="active" onclick="setEmojiCat(null, this)">全部</button>` +
+        Object.entries(emojiCategories).map(([cat, icon]) =>
+          `<button onclick="setEmojiCat('${cat}', this)">${icon}</button>`
+        ).join('');
+      renderEmojiGrid();
+    }
+
+    function setEmojiCat(cat, btn) {
+      currentEmojiCat = cat;
+      document.querySelectorAll('#emojiCategories button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderEmojiGrid();
+    }
+
+    function renderEmojiGrid() {
+      const search = (document.getElementById('emojiSearch').value || '').toLowerCase();
+      const grid = document.getElementById('emojiGrid');
+      const filtered = Object.entries(emojiData).filter(([emoji, data]) => {
+        if (currentEmojiCat && data.cat !== currentEmojiCat) return false;
+        if (search && !data.name.includes(search) && !emoji.includes(search)) return false;
+        return true;
+      });
+      grid.innerHTML = filtered.map(([emoji]) =>
+        `<div class="emoji-cell" onclick="pickEmoji('${emoji}')">${emoji}</div>`
+      ).join('');
+    }
+
+    function filterEmojis() { renderEmojiGrid(); }
+
+    function pickEmoji(emoji) {
+      navigator.clipboard.writeText(emoji).then(() => {
+        notify(`已复制 ${emoji}`, 'success');
+        if (!recentEmojis.includes(emoji)) {
+          recentEmojis.unshift(emoji);
+          if (recentEmojis.length > 10) recentEmojis.pop();
+        }
+        renderRecentEmojis();
+      });
+    }
+
+    function renderRecentEmojis() {
+      document.getElementById('emojiRecent').innerHTML = recentEmojis.map(e =>
+        `<div class="emoji-cell" style="display:inline-flex;font-size:1.2rem;padding:0.2rem" onclick="pickEmoji('${e}')">${e}</div>`
+      ).join('');
+    }
+
+    // === JSON Formatter ===
+    function formatJSON() {
+      const input = document.getElementById('jsonInput').value.trim();
+      if (!input) { notify('请输入 JSON 内容', 'warning'); return; }
+      try {
+        const obj = JSON.parse(input);
+        const formatted = JSON.stringify(obj, null, 2);
+        document.getElementById('jsonOutput').innerHTML = syntaxHighlight(formatted);
+      } catch (e) {
+        document.getElementById('jsonOutput').innerHTML = `<span class="json-error">解析错误: ${e.message}</span>`;
+        notify('JSON 格式不正确', 'error');
+      }
+    }
+
+    function minifyJSON() {
+      const input = document.getElementById('jsonInput').value.trim();
+      if (!input) return;
+      try {
+        const obj = JSON.parse(input);
+        const minified = JSON.stringify(obj);
+        document.getElementById('jsonOutput').textContent = minified;
+        notify('已压缩', 'success');
+      } catch (e) {
+        document.getElementById('jsonOutput').innerHTML = `<span class="json-error">解析错误: ${e.message}</span>`;
+      }
+    }
+
+    function copyJSON() {
+      const output = document.getElementById('jsonOutput').textContent;
+      if (!output || output === '结果将显示在这里...') { notify('没有可复制的内容', 'warning'); return; }
+      navigator.clipboard.writeText(output).then(() => notify('已复制到剪贴板', 'success'));
+    }
+
+    function clearJSON() {
+      document.getElementById('jsonInput').value = '';
+      document.getElementById('jsonOutput').innerHTML = '结果将显示在这里...';
+    }
+
+    function syntaxHighlight(json) {
+      return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) => {
+        let cls = 'json-number';
+        if (/^"/.test(match)) {
+          cls = /:$/.test(match) ? 'json-key' : 'json-string';
+        } else if (/true|false/.test(match)) {
+          cls = 'json-bool';
+        } else if (/null/.test(match)) {
+          cls = 'json-null';
+        }
+        return `<span class="${cls}">${match}</span>`;
+      });
+    }
+
     // === Init ===
     document.getElementById('notesEditor').value = `# 欢迎使用 Markdown 笔记\n\n这是一个**实时预览**的编辑器。\n\n## 功能\n\n- 支持标题、列表、粗体\n- 实时渲染预览\n- 代码高亮 \`inline code\`\n\n> 引用文字样式\n\n### 开始编辑吧！\n\n在左侧输入 Markdown，右侧即时预览效果。`;
 
@@ -2094,6 +2492,10 @@
     setConverterType('length', document.querySelector('#converterTabs button'));
     renderDice();
     startQuiz();
+    refreshWeather();
+    renderBookmarks();
+    renderProgress();
+    initEmojiPicker();
 
     window.addEventListener('resize', () => {
       const canvas = document.getElementById('drawingCanvas');
