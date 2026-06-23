@@ -85,7 +85,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -102,7 +102,13 @@
       font-size: 0.9rem;
     }
 
-    .theme-toggle {
+    .header-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .theme-toggle, .header-btn {
       background: rgba(255,255,255,0.2);
       border: none;
       border-radius: 50px;
@@ -117,10 +123,10 @@
       gap: 0.5rem;
     }
 
-    .theme-toggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+    .theme-toggle:hover, .header-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
 
     .main {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: -1.5rem auto 2rem;
       padding: 0 1.5rem;
       display: grid;
@@ -128,7 +134,7 @@
       gap: 1.5rem;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .main { grid-template-columns: 1fr; }
     }
 
@@ -164,81 +170,6 @@
 
     .full-width { grid-column: 1 / -1; }
 
-    /* Pomodoro Timer */
-    .timer-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .timer-circle {
-      position: relative;
-      width: 200px;
-      height: 200px;
-    }
-
-    .timer-circle svg {
-      transform: rotate(-90deg);
-      width: 200px;
-      height: 200px;
-    }
-
-    .timer-circle .bg { stroke: var(--border); }
-    .timer-circle .progress {
-      stroke: var(--primary);
-      stroke-linecap: round;
-      transition: stroke-dashoffset 1s linear, stroke 0.3s;
-    }
-
-    .timer-display {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-
-    .timer-display .time {
-      font-size: 2.5rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .timer-display .label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-top: 0.2rem;
-    }
-
-    .timer-controls {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .timer-modes {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timer-modes button {
-      padding: 0.4rem 0.8rem;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-secondary);
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all var(--transition);
-    }
-
-    .timer-modes button.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
     .btn {
       padding: 0.6rem 1.2rem;
       border: none;
@@ -260,355 +191,297 @@
     .btn-danger:hover { background: #dc2626; }
     .btn-success { background: var(--success); color: #fff; }
     .btn-success:hover { background: #059669; }
+    .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
+
+    /* Pomodoro Timer */
+    .timer-container { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .timer-circle { position: relative; width: 200px; height: 200px; }
+    .timer-circle svg { transform: rotate(-90deg); width: 200px; height: 200px; }
+    .timer-circle .bg { stroke: var(--border); }
+    .timer-circle .progress { stroke: var(--primary); stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.3s; }
+    .timer-display { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .timer-display .time { font-size: 2.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .timer-display .label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .timer-controls { display: flex; gap: 0.75rem; }
+    .timer-modes { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .timer-modes button { padding: 0.4rem 0.8rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all var(--transition); }
+    .timer-modes button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
     /* Kanban */
-    .kanban {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      min-height: 300px;
-    }
-
-    @media (max-width: 768px) {
-      .kanban { grid-template-columns: 1fr; }
-    }
-
-    .kanban-column {
-      background: var(--bg);
-      border-radius: 8px;
-      padding: 0.75rem;
-      min-height: 200px;
-      transition: background var(--transition);
-    }
-
-    .kanban-column.drag-over {
-      background: rgba(99, 102, 241, 0.1);
-      outline: 2px dashed var(--primary);
-    }
-
-    .kanban-column-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-secondary);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .kanban-column-title .count {
-      background: var(--border);
-      padding: 0.1rem 0.5rem;
-      border-radius: 10px;
-      font-size: 0.75rem;
-    }
-
-    .kanban-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem;
-      margin-bottom: 0.5rem;
-      cursor: grab;
-      transition: all var(--transition);
-      position: relative;
-    }
-
+    .kanban { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; min-height: 300px; }
+    @media (max-width: 900px) { .kanban { grid-template-columns: 1fr; } }
+    .kanban-column { background: var(--bg); border-radius: 8px; padding: 0.75rem; min-height: 200px; transition: background var(--transition); }
+    .kanban-column.drag-over { background: rgba(99, 102, 241, 0.1); outline: 2px dashed var(--primary); }
+    .kanban-column-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; }
+    .kanban-column-title .count { background: var(--border); padding: 0.1rem 0.5rem; border-radius: 10px; font-size: 0.75rem; }
+    .kanban-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; margin-bottom: 0.5rem; cursor: grab; transition: all var(--transition); position: relative; }
     .kanban-card:active { cursor: grabbing; }
     .kanban-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
-
-    .kanban-card.dragging {
-      opacity: 0.5;
-      transform: rotate(3deg);
-    }
-
-    .kanban-card .priority {
-      width: 4px;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      border-radius: 8px 0 0 8px;
-    }
-
-    .kanban-card .card-text {
-      font-size: 0.85rem;
-      padding-left: 0.5rem;
-    }
-
-    .kanban-card .card-meta {
-      display: flex;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-      padding-left: 0.5rem;
-    }
-
-    .kanban-card .tag {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--primary);
-    }
-
-    .kanban-add {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px dashed var(--border);
-      background: transparent;
-      border-radius: 6px;
-      color: var(--text-secondary);
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all var(--transition);
-    }
-
+    .kanban-card.dragging { opacity: 0.5; transform: rotate(3deg); }
+    .kanban-card .priority { width: 4px; height: 100%; position: absolute; left: 0; top: 0; border-radius: 8px 0 0 8px; }
+    .kanban-card .card-text { font-size: 0.85rem; padding-left: 0.5rem; }
+    .kanban-card .card-meta { display: flex; gap: 0.4rem; margin-top: 0.4rem; padding-left: 0.5rem; }
+    .kanban-card .tag { font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 4px; background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+    .kanban-add { width: 100%; padding: 0.5rem; border: 1px dashed var(--border); background: transparent; border-radius: 6px; color: var(--text-secondary); cursor: pointer; font-size: 0.8rem; transition: all var(--transition); }
     .kanban-add:hover { border-color: var(--primary); color: var(--primary); }
-
-    .kanban-input {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid var(--primary);
-      border-radius: 6px;
-      font-size: 0.85rem;
-      background: var(--surface);
-      color: var(--text);
-      outline: none;
-    }
+    .kanban-input { width: 100%; padding: 0.5rem; border: 1px solid var(--primary); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
 
     /* Chart */
-    .chart-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .chart-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 0.75rem;
-      height: 160px;
-      padding: 0 0.5rem;
-    }
-
-    .chart-bar-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-      justify-content: flex-end;
-    }
-
-    .chart-bar {
-      width: 100%;
-      max-width: 40px;
-      border-radius: 6px 6px 0 0;
-      transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      cursor: pointer;
-    }
-
+    .chart-container { display: flex; flex-direction: column; gap: 1rem; }
+    .chart-bars { display: flex; align-items: flex-end; gap: 0.75rem; height: 160px; padding: 0 0.5rem; }
+    .chart-bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+    .chart-bar { width: 100%; max-width: 40px; border-radius: 6px 6px 0 0; transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; cursor: pointer; }
     .chart-bar:hover { opacity: 0.8; }
-
-    .chart-bar .tooltip {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--text);
-      color: var(--bg);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity var(--transition);
-      pointer-events: none;
-    }
-
+    .chart-bar .tooltip { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; white-space: nowrap; opacity: 0; transition: opacity var(--transition); pointer-events: none; }
     .chart-bar:hover .tooltip { opacity: 1; }
-
-    .chart-bar-label {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      margin-top: 0.4rem;
-    }
-
-    .chart-legend {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      font-size: 0.8rem;
-    }
-
-    .chart-legend span {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .chart-legend .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .chart-actions {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-    }
+    .chart-bar-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.4rem; }
+    .chart-legend { display: flex; justify-content: center; gap: 1.5rem; font-size: 0.8rem; }
+    .chart-legend span { display: flex; align-items: center; gap: 0.3rem; }
+    .chart-legend .dot { width: 10px; height: 10px; border-radius: 50%; }
 
     /* Expense Tracker */
-    .expense-form {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .expense-form input, .expense-form select {
-      padding: 0.5rem 0.75rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.85rem;
-      background: var(--surface);
-      color: var(--text);
-      transition: border-color var(--transition);
-    }
-
-    .expense-form input:focus, .expense-form select:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .expense-list {
-      list-style: none;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    .expense-item {
-      display: flex;
-      align-items: center;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-      animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-10px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    .expense-item .category-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin-right: 0.75rem;
-    }
-
+    .expense-form { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .expense-form input, .expense-form select { padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: var(--surface); color: var(--text); transition: border-color var(--transition); }
+    .expense-form input:focus, .expense-form select:focus { outline: none; border-color: var(--primary); }
+    .expense-list { list-style: none; max-height: 200px; overflow-y: auto; }
+    .expense-item { display: flex; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--border); animation: slideIn 0.3s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+    .expense-item .category-dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 0.75rem; }
     .expense-item .name { flex: 1; font-size: 0.85rem; }
     .expense-item .amount { font-weight: 600; font-size: 0.85rem; }
-
-    .expense-item .delete-btn {
-      background: none;
-      border: none;
-      color: var(--danger);
-      cursor: pointer;
-      margin-left: 0.5rem;
-      opacity: 0;
-      transition: opacity var(--transition);
-      font-size: 1.1rem;
-    }
-
+    .expense-item .delete-btn { background: none; border: none; color: var(--danger); cursor: pointer; margin-left: 0.5rem; opacity: 0; transition: opacity var(--transition); font-size: 1.1rem; }
     .expense-item:hover .delete-btn { opacity: 1; }
+    .expense-total { display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 0.75rem; border-top: 2px solid var(--border); font-weight: 600; }
 
-    .expense-total {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1rem;
-      padding-top: 0.75rem;
-      border-top: 2px solid var(--border);
-      font-weight: 600;
-    }
+    /* Drawing Canvas */
+    .canvas-toolbar { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .canvas-toolbar input[type="color"] { width: 32px; height: 32px; border: none; border-radius: 6px; cursor: pointer; padding: 0; }
+    .canvas-toolbar input[type="range"] { width: 80px; accent-color: var(--primary); }
+    .canvas-toolbar label { font-size: 0.75rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.3rem; }
+    #drawingCanvas { border: 1px solid var(--border); border-radius: 8px; cursor: crosshair; width: 100%; height: 280px; background: #fff; touch-action: none; }
+    [data-theme="dark"] #drawingCanvas { background: #1a1a2e; }
+
+    /* Notes Editor */
+    .notes-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; min-height: 250px; }
+    @media (max-width: 600px) { .notes-container { grid-template-columns: 1fr; } }
+    .notes-editor { width: 100%; height: 250px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85rem; resize: none; background: var(--bg); color: var(--text); outline: none; transition: border-color var(--transition); }
+    .notes-editor:focus { border-color: var(--primary); }
+    .notes-preview { border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; overflow-y: auto; height: 250px; font-size: 0.85rem; line-height: 1.6; background: var(--bg); }
+    .notes-preview h1, .notes-preview h2, .notes-preview h3 { margin: 0.5rem 0; }
+    .notes-preview h1 { font-size: 1.4rem; }
+    .notes-preview h2 { font-size: 1.2rem; }
+    .notes-preview h3 { font-size: 1rem; }
+    .notes-preview p { margin: 0.4rem 0; }
+    .notes-preview code { background: var(--border); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.8rem; }
+    .notes-preview pre { background: var(--border); padding: 0.75rem; border-radius: 6px; overflow-x: auto; margin: 0.5rem 0; }
+    .notes-preview pre code { background: none; padding: 0; }
+    .notes-preview ul, .notes-preview ol { padding-left: 1.5rem; margin: 0.4rem 0; }
+    .notes-preview blockquote { border-left: 3px solid var(--primary); padding-left: 0.75rem; color: var(--text-secondary); margin: 0.4rem 0; }
+    .notes-preview strong { color: var(--primary); }
+
+    /* Habit Tracker */
+    .habits-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    .habit-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; }
+    .habit-name { width: 80px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .habit-days { display: flex; gap: 4px; flex: 1; }
+    .habit-day { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--text-secondary); }
+    .habit-day:hover { border-color: var(--primary); transform: scale(1.1); }
+    .habit-day.checked { background: var(--success); border-color: var(--success); color: #fff; }
+    .habit-day.checked::after { content: ''; }
+    .habit-streak { font-size: 0.75rem; color: var(--warning); font-weight: 600; min-width: 40px; text-align: right; }
+    .habit-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    .habit-add input { flex: 1; padding: 0.4rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; }
+    .habit-add input:focus { border-color: var(--primary); }
+
+    /* Sound Mixer */
+    .mixer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.75rem; }
+    .mixer-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: all var(--transition); }
+    .mixer-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .mixer-item.active { background: rgba(99,102,241,0.1); border-color: var(--primary); }
+    .mixer-item .mixer-icon { font-size: 1.5rem; }
+    .mixer-item .mixer-label { font-size: 0.7rem; color: var(--text-secondary); }
+    .mixer-item input[type="range"] { width: 70px; accent-color: var(--primary); height: 4px; }
+    .mixer-master { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .mixer-master label { font-size: 0.8rem; font-weight: 500; }
+    .mixer-master input[type="range"] { flex: 1; accent-color: var(--primary); }
+    .mixer-visualizer { height: 40px; display: flex; align-items: flex-end; gap: 2px; margin-top: 0.75rem; }
+    .mixer-bar { flex: 1; background: var(--primary); border-radius: 2px 2px 0 0; transition: height 0.15s ease; min-height: 2px; }
+
+    /* Data Table */
+    .table-controls { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
+    .table-controls input { padding: 0.4rem 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; min-width: 180px; }
+    .table-controls input:focus { border-color: var(--primary); }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .data-table th { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 2px solid var(--border); color: var(--text-secondary); font-weight: 600; cursor: pointer; user-select: none; transition: color var(--transition); white-space: nowrap; }
+    .data-table th:hover { color: var(--primary); }
+    .data-table th .sort-icon { margin-left: 0.3rem; font-size: 0.7rem; }
+    .data-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .data-table tr { transition: background var(--transition); }
+    .data-table tbody tr:hover { background: rgba(99,102,241,0.05); }
+    .data-table .status-badge { padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.7rem; font-weight: 500; }
+    .badge-active { background: rgba(16,185,129,0.15); color: var(--success); }
+    .badge-inactive { background: rgba(239,68,68,0.15); color: var(--danger); }
+    .badge-pending { background: rgba(245,158,11,0.15); color: var(--warning); }
+    .table-pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); }
+    .table-pagination button { padding: 0.3rem 0.6rem; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .table-pagination button:hover { border-color: var(--primary); }
+    .table-pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
 
     /* Notifications */
-    .notifications {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .notification {
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 0.85rem;
-      box-shadow: var(--shadow-lg);
-      animation: notifyIn 0.3s ease, notifyOut 0.3s ease 2.7s forwards;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
+    .notifications { position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: flex; flex-direction: column; gap: 0.5rem; }
+    .notification { padding: 0.75rem 1.25rem; border-radius: 8px; color: #fff; font-size: 0.85rem; box-shadow: var(--shadow-lg); animation: notifyIn 0.3s ease, notifyOut 0.3s ease 2.7s forwards; display: flex; align-items: center; gap: 0.5rem; }
     .notification.success { background: var(--success); }
     .notification.warning { background: var(--warning); }
     .notification.error { background: var(--danger); }
     .notification.info { background: var(--primary); }
-
-    @keyframes notifyIn {
-      from { opacity: 0; transform: translateX(100%); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes notifyOut {
-      from { opacity: 1; transform: translateX(0); }
-      to { opacity: 0; transform: translateX(100%); }
-    }
+    @keyframes notifyIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes notifyOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
 
     /* Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 999; opacity: 0; pointer-events: none; transition: opacity var(--transition); }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-
-    .modal {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 2rem;
-      max-width: 400px;
-      width: 90%;
-      transform: scale(0.9) translateY(20px);
-      transition: transform var(--transition);
-      box-shadow: var(--shadow-lg);
-    }
-
+    .modal { background: var(--surface); border-radius: var(--radius); padding: 2rem; max-width: 400px; width: 90%; transform: scale(0.9) translateY(20px); transition: transform var(--transition); box-shadow: var(--shadow-lg); }
     .modal-overlay.active .modal { transform: scale(1) translateY(0); }
-
     .modal h3 { margin-bottom: 1rem; }
     .modal p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.5; }
     .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
 
-    /* Scrollbar */
+    /* Command Palette */
+    .cmd-palette-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(2px); z-index: 1001; opacity: 0; pointer-events: none; transition: opacity 0.2s; display: flex; align-items: flex-start; justify-content: center; padding-top: 15vh; }
+    .cmd-palette-overlay.active { opacity: 1; pointer-events: all; }
+    .cmd-palette { background: var(--surface); border-radius: var(--radius); width: 90%; max-width: 500px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); transform: translateY(-10px) scale(0.98); transition: transform 0.2s; overflow: hidden; }
+    .cmd-palette-overlay.active .cmd-palette { transform: translateY(0) scale(1); }
+    .cmd-palette input { width: 100%; padding: 1rem 1.25rem; border: none; border-bottom: 1px solid var(--border); background: transparent; font-size: 1rem; color: var(--text); outline: none; }
+    .cmd-palette-results { max-height: 300px; overflow-y: auto; }
+    .cmd-palette-item { padding: 0.7rem 1.25rem; cursor: pointer; display: flex; align-items: center; gap: 0.75rem; transition: background 0.15s; font-size: 0.85rem; }
+    .cmd-palette-item:hover, .cmd-palette-item.selected { background: rgba(99,102,241,0.1); }
+    .cmd-palette-item .cmd-icon { width: 24px; text-align: center; }
+    .cmd-palette-item .cmd-shortcut { margin-left: auto; font-size: 0.7rem; color: var(--text-secondary); background: var(--bg); padding: 0.15rem 0.4rem; border-radius: 4px; }
+    .cmd-hint { text-align: center; padding: 0.5rem; font-size: 0.7rem; color: var(--text-secondary); border-top: 1px solid var(--border); }
+
+    /* Calculator */
+    .calc-display { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: right; margin-bottom: 0.75rem; min-height: 60px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .calc-display .calc-expr { font-size: 0.8rem; color: var(--text-secondary); min-height: 1.2em; }
+    .calc-display .calc-result { font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; }
+    .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .calc-grid button { padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; cursor: pointer; background: var(--surface); color: var(--text); transition: all var(--transition); }
+    .calc-grid button:hover { background: var(--bg); transform: scale(1.05); }
+    .calc-grid button:active { transform: scale(0.95); }
+    .calc-grid .calc-op { background: rgba(99,102,241,0.1); color: var(--primary); font-weight: 600; }
+    .calc-grid .calc-eq { background: var(--primary); color: #fff; }
+    .calc-grid .calc-eq:hover { background: var(--primary-hover); }
+    .calc-grid .calc-clear { background: rgba(239,68,68,0.1); color: var(--danger); }
+
+    /* Password Generator */
+    .pwd-output { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .pwd-output input { flex: 1; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'SF Mono', monospace; font-size: 0.9rem; background: var(--bg); color: var(--text); outline: none; }
+    .pwd-options { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+    .pwd-option { display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; }
+    .pwd-option label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+    .pwd-option input[type="checkbox"] { accent-color: var(--primary); }
+    .pwd-option input[type="range"] { width: 120px; accent-color: var(--primary); }
+    .pwd-strength { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin-top: 0.5rem; }
+    .pwd-strength-bar { height: 100%; border-radius: 3px; transition: width 0.3s, background 0.3s; }
+
+    /* Typing Test */
+    .typing-stats { display: flex; gap: 1.5rem; margin-bottom: 1rem; }
+    .typing-stat { text-align: center; }
+    .typing-stat .value { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+    .typing-stat .label { font-size: 0.75rem; color: var(--text-secondary); }
+    .typing-text { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; font-size: 1rem; line-height: 1.8; margin-bottom: 0.75rem; min-height: 80px; user-select: none; }
+    .typing-text .correct { color: var(--success); }
+    .typing-text .incorrect { color: var(--danger); text-decoration: underline; }
+    .typing-text .cursor { border-left: 2px solid var(--primary); animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .typing-text .upcoming { color: var(--text-secondary); }
+    .typing-input { width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--surface); color: var(--text); outline: none; }
+    .typing-input:focus { border-color: var(--primary); }
+
+    /* Color Palette */
+    .palette-display { display: flex; border-radius: 8px; overflow: hidden; height: 120px; margin-bottom: 1rem; cursor: pointer; }
+    .palette-color { flex: 1; transition: flex 0.3s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.5rem; }
+    .palette-color:hover { flex: 1.5; }
+    .palette-color span { font-size: 0.7rem; color: #fff; background: rgba(0,0,0,0.4); padding: 0.2rem 0.4rem; border-radius: 4px; opacity: 0; transition: opacity 0.2s; }
+    .palette-color:hover span { opacity: 1; }
+    .palette-options { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .palette-options button { padding: 0.4rem 0.8rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all var(--transition); }
+    .palette-options button:hover { border-color: var(--primary); color: var(--primary); }
+    .palette-options button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .palette-history { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .palette-history-item { width: 32px; height: 32px; border-radius: 6px; cursor: pointer; border: 2px solid var(--border); transition: transform 0.2s; }
+    .palette-history-item:hover { transform: scale(1.2); }
+
+    /* Countdown Timer */
+    .countdown-display { text-align: center; margin-bottom: 1.5rem; }
+    .countdown-display .countdown-time { font-size: 3rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 2px; }
+    .countdown-display .countdown-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.3rem; }
+    .countdown-inputs { display: flex; gap: 0.5rem; margin-bottom: 1rem; align-items: center; justify-content: center; }
+    .countdown-inputs input { width: 60px; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-size: 1rem; background: var(--surface); color: var(--text); outline: none; }
+    .countdown-inputs input:focus { border-color: var(--primary); }
+    .countdown-inputs span { font-size: 0.8rem; color: var(--text-secondary); }
+    .countdown-presets { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .countdown-presets button { padding: 0.35rem 0.7rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.75rem; transition: all var(--transition); }
+    .countdown-presets button:hover { border-color: var(--primary); color: var(--primary); }
+    .countdown-controls { display: flex; gap: 0.75rem; justify-content: center; }
+    .countdown-progress { height: 4px; background: var(--border); border-radius: 2px; margin-top: 1rem; overflow: hidden; }
+    .countdown-progress-bar { height: 100%; background: var(--primary); border-radius: 2px; transition: width 1s linear; }
+
+    /* Memory Game */
+    .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .memory-card { aspect-ratio: 1; border-radius: 8px; cursor: pointer; perspective: 600px; }
+    .memory-card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s; }
+    .memory-card.flipped .memory-card-inner { transform: rotateY(180deg); }
+    .memory-card.matched .memory-card-inner { transform: rotateY(180deg); }
+    .memory-card.matched { pointer-events: none; }
+    .memory-card-front, .memory-card-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+    .memory-card-front { background: var(--primary); color: #fff; }
+    .memory-card-back { background: var(--surface); border: 1px solid var(--border); transform: rotateY(180deg); }
+    .memory-card.matched .memory-card-back { background: rgba(16,185,129,0.15); border-color: var(--success); }
+    .memory-stats { display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* Unit Converter */
+    .converter-row { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem; }
+    .converter-row input { flex: 1; padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--surface); color: var(--text); outline: none; }
+    .converter-row input:focus { border-color: var(--primary); }
+    .converter-row select { padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; cursor: pointer; }
+    .converter-row select:focus { border-color: var(--primary); }
+    .converter-arrow { font-size: 1.2rem; color: var(--text-secondary); }
+    .converter-tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .converter-tabs button { padding: 0.35rem 0.7rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.75rem; transition: all var(--transition); }
+    .converter-tabs button:hover { border-color: var(--primary); color: var(--primary); }
+    .converter-tabs button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .converter-result { padding: 0.75rem; background: var(--bg); border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-align: center; }
+
+    /* Dice Roller */
+    .dice-container { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .dice { width: 60px; height: 60px; background: var(--surface); border: 2px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; cursor: pointer; transition: all var(--transition); }
+    .dice.rolling { animation: roll 0.5s ease; }
+    @keyframes roll { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(180deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
+    .dice-controls { display: flex; gap: 0.5rem; justify-content: center; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .dice-controls select { padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); cursor: pointer; outline: none; }
+    .dice-history { font-size: 0.75rem; color: var(--text-secondary); text-align: center; max-height: 60px; overflow-y: auto; }
+    .dice-history .roll-entry { padding: 0.2rem 0; border-bottom: 1px solid var(--border); }
+    .dice-total { font-size: 1.5rem; font-weight: 700; text-align: center; color: var(--primary); margin-bottom: 0.5rem; }
+
+    /* Stopwatch */
+    .stopwatch-display { text-align: center; margin-bottom: 1.5rem; }
+    .stopwatch-time { font-size: 3rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 1px; }
+    .stopwatch-controls { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 1rem; }
+    .stopwatch-laps { max-height: 150px; overflow-y: auto; }
+    .stopwatch-laps li { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+    .stopwatch-laps li:last-child { border-bottom: none; }
+
+    /* Quiz Game */
+    .quiz-question { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.5; }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .quiz-option { padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all var(--transition); font-size: 0.85rem; text-align: left; background: var(--surface); color: var(--text); }
+    .quiz-option:hover { border-color: var(--primary); background: rgba(99,102,241,0.05); }
+    .quiz-option.correct { border-color: var(--success); background: rgba(16,185,129,0.1); color: var(--success); }
+    .quiz-option.wrong { border-color: var(--danger); background: rgba(239,68,68,0.1); color: var(--danger); }
+    .quiz-option:disabled { cursor: not-allowed; }
+    .quiz-progress { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-secondary); }
+    .quiz-score { font-weight: 600; color: var(--primary); }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -628,16 +501,29 @@
     </div>
   </div>
 
+  <div class="cmd-palette-overlay" id="cmdPalette">
+    <div class="cmd-palette">
+      <input type="text" id="cmdInput" placeholder="输入命令或搜索..." oninput="filterCommands()" onkeydown="handleCmdKey(event)">
+      <div class="cmd-palette-results" id="cmdResults"></div>
+      <div class="cmd-hint">↑↓ 导航 · Enter 执行 · Esc 关闭</div>
+    </div>
+  </div>
+
   <header class="header">
     <div class="header-content">
       <div>
         <h1>生产力仪表盘</h1>
-        <p>管理任务 · 追踪时间 · 分析支出</p>
+        <p>管理任务 · 追踪时间 · 分析支出 · 培养习惯</p>
       </div>
-      <button class="theme-toggle" onclick="toggleTheme()">
-        <span id="themeIcon">🌙</span>
-        <span id="themeText">暗色</span>
-      </button>
+      <div class="header-actions">
+        <button class="header-btn" onclick="openCmdPalette()">
+          <span>⌘</span> <span>命令面板</span>
+        </button>
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">暗色</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -657,8 +543,7 @@
         <div class="timer-circle">
           <svg viewBox="0 0 200 200">
             <circle class="bg" cx="100" cy="100" r="88" fill="none" stroke-width="8"/>
-            <circle class="progress" id="timerProgress" cx="100" cy="100" r="88" fill="none" stroke-width="8"
-              stroke-dasharray="553" stroke-dashoffset="0"/>
+            <circle class="progress" id="timerProgress" cx="100" cy="100" r="88" fill="none" stroke-width="8" stroke-dasharray="553" stroke-dashoffset="0"/>
           </svg>
           <div class="timer-display">
             <div class="time" id="timerDisplay">25:00</div>
@@ -669,6 +554,20 @@
           <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()">▶ 开始</button>
           <button class="btn btn-secondary" onclick="resetTimer()">↺ 重置</button>
         </div>
+      </div>
+    </div>
+
+    <!-- Habit Tracker -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">🎯</span>
+        习惯打卡
+        <span style="font-size:0.7rem;color:var(--text-secondary);margin-left:auto;font-weight:400">本周</span>
+      </div>
+      <div class="habits-grid" id="habitsGrid"></div>
+      <div class="habit-add">
+        <input type="text" id="habitInput" placeholder="添加新习惯..." onkeydown="if(event.key==='Enter')addHabit()">
+        <button class="btn btn-primary btn-sm" onclick="addHabit()">添加</button>
       </div>
     </div>
 
@@ -694,6 +593,42 @@
         <span>总计</span>
         <span id="expenseTotal">¥0.00</span>
       </div>
+    </div>
+
+    <!-- Sound Mixer -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">🎵</span>
+        白噪音混合器
+      </div>
+      <div class="mixer-grid" id="mixerGrid"></div>
+      <div class="mixer-visualizer" id="mixerVisualizer"></div>
+      <div class="mixer-master">
+        <label>主音量</label>
+        <input type="range" min="0" max="100" value="70" id="masterVolume" oninput="updateMasterVolume()">
+        <span id="masterVolumeLabel" style="font-size:0.75rem;min-width:30px">70%</span>
+      </div>
+    </div>
+
+    <!-- Drawing Canvas -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🎨</span>
+        画板
+      </div>
+      <div class="canvas-toolbar">
+        <input type="color" id="brushColor" value="#6366f1" title="画笔颜色">
+        <label>粗细 <input type="range" id="brushSize" min="1" max="30" value="4"></label>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('pen')">画笔</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('eraser')">橡皮</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('rect')">矩形</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('circle')">圆形</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('line')">直线</button>
+        <button class="btn btn-sm btn-danger" onclick="clearCanvas()">清空</button>
+        <button class="btn btn-sm btn-success" onclick="downloadCanvas()">下载</button>
+        <button class="btn btn-sm btn-secondary" onclick="undoCanvas()">撤销</button>
+      </div>
+      <canvas id="drawingCanvas"></canvas>
     </div>
 
     <!-- Kanban Board -->
@@ -722,13 +657,208 @@
       </div>
     </div>
 
-    <!-- Chart -->
+    <!-- Notes Editor -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">📝</span>
+        Markdown 笔记
+        <span style="font-size:0.7rem;color:var(--text-secondary);margin-left:auto;font-weight:400">实时预览</span>
+      </div>
+      <div class="notes-container">
+        <textarea class="notes-editor" id="notesEditor" oninput="renderNotes()" placeholder="在这里写 Markdown..."></textarea>
+        <div class="notes-preview" id="notesPreview"></div>
+      </div>
+    </div>
+
+    <!-- Data Table -->
     <div class="card full-width">
       <div class="card-title">
         <span class="icon" style="background:rgba(245,158,11,0.1)">📊</span>
+        数据管理
+      </div>
+      <div class="table-controls">
+        <input type="text" id="tableSearch" placeholder="搜索姓名、邮箱..." oninput="renderTable()">
+        <button class="btn btn-sm btn-secondary" onclick="addRandomRow()">+ 添加数据</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteSelected()">删除选中</button>
+        <span style="font-size:0.75rem;color:var(--text-secondary);margin-left:auto" id="tableInfo"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:30px"><input type="checkbox" id="selectAll" onchange="toggleSelectAll()"></th>
+              <th onclick="sortTable('name')">姓名 <span class="sort-icon" id="sort-name"></span></th>
+              <th onclick="sortTable('email')">邮箱 <span class="sort-icon" id="sort-email"></span></th>
+              <th onclick="sortTable('role')">角色 <span class="sort-icon" id="sort-role"></span></th>
+              <th onclick="sortTable('status')">状态 <span class="sort-icon" id="sort-status"></span></th>
+              <th onclick="sortTable('score')">评分 <span class="sort-icon" id="sort-score"></span></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div class="table-pagination">
+        <span id="paginationInfo"></span>
+        <div style="display:flex;gap:0.3rem">
+          <button onclick="changePage(-1)" id="prevPage">上一页</button>
+          <button onclick="changePage(1)" id="nextPage">下一页</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🧮</span>
+        计算器
+      </div>
+      <div class="calc-display">
+        <div class="calc-expr" id="calcExpr"></div>
+        <div class="calc-result" id="calcResult">0</div>
+      </div>
+      <div class="calc-grid">
+        <button class="calc-clear" onclick="calcClear()">C</button>
+        <button class="calc-op" onclick="calcInput('(')">(</button>
+        <button class="calc-op" onclick="calcInput(')')">)</button>
+        <button class="calc-op" onclick="calcInput('/')">÷</button>
+        <button onclick="calcInput('7')">7</button>
+        <button onclick="calcInput('8')">8</button>
+        <button onclick="calcInput('9')">9</button>
+        <button class="calc-op" onclick="calcInput('*')">×</button>
+        <button onclick="calcInput('4')">4</button>
+        <button onclick="calcInput('5')">5</button>
+        <button onclick="calcInput('6')">6</button>
+        <button class="calc-op" onclick="calcInput('-')">−</button>
+        <button onclick="calcInput('1')">1</button>
+        <button onclick="calcInput('2')">2</button>
+        <button onclick="calcInput('3')">3</button>
+        <button class="calc-op" onclick="calcInput('+')">+</button>
+        <button onclick="calcInput('0')">0</button>
+        <button onclick="calcInput('.')">.</button>
+        <button class="calc-op" onclick="calcBackspace()">⌫</button>
+        <button class="calc-eq" onclick="calcEval()">=</button>
+      </div>
+    </div>
+
+    <!-- Password Generator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">🔐</span>
+        密码生成器
+      </div>
+      <div class="pwd-output">
+        <input type="text" id="pwdOutput" readonly placeholder="点击生成密码">
+        <button class="btn btn-primary" onclick="generatePassword()">生成</button>
+        <button class="btn btn-secondary" onclick="copyPassword()">复制</button>
+      </div>
+      <div class="pwd-options">
+        <div class="pwd-option">
+          <span>长度: <strong id="pwdLenLabel">16</strong></span>
+          <input type="range" id="pwdLength" min="6" max="64" value="16" oninput="document.getElementById('pwdLenLabel').textContent=this.value">
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdUpper" checked> 大写字母 (A-Z)</label>
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdLower" checked> 小写字母 (a-z)</label>
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdNumbers" checked> 数字 (0-9)</label>
+        </div>
+        <div class="pwd-option">
+          <label><input type="checkbox" id="pwdSymbols" checked> 符号 (!@#$...)</label>
+        </div>
+      </div>
+      <div class="pwd-strength">
+        <div class="pwd-strength-bar" id="pwdStrengthBar" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Typing Speed Test -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">⌨️</span>
+        打字速度测试
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="resetTyping()">重新开始</button>
+      </div>
+      <div class="typing-stats">
+        <div class="typing-stat">
+          <div class="value" id="typingWPM">0</div>
+          <div class="label">WPM</div>
+        </div>
+        <div class="typing-stat">
+          <div class="value" id="typingAccuracy">100%</div>
+          <div class="label">准确率</div>
+        </div>
+        <div class="typing-stat">
+          <div class="value" id="typingTime">0s</div>
+          <div class="label">用时</div>
+        </div>
+      </div>
+      <div class="typing-text" id="typingText"></div>
+      <input type="text" class="typing-input" id="typingInput" placeholder="开始打字..." oninput="handleTyping()" autocomplete="off" autocorrect="off" spellcheck="false">
+    </div>
+
+    <!-- Color Palette Generator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🎨</span>
+        调色板生成器
+      </div>
+      <div class="palette-display" id="paletteDisplay" onclick="generatePalette()"></div>
+      <div class="palette-options">
+        <button class="active" onclick="setPaletteMode('random', this)">随机</button>
+        <button onclick="setPaletteMode('warm', this)">暖色</button>
+        <button onclick="setPaletteMode('cool', this)">冷色</button>
+        <button onclick="setPaletteMode('pastel', this)">柔和</button>
+        <button onclick="setPaletteMode('monochrome', this)">单色</button>
+      </div>
+      <p style="font-size:0.75rem;color:var(--text-secondary);margin-bottom:0.5rem">点击色块复制色值 · 点击调色板刷新</p>
+      <div class="palette-history" id="paletteHistory"></div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(239,68,68,0.1)">⏳</span>
+        倒计时
+      </div>
+      <div class="countdown-display">
+        <div class="countdown-time" id="countdownTime">00:00:00</div>
+        <div class="countdown-label" id="countdownLabel">设置时间开始倒计时</div>
+      </div>
+      <div class="countdown-inputs" id="countdownInputs">
+        <input type="number" id="cdHours" min="0" max="99" value="0" placeholder="时">
+        <span>时</span>
+        <input type="number" id="cdMinutes" min="0" max="59" value="5" placeholder="分">
+        <span>分</span>
+        <input type="number" id="cdSeconds" min="0" max="59" value="0" placeholder="秒">
+        <span>秒</span>
+      </div>
+      <div class="countdown-presets">
+        <button onclick="setCountdownPreset(1)">1分钟</button>
+        <button onclick="setCountdownPreset(3)">3分钟</button>
+        <button onclick="setCountdownPreset(5)">5分钟</button>
+        <button onclick="setCountdownPreset(10)">10分钟</button>
+        <button onclick="setCountdownPreset(30)">30分钟</button>
+        <button onclick="setCountdownPreset(60)">1小时</button>
+      </div>
+      <div class="countdown-controls">
+        <button class="btn btn-primary" id="cdStartBtn" onclick="toggleCountdown()">开始</button>
+        <button class="btn btn-secondary" onclick="resetCountdown()">重置</button>
+      </div>
+      <div class="countdown-progress">
+        <div class="countdown-progress-bar" id="cdProgressBar" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">📈</span>
         本周专注时长
-        <div class="chart-actions" style="margin-left:auto">
-          <button class="btn btn-secondary" onclick="randomizeChart()" style="font-size:0.75rem;padding:0.3rem 0.8rem">刷新数据</button>
+        <div style="margin-left:auto">
+          <button class="btn btn-secondary btn-sm" onclick="randomizeChart()">刷新数据</button>
         </div>
       </div>
       <div class="chart-container">
@@ -739,10 +869,113 @@
         </div>
       </div>
     </div>
+
+    <!-- Memory Game -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🃏</span>
+        记忆翻牌
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="initMemory()">重新开始</button>
+      </div>
+      <div class="memory-stats">
+        <span>步数: <strong id="memMoves">0</strong></span>
+        <span>匹配: <strong id="memMatches">0</strong>/8</span>
+        <span>用时: <strong id="memTime">0s</strong></span>
+      </div>
+      <div class="memory-grid" id="memoryGrid"></div>
+    </div>
+
+    <!-- Unit Converter -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">📐</span>
+        单位换算
+      </div>
+      <div class="converter-tabs" id="converterTabs">
+        <button class="active" onclick="setConverterType('length', this)">长度</button>
+        <button onclick="setConverterType('weight', this)">重量</button>
+        <button onclick="setConverterType('temperature', this)">温度</button>
+        <button onclick="setConverterType('area', this)">面积</button>
+        <button onclick="setConverterType('speed', this)">速度</button>
+      </div>
+      <div class="converter-row">
+        <input type="number" id="converterInput" value="1" oninput="convertValue()">
+        <select id="converterFrom" onchange="convertValue()"></select>
+      </div>
+      <div style="text-align:center;font-size:1.2rem;color:var(--text-secondary);margin:0.3rem 0">⇅</div>
+      <div class="converter-row">
+        <input type="number" id="converterOutput" readonly>
+        <select id="converterTo" onchange="convertValue()"></select>
+      </div>
+      <div class="converter-result" id="converterResult"></div>
+    </div>
+
+    <!-- Dice Roller -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">🎲</span>
+        骰子投掷
+      </div>
+      <div class="dice-controls">
+        <label style="font-size:0.8rem;color:var(--text-secondary)">数量</label>
+        <select id="diceCount" onchange="renderDice()">
+          <option value="1">1个</option>
+          <option value="2" selected>2个</option>
+          <option value="3">3个</option>
+          <option value="4">4个</option>
+          <option value="5">5个</option>
+        </select>
+        <label style="font-size:0.8rem;color:var(--text-secondary)">面数</label>
+        <select id="diceSides">
+          <option value="6">D6</option>
+          <option value="8">D8</option>
+          <option value="10">D10</option>
+          <option value="12">D12</option>
+          <option value="20">D20</option>
+          <option value="100">D100</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="rollDice()">投掷</button>
+      </div>
+      <div class="dice-total" id="diceTotal">—</div>
+      <div class="dice-container" id="diceContainer"></div>
+      <div class="dice-history" id="diceHistory"></div>
+    </div>
+
+    <!-- Stopwatch -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">⏲</span>
+        秒表
+      </div>
+      <div class="stopwatch-display">
+        <div class="stopwatch-time" id="swTime">00:00.00</div>
+      </div>
+      <div class="stopwatch-controls">
+        <button class="btn btn-primary" id="swStartBtn" onclick="toggleStopwatch()">开始</button>
+        <button class="btn btn-secondary" onclick="lapStopwatch()">记圈</button>
+        <button class="btn btn-danger" onclick="resetStopwatch()">重置</button>
+      </div>
+      <ol class="stopwatch-laps" id="swLaps"></ol>
+    </div>
+
+    <!-- Quiz Game -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🧠</span>
+        趣味问答
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="startQuiz()">重新开始</button>
+      </div>
+      <div class="quiz-progress">
+        <span>第 <strong id="quizIndex">1</strong>/<span id="quizTotal">10</span> 题</span>
+        <span class="quiz-score">得分: <span id="quizScore">0</span></span>
+      </div>
+      <div class="quiz-question" id="quizQuestion">点击"重新开始"开始答题</div>
+      <div class="quiz-options" id="quizOptions"></div>
+    </div>
   </main>
 
   <script>
-    // Theme Toggle
+    // === Theme Toggle ===
     function toggleTheme() {
       const html = document.documentElement;
       const isDark = html.getAttribute('data-theme') === 'dark';
@@ -752,7 +985,7 @@
       notify(isDark ? '已切换为亮色模式' : '已切换为暗色模式', 'info');
     }
 
-    // Notifications
+    // === Notifications ===
     function notify(message, type = 'info') {
       const container = document.getElementById('notifications');
       const el = document.createElement('div');
@@ -763,28 +996,79 @@
       setTimeout(() => el.remove(), 3000);
     }
 
-    // Modal
+    // === Modal ===
     function showModal(title, message, onConfirm) {
       document.getElementById('modalTitle').textContent = title;
       document.getElementById('modalMessage').textContent = message;
       document.getElementById('modalOverlay').classList.add('active');
       document.getElementById('modalConfirm').onclick = () => { closeModal(); onConfirm(); };
     }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
 
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('active');
+    // === Command Palette ===
+    const commands = [
+      { icon: '🌙', label: '切换主题', action: toggleTheme, shortcut: 'Alt+T' },
+      { icon: '⏱', label: '开始/暂停番茄钟', action: toggleTimer, shortcut: '' },
+      { icon: '↺', label: '重置番茄钟', action: resetTimer, shortcut: '' },
+      { icon: '🎨', label: '清空画板', action: clearCanvas, shortcut: '' },
+      { icon: '📊', label: '刷新图表数据', action: randomizeChart, shortcut: '' },
+      { icon: '🗑', label: '清空支出记录', action: () => { expenses = []; renderExpenses(); notify('支出已清空', 'info'); }, shortcut: '' },
+      { icon: '➕', label: '添加随机数据行', action: addRandomRow, shortcut: '' },
+      { icon: '🎵', label: '停止所有声音', action: stopAllSounds, shortcut: '' },
+    ];
+    let cmdSelectedIndex = 0;
+
+    function openCmdPalette() {
+      document.getElementById('cmdPalette').classList.add('active');
+      document.getElementById('cmdInput').value = '';
+      cmdSelectedIndex = 0;
+      filterCommands();
+      setTimeout(() => document.getElementById('cmdInput').focus(), 50);
     }
 
-    // Pomodoro Timer
-    let timerInterval = null;
-    let timerSeconds = 25 * 60;
-    let timerTotal = 25 * 60;
-    let timerRunning = false;
+    function closeCmdPalette() { document.getElementById('cmdPalette').classList.remove('active'); }
+
+    function filterCommands() {
+      const query = document.getElementById('cmdInput').value.toLowerCase();
+      const filtered = commands.filter(c => c.label.toLowerCase().includes(query));
+      cmdSelectedIndex = 0;
+      const container = document.getElementById('cmdResults');
+      container.innerHTML = filtered.map((cmd, i) => `
+        <div class="cmd-palette-item ${i === 0 ? 'selected' : ''}" onclick="executeCmd(${commands.indexOf(cmd)})" data-index="${i}">
+          <span class="cmd-icon">${cmd.icon}</span>
+          <span>${cmd.label}</span>
+          ${cmd.shortcut ? `<span class="cmd-shortcut">${cmd.shortcut}</span>` : ''}
+        </div>`).join('');
+    }
+
+    function handleCmdKey(e) {
+      const items = document.querySelectorAll('.cmd-palette-item');
+      if (e.key === 'Escape') { closeCmdPalette(); return; }
+      if (e.key === 'ArrowDown') { e.preventDefault(); cmdSelectedIndex = Math.min(cmdSelectedIndex + 1, items.length - 1); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); cmdSelectedIndex = Math.max(cmdSelectedIndex - 1, 0); }
+      if (e.key === 'Enter') {
+        const query = document.getElementById('cmdInput').value.toLowerCase();
+        const filtered = commands.filter(c => c.label.toLowerCase().includes(query));
+        if (filtered[cmdSelectedIndex]) { filtered[cmdSelectedIndex].action(); closeCmdPalette(); }
+        return;
+      }
+      items.forEach((item, i) => item.classList.toggle('selected', i === cmdSelectedIndex));
+    }
+
+    function executeCmd(index) { commands[index].action(); closeCmdPalette(); }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openCmdPalette(); }
+      if (e.key === 'Escape') closeCmdPalette();
+      if (e.altKey && e.key === 't') { e.preventDefault(); toggleTheme(); }
+    });
+
+    // === Pomodoro Timer ===
+    let timerInterval = null, timerSeconds = 25 * 60, timerTotal = 25 * 60, timerRunning = false;
 
     function setTimerMode(minutes, btn) {
       if (timerRunning) return;
-      timerSeconds = minutes * 60;
-      timerTotal = minutes * 60;
+      timerSeconds = minutes * 60; timerTotal = minutes * 60;
       updateTimerDisplay();
       document.querySelectorAll('.timer-modes button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -794,8 +1078,7 @@
 
     function toggleTimer() {
       if (timerRunning) {
-        clearInterval(timerInterval);
-        timerRunning = false;
+        clearInterval(timerInterval); timerRunning = false;
         document.getElementById('timerStartBtn').innerHTML = '▶ 继续';
       } else {
         timerRunning = true;
@@ -803,10 +1086,9 @@
         timerInterval = setInterval(() => {
           timerSeconds--;
           if (timerSeconds <= 0) {
-            clearInterval(timerInterval);
-            timerRunning = false;
+            clearInterval(timerInterval); timerRunning = false;
             document.getElementById('timerStartBtn').innerHTML = '▶ 开始';
-            notify('时间到！休息一下吧 🎉', 'success');
+            notify('时间到！休息一下吧', 'success');
             timerSeconds = 0;
           }
           updateTimerDisplay();
@@ -815,32 +1097,239 @@
     }
 
     function resetTimer() {
-      clearInterval(timerInterval);
-      timerRunning = false;
-      timerSeconds = timerTotal;
+      clearInterval(timerInterval); timerRunning = false; timerSeconds = timerTotal;
       document.getElementById('timerStartBtn').innerHTML = '▶ 开始';
       updateTimerDisplay();
     }
 
     function updateTimerDisplay() {
-      const m = Math.floor(timerSeconds / 60);
-      const s = timerSeconds % 60;
-      document.getElementById('timerDisplay').textContent =
-        `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      const m = Math.floor(timerSeconds / 60), s = timerSeconds % 60;
+      document.getElementById('timerDisplay').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
       const circumference = 2 * Math.PI * 88;
       const offset = circumference * (1 - timerSeconds / timerTotal);
       const progress = document.getElementById('timerProgress');
       progress.style.strokeDashoffset = offset;
-      if (timerSeconds < timerTotal * 0.2) {
-        progress.style.stroke = 'var(--danger)';
-      } else if (timerSeconds < timerTotal * 0.5) {
-        progress.style.stroke = 'var(--warning)';
-      } else {
-        progress.style.stroke = 'var(--primary)';
+      progress.style.stroke = timerSeconds < timerTotal * 0.2 ? 'var(--danger)' : timerSeconds < timerTotal * 0.5 ? 'var(--warning)' : 'var(--primary)';
+    }
+
+    // === Habit Tracker ===
+    const weekDays = ['一', '二', '三', '四', '五', '六', '日'];
+    let habits = [
+      { id: 1, name: '早起', days: [true, true, false, true, true, false, false] },
+      { id: 2, name: '锻炼', days: [true, false, true, false, true, false, false] },
+      { id: 3, name: '阅读', days: [true, true, true, true, false, false, false] },
+      { id: 4, name: '冥想', days: [false, true, false, true, true, false, false] },
+    ];
+
+    function renderHabits() {
+      const grid = document.getElementById('habitsGrid');
+      grid.innerHTML = habits.map(h => {
+        const streak = h.days.filter(Boolean).length;
+        return `
+          <div class="habit-row">
+            <span class="habit-name" title="${h.name}">${h.name}</span>
+            <div class="habit-days">
+              ${h.days.map((checked, i) => `
+                <div class="habit-day ${checked ? 'checked' : ''}" onclick="toggleHabit(${h.id},${i})" title="周${weekDays[i]}">
+                  ${weekDays[i]}
+                </div>`).join('')}
+            </div>
+            <span class="habit-streak">${streak}/7</span>
+          </div>`;
+      }).join('');
+    }
+
+    function toggleHabit(id, dayIndex) {
+      const habit = habits.find(h => h.id === id);
+      habit.days[dayIndex] = !habit.days[dayIndex];
+      renderHabits();
+      if (habit.days[dayIndex]) notify(`${habit.name} 打卡成功!`, 'success');
+    }
+
+    function addHabit() {
+      const input = document.getElementById('habitInput');
+      const name = input.value.trim();
+      if (!name) return;
+      habits.push({ id: Date.now(), name, days: [false,false,false,false,false,false,false] });
+      input.value = '';
+      renderHabits();
+      notify(`已添加习惯：${name}`, 'success');
+    }
+
+    // === Sound Mixer ===
+    const sounds = [
+      { id: 'rain', icon: '🌧', label: '雨声', active: false, volume: 50 },
+      { id: 'fire', icon: '🔥', label: '篝火', active: false, volume: 50 },
+      { id: 'wind', icon: '🍃', label: '风声', active: false, volume: 50 },
+      { id: 'wave', icon: '🌊', label: '海浪', active: false, volume: 50 },
+      { id: 'bird', icon: '🐦', label: '鸟鸣', active: false, volume: 50 },
+      { id: 'thunder', icon: '⚡', label: '雷声', active: false, volume: 50 },
+      { id: 'cafe', icon: '☕', label: '咖啡厅', active: false, volume: 50 },
+      { id: 'night', icon: '🌙', label: '夜虫', active: false, volume: 50 },
+    ];
+    let mixerAnimFrame = null;
+
+    function renderMixer() {
+      const grid = document.getElementById('mixerGrid');
+      grid.innerHTML = sounds.map(s => `
+        <div class="mixer-item ${s.active ? 'active' : ''}" onclick="toggleSound('${s.id}')">
+          <span class="mixer-icon">${s.icon}</span>
+          <span class="mixer-label">${s.label}</span>
+          <input type="range" min="0" max="100" value="${s.volume}" onclick="event.stopPropagation()" oninput="setSoundVolume('${s.id}', this.value)">
+        </div>`).join('');
+
+      const vis = document.getElementById('mixerVisualizer');
+      if (!vis.children.length) {
+        vis.innerHTML = Array.from({length: 32}, () => '<div class="mixer-bar"></div>').join('');
       }
     }
 
-    // Kanban Board
+    function toggleSound(id) {
+      const sound = sounds.find(s => s.id === id);
+      sound.active = !sound.active;
+      renderMixer();
+      if (sounds.some(s => s.active)) startVisualizer();
+      else stopVisualizer();
+      notify(sound.active ? `${sound.label} 已开启` : `${sound.label} 已关闭`, 'info');
+    }
+
+    function setSoundVolume(id, val) { sounds.find(s => s.id === id).volume = parseInt(val); }
+    function updateMasterVolume() {
+      const v = document.getElementById('masterVolume').value;
+      document.getElementById('masterVolumeLabel').textContent = v + '%';
+    }
+    function stopAllSounds() {
+      sounds.forEach(s => s.active = false);
+      renderMixer(); stopVisualizer();
+      notify('所有声音已停止', 'info');
+    }
+
+    function startVisualizer() {
+      if (mixerAnimFrame) return;
+      const bars = document.querySelectorAll('.mixer-bar');
+      function animate() {
+        const activeSounds = sounds.filter(s => s.active);
+        const masterVol = parseInt(document.getElementById('masterVolume').value) / 100;
+        bars.forEach(bar => {
+          const intensity = activeSounds.length > 0 ? (activeSounds.reduce((sum, s) => sum + s.volume, 0) / activeSounds.length / 100) * masterVol : 0;
+          const h = Math.random() * intensity * 38 + 2;
+          bar.style.height = h + 'px';
+          bar.style.background = h > 25 ? 'var(--accent)' : h > 15 ? 'var(--warning)' : 'var(--primary)';
+        });
+        mixerAnimFrame = requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    function stopVisualizer() {
+      if (mixerAnimFrame) { cancelAnimationFrame(mixerAnimFrame); mixerAnimFrame = null; }
+      document.querySelectorAll('.mixer-bar').forEach(bar => bar.style.height = '2px');
+    }
+
+    // === Drawing Canvas ===
+    let drawTool = 'pen', isDrawing = false, lastX = 0, lastY = 0, shapeStartX = 0, shapeStartY = 0;
+    let canvasHistory = [];
+
+    function initCanvas() {
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth * 2;
+      canvas.height = canvas.offsetHeight * 2;
+      ctx.scale(2, 2);
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      saveCanvasState();
+
+      canvas.addEventListener('pointerdown', startDraw);
+      canvas.addEventListener('pointermove', draw);
+      canvas.addEventListener('pointerup', endDraw);
+      canvas.addEventListener('pointerleave', endDraw);
+    }
+
+    function startDraw(e) {
+      isDrawing = true;
+      const rect = e.target.getBoundingClientRect();
+      lastX = e.clientX - rect.left;
+      lastY = e.clientY - rect.top;
+      shapeStartX = lastX; shapeStartY = lastY;
+      if (drawTool === 'pen' || drawTool === 'eraser') {
+        const ctx = e.target.getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+      }
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const canvas = e.target;
+      const ctx = canvas.getContext('2d');
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (drawTool === 'pen' || drawTool === 'eraser') {
+        ctx.strokeStyle = drawTool === 'eraser' ? (document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff') : document.getElementById('brushColor').value;
+        ctx.lineWidth = document.getElementById('brushSize').value;
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+      lastX = x; lastY = y;
+    }
+
+    function endDraw(e) {
+      if (!isDrawing) return;
+      isDrawing = false;
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      ctx.strokeStyle = document.getElementById('brushColor').value;
+      ctx.lineWidth = document.getElementById('brushSize').value;
+
+      if (drawTool === 'rect') {
+        ctx.strokeRect(shapeStartX, shapeStartY, x - shapeStartX, y - shapeStartY);
+      } else if (drawTool === 'circle') {
+        const rx = Math.abs(x - shapeStartX) / 2, ry = Math.abs(y - shapeStartY) / 2;
+        const cx = shapeStartX + (x - shapeStartX) / 2, cy = shapeStartY + (y - shapeStartY) / 2;
+        ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
+      } else if (drawTool === 'line') {
+        ctx.beginPath(); ctx.moveTo(shapeStartX, shapeStartY); ctx.lineTo(x, y); ctx.stroke();
+      }
+      saveCanvasState();
+    }
+
+    function setDrawTool(tool) { drawTool = tool; notify(`已切换为${({pen:'画笔',eraser:'橡皮',rect:'矩形',circle:'圆形',line:'直线'})[tool]}`, 'info'); }
+    function clearCanvas() {
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      saveCanvasState();
+      notify('画板已清空', 'info');
+    }
+    function downloadCanvas() {
+      const link = document.createElement('a');
+      link.download = 'drawing.png';
+      link.href = document.getElementById('drawingCanvas').toDataURL();
+      link.click();
+      notify('画作已下载', 'success');
+    }
+    function saveCanvasState() {
+      const canvas = document.getElementById('drawingCanvas');
+      canvasHistory.push(canvas.toDataURL());
+      if (canvasHistory.length > 30) canvasHistory.shift();
+    }
+    function undoCanvas() {
+      if (canvasHistory.length <= 1) return;
+      canvasHistory.pop();
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.onload = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.drawImage(img, 0, 0, canvas.width / 2, canvas.height / 2); };
+      img.src = canvasHistory[canvasHistory.length - 1];
+    }
+
+    // === Kanban Board ===
     let kanbanData = [
       { id: 1, text: '设计新的着陆页', status: 'todo', priority: 'high', tags: ['设计'] },
       { id: 2, text: '编写 API 文档', status: 'todo', priority: 'medium', tags: ['文档'] },
@@ -848,7 +1337,6 @@
       { id: 4, text: '实现用户认证模块', status: 'doing', priority: 'high', tags: ['开发'] },
       { id: 5, text: '配置 CI/CD 流水线', status: 'done', priority: 'medium', tags: ['运维'] },
     ];
-
     let draggedId = null;
 
     function renderKanban() {
@@ -857,81 +1345,155 @@
         const cards = kanbanData.filter(c => c.status === status);
         container.innerHTML = cards.map(card => {
           const colors = { high: 'var(--danger)', medium: 'var(--warning)', low: 'var(--success)' };
-          return `
-            <div class="kanban-card" draggable="true" data-id="${card.id}"
-              ondragstart="handleDragStart(event, ${card.id})" ondragend="handleDragEnd(event)">
-              <div class="priority" style="background:${colors[card.priority]}"></div>
-              <div class="card-text">${card.text}</div>
-              <div class="card-meta">
-                ${card.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-              </div>
-            </div>`;
+          return `<div class="kanban-card" draggable="true" data-id="${card.id}" ondragstart="handleDragStart(event, ${card.id})" ondragend="handleDragEnd(event)">
+            <div class="priority" style="background:${colors[card.priority]}"></div>
+            <div class="card-text">${card.text}</div>
+            <div class="card-meta">${card.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          </div>`;
         }).join('');
         document.getElementById(`count${status.charAt(0).toUpperCase() + status.slice(1)}`).textContent = cards.length;
       });
     }
 
-    function handleDragStart(e, id) {
-      draggedId = id;
-      e.target.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    }
-
-    function handleDragEnd(e) {
-      e.target.classList.remove('dragging');
-      document.querySelectorAll('.kanban-column').forEach(col => col.classList.remove('drag-over'));
-    }
-
-    function handleDragOver(e) {
-      e.preventDefault();
-      e.currentTarget.classList.add('drag-over');
-    }
-
-    function handleDragLeave(e) {
-      e.currentTarget.classList.remove('drag-over');
-    }
-
+    function handleDragStart(e, id) { draggedId = id; e.target.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+    function handleDragEnd(e) { e.target.classList.remove('dragging'); document.querySelectorAll('.kanban-column').forEach(col => col.classList.remove('drag-over')); }
+    function handleDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+    function handleDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
     function handleDrop(e) {
       e.preventDefault();
-      const column = e.currentTarget;
-      column.classList.remove('drag-over');
+      const column = e.currentTarget; column.classList.remove('drag-over');
       const newStatus = column.getAttribute('data-status');
       const card = kanbanData.find(c => c.id === draggedId);
       if (card && card.status !== newStatus) {
-        card.status = newStatus;
-        renderKanban();
-        const statusNames = { todo: '待办', doing: '进行中', done: '已完成' };
-        notify(`"${card.text}" 已移至${statusNames[newStatus]}`, 'success');
+        card.status = newStatus; renderKanban();
+        notify(`"${card.text}" 已移至${{todo:'待办',doing:'进行中',done:'已完成'}[newStatus]}`, 'success');
       }
     }
-
     function showAddCard(status) {
       const container = document.getElementById(`cards${status.charAt(0).toUpperCase() + status.slice(1)}`);
-      const existing = container.querySelector('.kanban-input');
-      if (existing) { existing.focus(); return; }
+      if (container.querySelector('.kanban-input')) { container.querySelector('.kanban-input').focus(); return; }
       const input = document.createElement('input');
-      input.className = 'kanban-input';
-      input.placeholder = '输入任务名称，回车添加';
+      input.className = 'kanban-input'; input.placeholder = '输入任务名称，回车添加';
       input.onkeydown = (e) => {
         if (e.key === 'Enter' && input.value.trim()) {
-          kanbanData.push({
-            id: Date.now(),
-            text: input.value.trim(),
-            status: status,
-            priority: ['high', 'medium', 'low'][Math.floor(Math.random() * 3)],
-            tags: ['新任务']
-          });
-          renderKanban();
-          notify('任务已添加', 'success');
+          kanbanData.push({ id: Date.now(), text: input.value.trim(), status, priority: ['high','medium','low'][Math.floor(Math.random()*3)], tags: ['新任务'] });
+          renderKanban(); notify('任务已添加', 'success');
         }
         if (e.key === 'Escape') input.remove();
       };
       input.onblur = () => setTimeout(() => input.remove(), 150);
-      container.appendChild(input);
-      input.focus();
+      container.appendChild(input); input.focus();
     }
 
-    // Chart
+    // === Notes Editor ===
+    function renderNotes() {
+      const md = document.getElementById('notesEditor').value;
+      document.getElementById('notesPreview').innerHTML = parseMarkdown(md);
+    }
+
+    function parseMarkdown(text) {
+      return text
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(?!<[hublop])(.+)$/gm, '<p>$1</p>');
+    }
+
+    // === Data Table ===
+    let tableData = [
+      { id: 1, name: '张三', email: 'zhangsan@example.com', role: '工程师', status: 'active', score: 92 },
+      { id: 2, name: '李四', email: 'lisi@example.com', role: '设计师', status: 'active', score: 87 },
+      { id: 3, name: '王五', email: 'wangwu@example.com', role: '产品经理', status: 'pending', score: 78 },
+      { id: 4, name: '赵六', email: 'zhaoliu@example.com', role: '工程师', status: 'inactive', score: 65 },
+      { id: 5, name: '孙七', email: 'sunqi@example.com', role: '设计师', status: 'active', score: 95 },
+      { id: 6, name: '周八', email: 'zhouba@example.com', role: '产品经理', status: 'active', score: 81 },
+      { id: 7, name: '吴九', email: 'wujiu@example.com', role: '工程师', status: 'pending', score: 73 },
+      { id: 8, name: '郑十', email: 'zhengshi@example.com', role: '设计师', status: 'inactive', score: 69 },
+      { id: 9, name: '陈一', email: 'chenyi@example.com', role: '工程师', status: 'active', score: 88 },
+      { id: 10, name: '林二', email: 'liner@example.com', role: '产品经理', status: 'active', score: 91 },
+      { id: 11, name: '黄三', email: 'huangsan@example.com', role: '工程师', status: 'pending', score: 76 },
+      { id: 12, name: '杨四', email: 'yangsi@example.com', role: '设计师', status: 'active', score: 84 },
+    ];
+    let sortCol = 'name', sortDir = 'asc', currentPage = 1, pageSize = 5, selectedRows = new Set();
+
+    function renderTable() {
+      const search = document.getElementById('tableSearch').value.toLowerCase();
+      let filtered = tableData.filter(r => r.name.toLowerCase().includes(search) || r.email.toLowerCase().includes(search) || r.role.includes(search));
+      filtered.sort((a, b) => {
+        let va = a[sortCol], vb = b[sortCol];
+        if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+        return sortDir === 'asc' ? (va > vb ? 1 : -1) : (va < vb ? 1 : -1);
+      });
+
+      const totalPages = Math.ceil(filtered.length / pageSize);
+      if (currentPage > totalPages) currentPage = totalPages || 1;
+      const start = (currentPage - 1) * pageSize;
+      const pageData = filtered.slice(start, start + pageSize);
+
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = pageData.map(row => {
+        const statusClass = { active: 'badge-active', inactive: 'badge-inactive', pending: 'badge-pending' }[row.status];
+        const statusLabel = { active: '活跃', inactive: '停用', pending: '待审' }[row.status];
+        return `<tr>
+          <td><input type="checkbox" ${selectedRows.has(row.id) ? 'checked' : ''} onchange="toggleRowSelect(${row.id})"></td>
+          <td><strong>${row.name}</strong></td>
+          <td>${row.email}</td>
+          <td>${row.role}</td>
+          <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+          <td>${row.score}</td>
+        </tr>`;
+      }).join('');
+
+      document.getElementById('paginationInfo').textContent = `第 ${start + 1}-${Math.min(start + pageSize, filtered.length)} 条，共 ${filtered.length} 条`;
+      document.getElementById('prevPage').disabled = currentPage <= 1;
+      document.getElementById('nextPage').disabled = currentPage >= totalPages;
+      document.getElementById('tableInfo').textContent = selectedRows.size > 0 ? `已选 ${selectedRows.size} 项` : '';
+
+      document.querySelectorAll('.sort-icon').forEach(el => el.textContent = '');
+      const sortEl = document.getElementById(`sort-${sortCol}`);
+      if (sortEl) sortEl.textContent = sortDir === 'asc' ? '↑' : '↓';
+    }
+
+    function sortTable(col) {
+      if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      else { sortCol = col; sortDir = 'asc'; }
+      renderTable();
+    }
+
+    function changePage(delta) { currentPage += delta; renderTable(); }
+    function toggleRowSelect(id) { selectedRows.has(id) ? selectedRows.delete(id) : selectedRows.add(id); renderTable(); }
+    function toggleSelectAll() {
+      const search = document.getElementById('tableSearch').value.toLowerCase();
+      const filtered = tableData.filter(r => r.name.toLowerCase().includes(search) || r.email.toLowerCase().includes(search));
+      if (selectedRows.size === filtered.length) selectedRows.clear();
+      else filtered.forEach(r => selectedRows.add(r.id));
+      renderTable();
+    }
+    function deleteSelected() {
+      if (selectedRows.size === 0) { notify('请先选择要删除的数据', 'warning'); return; }
+      showModal('确认删除', `确定要删除选中的 ${selectedRows.size} 条数据吗？`, () => {
+        tableData = tableData.filter(r => !selectedRows.has(r.id));
+        selectedRows.clear(); renderTable();
+        notify('已删除选中数据', 'success');
+      });
+    }
+    function addRandomRow() {
+      const names = ['钱一','何二','冯三','褚四','卫五','蒋六','沈七','韩八','朱九','秦十'];
+      const roles = ['工程师','设计师','产品经理','运营','测试'];
+      const statuses = ['active','inactive','pending'];
+      const name = names[Math.floor(Math.random() * names.length)];
+      tableData.push({ id: Date.now(), name, email: `${name}@example.com`, role: roles[Math.floor(Math.random()*roles.length)], status: statuses[Math.floor(Math.random()*statuses.length)], score: Math.floor(Math.random()*40)+60 });
+      renderTable(); notify(`已添加：${name}`, 'success');
+    }
+
+    // === Chart ===
     const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
     let chartData = { focus: [4, 3, 5, 2, 6, 3, 4], rest: [1, 1, 2, 1, 2, 1, 1] };
 
@@ -940,51 +1502,36 @@
       const maxVal = Math.max(...chartData.focus, ...chartData.rest);
       container.innerHTML = days.map((day, i) => `
         <div class="chart-bar-wrapper">
-          <div class="chart-bar" style="height:${(chartData.focus[i] / maxVal) * 100}%;background:var(--primary)">
+          <div class="chart-bar" style="height:${(chartData.focus[i]/maxVal)*100}%;background:var(--primary)">
             <span class="tooltip">${chartData.focus[i]}h 专注</span>
           </div>
-          <div class="chart-bar" style="height:${(chartData.rest[i] / maxVal) * 100}%;background:var(--accent);margin-top:4px;border-radius:0 0 6px 6px">
+          <div class="chart-bar" style="height:${(chartData.rest[i]/maxVal)*100}%;background:var(--accent);margin-top:4px;border-radius:0 0 6px 6px">
             <span class="tooltip">${chartData.rest[i]}h 休息</span>
           </div>
           <span class="chart-bar-label">${day}</span>
         </div>`).join('');
-
       setTimeout(() => {
         container.querySelectorAll('.chart-bar').forEach(bar => {
-          const h = bar.style.height;
-          bar.style.height = '0';
+          const h = bar.style.height; bar.style.height = '0';
           requestAnimationFrame(() => { bar.style.height = h; });
         });
       }, 50);
     }
 
     function randomizeChart() {
-      chartData.focus = days.map(() => Math.floor(Math.random() * 6) + 1);
-      chartData.rest = days.map(() => Math.floor(Math.random() * 3) + 1);
-      renderChart();
-      notify('数据已刷新', 'info');
+      chartData.focus = days.map(() => Math.floor(Math.random()*6)+1);
+      chartData.rest = days.map(() => Math.floor(Math.random()*3)+1);
+      renderChart(); notify('数据已刷新', 'info');
     }
 
-    // Expense Tracker
+    // === Expense Tracker ===
     let expenses = [
       { id: 1, name: '午餐', amount: 35, category: 'food' },
       { id: 2, name: '地铁', amount: 6, category: 'transport' },
       { id: 3, name: '咖啡', amount: 28, category: 'food' },
     ];
-
-    const categoryColors = {
-      food: '#ef4444',
-      transport: '#6366f1',
-      shopping: '#ec4899',
-      entertainment: '#f59e0b'
-    };
-
-    const categoryNames = {
-      food: '餐饮',
-      transport: '交通',
-      shopping: '购物',
-      entertainment: '娱乐'
-    };
+    const categoryColors = { food: '#ef4444', transport: '#6366f1', shopping: '#ec4899', entertainment: '#f59e0b' };
+    const categoryNames = { food: '餐饮', transport: '交通', shopping: '购物', entertainment: '娱乐' };
 
     function renderExpenses() {
       const list = document.getElementById('expenseList');
@@ -995,18 +1542,14 @@
           <span class="amount">¥${exp.amount.toFixed(2)}</span>
           <button class="delete-btn" onclick="deleteExpense(${exp.id})">×</button>
         </li>`).join('');
-      const total = expenses.reduce((sum, e) => sum + e.amount, 0);
-      document.getElementById('expenseTotal').textContent = `¥${total.toFixed(2)}`;
+      document.getElementById('expenseTotal').textContent = `¥${expenses.reduce((s,e) => s+e.amount, 0).toFixed(2)}`;
     }
 
     function addExpense() {
       const name = document.getElementById('expenseName').value.trim();
       const amount = parseFloat(document.getElementById('expenseAmount').value);
       const category = document.getElementById('expenseCategory').value;
-      if (!name || !amount || amount <= 0) {
-        notify('请填写完整的支出信息', 'warning');
-        return;
-      }
+      if (!name || !amount || amount <= 0) { notify('请填写完整的支出信息', 'warning'); return; }
       expenses.unshift({ id: Date.now(), name, amount, category });
       renderExpenses();
       document.getElementById('expenseName').value = '';
@@ -1017,17 +1560,546 @@
     function deleteExpense(id) {
       const exp = expenses.find(e => e.id === id);
       showModal('删除支出', `确定要删除"${exp.name}"吗？`, () => {
-        expenses = expenses.filter(e => e.id !== id);
-        renderExpenses();
-        notify('支出已删除', 'info');
+        expenses = expenses.filter(e => e.id !== id); renderExpenses(); notify('支出已删除', 'info');
       });
     }
 
-    // Init
+    // === Calculator ===
+    let calcExpr = '';
+
+    function calcInput(val) {
+      calcExpr += val;
+      document.getElementById('calcExpr').textContent = calcExpr.replace(/\*/g, '×').replace(/\//g, '÷');
+    }
+
+    function calcClear() {
+      calcExpr = '';
+      document.getElementById('calcExpr').textContent = '';
+      document.getElementById('calcResult').textContent = '0';
+    }
+
+    function calcBackspace() {
+      calcExpr = calcExpr.slice(0, -1);
+      document.getElementById('calcExpr').textContent = calcExpr.replace(/\*/g, '×').replace(/\//g, '÷');
+    }
+
+    function calcEval() {
+      try {
+        const result = Function('"use strict"; return (' + calcExpr + ')')();
+        const formatted = Number.isFinite(result) ? parseFloat(result.toFixed(10)).toString() : 'Error';
+        document.getElementById('calcResult').textContent = formatted;
+        calcExpr = formatted === 'Error' ? '' : formatted;
+      } catch {
+        document.getElementById('calcResult').textContent = 'Error';
+        calcExpr = '';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if ('0123456789.+-*/()'.includes(e.key)) calcInput(e.key);
+      else if (e.key === 'Enter') calcEval();
+      else if (e.key === 'Backspace') calcBackspace();
+      else if (e.key === 'Escape') calcClear();
+    });
+
+    // === Password Generator ===
+    function generatePassword() {
+      const len = parseInt(document.getElementById('pwdLength').value);
+      let chars = '';
+      if (document.getElementById('pwdUpper').checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      if (document.getElementById('pwdLower').checked) chars += 'abcdefghijklmnopqrstuvwxyz';
+      if (document.getElementById('pwdNumbers').checked) chars += '0123456789';
+      if (document.getElementById('pwdSymbols').checked) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+      if (!chars) { notify('请至少选择一种字符类型', 'warning'); return; }
+
+      let pwd = '';
+      const arr = new Uint32Array(len);
+      crypto.getRandomValues(arr);
+      for (let i = 0; i < len; i++) pwd += chars[arr[i] % chars.length];
+
+      document.getElementById('pwdOutput').value = pwd;
+      updatePwdStrength(pwd);
+      notify('密码已生成', 'success');
+    }
+
+    function copyPassword() {
+      const pwd = document.getElementById('pwdOutput').value;
+      if (!pwd) { notify('请先生成密码', 'warning'); return; }
+      navigator.clipboard.writeText(pwd).then(() => notify('已复制到剪贴板', 'success'));
+    }
+
+    function updatePwdStrength(pwd) {
+      let score = 0;
+      if (pwd.length >= 8) score++;
+      if (pwd.length >= 12) score++;
+      if (pwd.length >= 20) score++;
+      if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) score++;
+      if (/\d/.test(pwd)) score++;
+      if (/[^a-zA-Z0-9]/.test(pwd)) score++;
+
+      const pct = Math.min(score / 6 * 100, 100);
+      const bar = document.getElementById('pwdStrengthBar');
+      bar.style.width = pct + '%';
+      bar.style.background = pct < 40 ? 'var(--danger)' : pct < 70 ? 'var(--warning)' : 'var(--success)';
+    }
+
+    // === Typing Speed Test ===
+    const typingSentences = [
+      'The quick brown fox jumps over the lazy dog near the riverbank.',
+      'A journey of a thousand miles begins with a single step forward.',
+      'To be or not to be, that is the question we must answer today.',
+      'All that glitters is not gold, but it certainly catches the eye.',
+      'Practice makes perfect, so keep typing to improve your speed.',
+    ];
+    let typingText = '', typingIndex = 0, typingStartTime = null, typingErrors = 0, typingFinished = false;
+
+    function initTyping() {
+      typingText = typingSentences[Math.floor(Math.random() * typingSentences.length)];
+      typingIndex = 0; typingStartTime = null; typingErrors = 0; typingFinished = false;
+      document.getElementById('typingInput').value = '';
+      document.getElementById('typingInput').disabled = false;
+      document.getElementById('typingWPM').textContent = '0';
+      document.getElementById('typingAccuracy').textContent = '100%';
+      document.getElementById('typingTime').textContent = '0s';
+      renderTypingText();
+    }
+
+    function renderTypingText() {
+      const input = document.getElementById('typingInput').value;
+      let html = '';
+      for (let i = 0; i < typingText.length; i++) {
+        if (i < input.length) {
+          html += input[i] === typingText[i]
+            ? `<span class="correct">${typingText[i]}</span>`
+            : `<span class="incorrect">${typingText[i]}</span>`;
+        } else if (i === input.length) {
+          html += `<span class="cursor">${typingText[i]}</span>`;
+        } else {
+          html += `<span class="upcoming">${typingText[i]}</span>`;
+        }
+      }
+      document.getElementById('typingText').innerHTML = html;
+    }
+
+    function handleTyping() {
+      if (typingFinished) return;
+      const input = document.getElementById('typingInput').value;
+      if (!typingStartTime && input.length > 0) typingStartTime = Date.now();
+
+      renderTypingText();
+
+      let errors = 0;
+      for (let i = 0; i < input.length; i++) {
+        if (input[i] !== typingText[i]) errors++;
+      }
+      typingErrors = errors;
+
+      if (typingStartTime) {
+        const elapsed = (Date.now() - typingStartTime) / 1000;
+        const words = input.length / 5;
+        const wpm = elapsed > 0 ? Math.round(words / (elapsed / 60)) : 0;
+        const accuracy = input.length > 0 ? Math.round(((input.length - errors) / input.length) * 100) : 100;
+
+        document.getElementById('typingWPM').textContent = wpm;
+        document.getElementById('typingAccuracy').textContent = accuracy + '%';
+        document.getElementById('typingTime').textContent = Math.round(elapsed) + 's';
+      }
+
+      if (input.length >= typingText.length) {
+        typingFinished = true;
+        document.getElementById('typingInput').disabled = true;
+        notify('打字完成！', 'success');
+      }
+    }
+
+    function resetTyping() { initTyping(); }
+
+    // === Color Palette Generator ===
+    let paletteMode = 'random';
+    let paletteHistory = [];
+
+    function hslToHex(h, s, l) {
+      s /= 100; l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = n => { const k = (n + h / 30) % 12; const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1); return Math.round(255 * color).toString(16).padStart(2, '0'); };
+      return `#${f(0)}${f(8)}${f(4)}`;
+    }
+
+    function generatePalette() {
+      let colors = [];
+      switch (paletteMode) {
+        case 'warm':
+          colors = Array.from({length: 5}, () => hslToHex(Math.random() * 60 + 0, 60 + Math.random() * 30, 45 + Math.random() * 25));
+          break;
+        case 'cool':
+          colors = Array.from({length: 5}, () => hslToHex(Math.random() * 80 + 180, 50 + Math.random() * 40, 40 + Math.random() * 30));
+          break;
+        case 'pastel':
+          colors = Array.from({length: 5}, () => hslToHex(Math.random() * 360, 40 + Math.random() * 20, 75 + Math.random() * 15));
+          break;
+        case 'monochrome':
+          const baseHue = Math.random() * 360;
+          colors = Array.from({length: 5}, (_, i) => hslToHex(baseHue, 50 + Math.random() * 30, 20 + i * 15));
+          break;
+        default:
+          colors = Array.from({length: 5}, () => '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0'));
+      }
+
+      const display = document.getElementById('paletteDisplay');
+      display.innerHTML = colors.map(c => `<div class="palette-color" style="background:${c}" onclick="event.stopPropagation();copyColor('${c}')"><span>${c}</span></div>`).join('');
+
+      paletteHistory.unshift(colors);
+      if (paletteHistory.length > 5) paletteHistory.pop();
+      renderPaletteHistory();
+    }
+
+    function copyColor(color) {
+      navigator.clipboard.writeText(color).then(() => notify(`已复制 ${color}`, 'success'));
+    }
+
+    function setPaletteMode(mode, btn) {
+      paletteMode = mode;
+      document.querySelectorAll('.palette-options button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      generatePalette();
+    }
+
+    function renderPaletteHistory() {
+      const container = document.getElementById('paletteHistory');
+      container.innerHTML = paletteHistory.slice(1).map(colors =>
+        colors.map(c => `<div class="palette-history-item" style="background:${c}" title="${c}" onclick="copyColor('${c}')"></div>`).join('')
+      ).join('');
+    }
+
+    // === Countdown Timer ===
+    let cdInterval = null, cdSeconds = 0, cdTotal = 0, cdRunning = false;
+
+    function setCountdownPreset(minutes) {
+      document.getElementById('cdHours').value = Math.floor(minutes / 60);
+      document.getElementById('cdMinutes').value = minutes % 60;
+      document.getElementById('cdSeconds').value = 0;
+    }
+
+    function toggleCountdown() {
+      if (cdRunning) {
+        clearInterval(cdInterval); cdRunning = false;
+        document.getElementById('cdStartBtn').textContent = '继续';
+        document.getElementById('countdownLabel').textContent = '已暂停';
+      } else {
+        if (cdSeconds <= 0) {
+          const h = parseInt(document.getElementById('cdHours').value) || 0;
+          const m = parseInt(document.getElementById('cdMinutes').value) || 0;
+          const s = parseInt(document.getElementById('cdSeconds').value) || 0;
+          cdTotal = h * 3600 + m * 60 + s;
+          cdSeconds = cdTotal;
+          if (cdTotal <= 0) { notify('请设置倒计时时间', 'warning'); return; }
+        }
+        cdRunning = true;
+        document.getElementById('cdStartBtn').textContent = '暂停';
+        document.getElementById('countdownLabel').textContent = '倒计时进行中...';
+        cdInterval = setInterval(() => {
+          cdSeconds--;
+          updateCountdownDisplay();
+          if (cdSeconds <= 0) {
+            clearInterval(cdInterval); cdRunning = false;
+            document.getElementById('cdStartBtn').textContent = '开始';
+            document.getElementById('countdownLabel').textContent = '时间到！';
+            notify('倒计时结束！', 'success');
+          }
+        }, 1000);
+        updateCountdownDisplay();
+      }
+    }
+
+    function resetCountdown() {
+      clearInterval(cdInterval); cdRunning = false; cdSeconds = 0; cdTotal = 0;
+      document.getElementById('cdStartBtn').textContent = '开始';
+      document.getElementById('countdownLabel').textContent = '设置时间开始倒计时';
+      document.getElementById('countdownTime').textContent = '00:00:00';
+      document.getElementById('cdProgressBar').style.width = '0%';
+    }
+
+    function updateCountdownDisplay() {
+      const h = Math.floor(cdSeconds / 3600);
+      const m = Math.floor((cdSeconds % 3600) / 60);
+      const s = cdSeconds % 60;
+      document.getElementById('countdownTime').textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+      const pct = cdTotal > 0 ? ((cdTotal - cdSeconds) / cdTotal) * 100 : 0;
+      document.getElementById('cdProgressBar').style.width = pct + '%';
+    }
+
+    // === Memory Game ===
+    const memoryEmojis = ['🍎', '🍌', '🍒', '🍇', '🍊', '🍓', '🍑', '🍍'];
+    let memCards = [], memFlipped = [], memMoves = 0, memMatched = 0, memStartTime = null, memTimer = null, memLocked = false;
+
+    function initMemory() {
+      memCards = [...memoryEmojis, ...memoryEmojis].sort(() => Math.random() - 0.5);
+      memFlipped = []; memMoves = 0; memMatched = 0; memLocked = false;
+      if (memTimer) { clearInterval(memTimer); memTimer = null; }
+      memStartTime = null;
+      document.getElementById('memMoves').textContent = '0';
+      document.getElementById('memMatches').textContent = '0';
+      document.getElementById('memTime').textContent = '0s';
+      const grid = document.getElementById('memoryGrid');
+      grid.innerHTML = memCards.map((emoji, i) => `
+        <div class="memory-card" data-index="${i}" onclick="flipMemoryCard(${i})">
+          <div class="memory-card-inner">
+            <div class="memory-card-front">?</div>
+            <div class="memory-card-back">${emoji}</div>
+          </div>
+        </div>`).join('');
+    }
+
+    function flipMemoryCard(index) {
+      if (memLocked || memFlipped.includes(index)) return;
+      const card = document.querySelector(`.memory-card[data-index="${index}"]`);
+      if (card.classList.contains('matched') || card.classList.contains('flipped')) return;
+      if (!memStartTime) {
+        memStartTime = Date.now();
+        memTimer = setInterval(() => {
+          document.getElementById('memTime').textContent = Math.floor((Date.now() - memStartTime) / 1000) + 's';
+        }, 1000);
+      }
+      card.classList.add('flipped');
+      memFlipped.push(index);
+      if (memFlipped.length === 2) {
+        memMoves++;
+        document.getElementById('memMoves').textContent = memMoves;
+        memLocked = true;
+        const [a, b] = memFlipped;
+        if (memCards[a] === memCards[b]) {
+          setTimeout(() => {
+            document.querySelector(`.memory-card[data-index="${a}"]`).classList.add('matched');
+            document.querySelector(`.memory-card[data-index="${b}"]`).classList.add('matched');
+            memMatched++;
+            document.getElementById('memMatches').textContent = memMatched;
+            memFlipped = []; memLocked = false;
+            if (memMatched === 8) {
+              clearInterval(memTimer); memTimer = null;
+              notify(`完成！${memMoves}步，${Math.floor((Date.now() - memStartTime) / 1000)}秒`, 'success');
+            }
+          }, 300);
+        } else {
+          setTimeout(() => {
+            document.querySelector(`.memory-card[data-index="${a}"]`).classList.remove('flipped');
+            document.querySelector(`.memory-card[data-index="${b}"]`).classList.remove('flipped');
+            memFlipped = []; memLocked = false;
+          }, 800);
+        }
+      }
+    }
+
+    // === Unit Converter ===
+    const converterData = {
+      length: { units: { mm: '毫米', cm: '厘米', m: '米', km: '千米', in: '英寸', ft: '英尺', mi: '英里' }, factor: { mm: 0.001, cm: 0.01, m: 1, km: 1000, in: 0.0254, ft: 0.3048, mi: 1609.344 } },
+      weight: { units: { g: '克', kg: '千克', t: '吨', lb: '磅', oz: '盎司' }, factor: { g: 1, kg: 1000, t: 1000000, lb: 453.592, oz: 28.3495 } },
+      temperature: { units: { C: '摄氏度', F: '华氏度', K: '开尔文' } },
+      area: { units: { mm2: 'mm²', cm2: 'cm²', m2: 'm²', ha: '公顷', km2: 'km²', ft2: 'ft²', acre: '英亩' }, factor: { mm2: 0.000001, cm2: 0.0001, m2: 1, ha: 10000, km2: 1000000, ft2: 0.092903, acre: 4046.86 } },
+      speed: { units: { mps: 'm/s', kmh: 'km/h', mph: 'mph', knot: '节' }, factor: { mps: 1, kmh: 0.277778, mph: 0.44704, knot: 0.514444 } },
+    };
+    let converterType = 'length';
+
+    function setConverterType(type, btn) {
+      converterType = type;
+      document.querySelectorAll('#converterTabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const units = converterData[type].units;
+      const fromSel = document.getElementById('converterFrom');
+      const toSel = document.getElementById('converterTo');
+      fromSel.innerHTML = Object.entries(units).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+      toSel.innerHTML = Object.entries(units).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+      const keys = Object.keys(units);
+      fromSel.value = keys[0];
+      toSel.value = keys[1] || keys[0];
+      convertValue();
+    }
+
+    function convertValue() {
+      const input = parseFloat(document.getElementById('converterInput').value) || 0;
+      const from = document.getElementById('converterFrom').value;
+      const to = document.getElementById('converterTo').value;
+      let result;
+
+      if (converterType === 'temperature') {
+        let celsius;
+        if (from === 'C') celsius = input;
+        else if (from === 'F') celsius = (input - 32) * 5 / 9;
+        else celsius = input - 273.15;
+        if (to === 'C') result = celsius;
+        else if (to === 'F') result = celsius * 9 / 5 + 32;
+        else result = celsius + 273.15;
+      } else {
+        const factor = converterData[converterType].factor;
+        result = (input * factor[from]) / factor[to];
+      }
+      result = parseFloat(result.toFixed(6));
+      document.getElementById('converterOutput').value = result;
+      const unitLabel = converterData[converterType].units[to];
+      document.getElementById('converterResult').textContent = `${result} ${unitLabel}`;
+    }
+
+    // === Dice Roller ===
+    let diceValues = [];
+
+    function renderDice() {
+      const count = parseInt(document.getElementById('diceCount').value);
+      const container = document.getElementById('diceContainer');
+      if (diceValues.length !== count) diceValues = Array(count).fill(1);
+      container.innerHTML = diceValues.map((v, i) => `<div class="dice" id="dice-${i}">${v}</div>`).join('');
+    }
+
+    function rollDice() {
+      const count = parseInt(document.getElementById('diceCount').value);
+      const sides = parseInt(document.getElementById('diceSides').value);
+      diceValues = [];
+      for (let i = 0; i < count; i++) {
+        const die = document.getElementById(`dice-${i}`);
+        die.classList.add('rolling');
+        setTimeout(() => die.classList.remove('rolling'), 500);
+        const val = Math.floor(Math.random() * sides) + 1;
+        diceValues.push(val);
+        setTimeout(() => { die.textContent = val; }, 250);
+      }
+      const total = diceValues.reduce((a, b) => a + b, 0);
+      document.getElementById('diceTotal').textContent = `总计: ${total}`;
+      const history = document.getElementById('diceHistory');
+      const entry = document.createElement('div');
+      entry.className = 'roll-entry';
+      entry.textContent = `${count}×D${sides}: [${diceValues.join(', ')}] = ${total}`;
+      history.prepend(entry);
+      while (history.children.length > 10) history.lastChild.remove();
+    }
+
+    // === Stopwatch ===
+    let swInterval = null, swElapsed = 0, swRunning = false, swLaps = [], swLapTimes = [];
+
+    function toggleStopwatch() {
+      if (swRunning) {
+        clearInterval(swInterval); swRunning = false;
+        document.getElementById('swStartBtn').textContent = '继续';
+      } else {
+        swRunning = true;
+        document.getElementById('swStartBtn').textContent = '暂停';
+        const start = Date.now() - swElapsed;
+        swInterval = setInterval(() => {
+          swElapsed = Date.now() - start;
+          updateSwDisplay();
+        }, 10);
+      }
+    }
+
+    function updateSwDisplay() {
+      const min = Math.floor(swElapsed / 60000);
+      const sec = Math.floor((swElapsed % 60000) / 1000);
+      const ms = Math.floor((swElapsed % 1000) / 10);
+      document.getElementById('swTime').textContent = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}.${ms.toString().padStart(2,'0')}`;
+    }
+
+    function lapStopwatch() {
+      if (!swRunning) return;
+      swLapTimes.push(swElapsed);
+      const lapNum = swLapTimes.length;
+      const lapTime = lapNum === 1 ? swElapsed : swElapsed - swLapTimes[lapNum - 2];
+      const min = Math.floor(lapTime / 60000), sec = Math.floor((lapTime % 60000) / 1000), ms = Math.floor((lapTime % 1000) / 10);
+      const formatted = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}.${ms.toString().padStart(2,'0')}`;
+      const laps = document.getElementById('swLaps');
+      const li = document.createElement('li');
+      li.innerHTML = `<span>第 ${lapNum} 圈</span><span>${formatted}</span>`;
+      laps.prepend(li);
+    }
+
+    function resetStopwatch() {
+      clearInterval(swInterval); swRunning = false; swElapsed = 0;
+      document.getElementById('swStartBtn').textContent = '开始';
+      document.getElementById('swTime').textContent = '00:00.00';
+      document.getElementById('swLaps').innerHTML = '';
+      swLapTimes = [];
+    }
+
+    // === Quiz Game ===
+    const quizQuestions = [
+      { q: '太阳系中最大的行星是？', options: ['地球', '木星', '土星', '海王星'], answer: 1 },
+      { q: '世界上最高的山峰是？', options: ['乔戈里峰', '干城章嘉峰', '珠穆朗玛峰', '马卡鲁峰'], answer: 2 },
+      { q: 'JavaScript 是哪一年发布的？', options: ['1993年', '1995年', '1998年', '2000年'], answer: 1 },
+      { q: '一光年大约等于多少公里？', options: ['9.46万亿', '1万亿', '5万亿', '15万亿'], answer: 0 },
+      { q: '人体最大的器官是？', options: ['肝脏', '大脑', '皮肤', '肺'], answer: 2 },
+      { q: 'HTTP 协议默认端口号是？', options: ['21', '22', '80', '443'], answer: 2 },
+      { q: '下列哪种语言是编译型语言？', options: ['Python', 'JavaScript', 'C++', 'Ruby'], answer: 2 },
+      { q: 'DNA 的双螺旋结构是谁发现的？', options: ['爱因斯坦', '达尔文', '沃森和克里克', '孟德尔'], answer: 2 },
+      { q: '中国的国土面积约为多少？', options: ['960万平方公里', '1000万平方公里', '880万平方公里', '1100万平方公里'], answer: 0 },
+      { q: 'CSS 中 flex 布局的默认主轴方向是？', options: ['column', 'row', 'column-reverse', 'row-reverse'], answer: 1 },
+    ];
+    let quizIndex = 0, quizScore = 0, quizAnswered = false;
+
+    function startQuiz() {
+      quizIndex = 0; quizScore = 0; quizAnswered = false;
+      document.getElementById('quizTotal').textContent = quizQuestions.length;
+      showQuizQuestion();
+    }
+
+    function showQuizQuestion() {
+      if (quizIndex >= quizQuestions.length) {
+        document.getElementById('quizQuestion').textContent = `答题结束！得分：${quizScore}/${quizQuestions.length}`;
+        document.getElementById('quizOptions').innerHTML = '';
+        document.getElementById('quizIndex').textContent = quizQuestions.length;
+        notify(`答题完成！得分 ${quizScore}/${quizQuestions.length}`, 'success');
+        return;
+      }
+      quizAnswered = false;
+      const q = quizQuestions[quizIndex];
+      document.getElementById('quizIndex').textContent = quizIndex + 1;
+      document.getElementById('quizScore').textContent = quizScore;
+      document.getElementById('quizQuestion').textContent = q.q;
+      document.getElementById('quizOptions').innerHTML = q.options.map((opt, i) =>
+        `<button class="quiz-option" onclick="answerQuiz(${i})">${opt}</button>`
+      ).join('');
+    }
+
+    function answerQuiz(selected) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      const q = quizQuestions[quizIndex];
+      const options = document.querySelectorAll('.quiz-option');
+      options.forEach((opt, i) => {
+        opt.disabled = true;
+        if (i === q.answer) opt.classList.add('correct');
+        if (i === selected && i !== q.answer) opt.classList.add('wrong');
+      });
+      if (selected === q.answer) {
+        quizScore++;
+        document.getElementById('quizScore').textContent = quizScore;
+        notify('回答正确！', 'success');
+      } else {
+        notify('回答错误', 'warning');
+      }
+      setTimeout(() => { quizIndex++; showQuizQuestion(); }, 1500);
+    }
+
+    // === Init ===
+    document.getElementById('notesEditor').value = `# 欢迎使用 Markdown 笔记\n\n这是一个**实时预览**的编辑器。\n\n## 功能\n\n- 支持标题、列表、粗体\n- 实时渲染预览\n- 代码高亮 \`inline code\`\n\n> 引用文字样式\n\n### 开始编辑吧！\n\n在左侧输入 Markdown，右侧即时预览效果。`;
+
     renderKanban();
     renderChart();
     renderExpenses();
+    renderHabits();
+    renderMixer();
+    renderTable();
+    renderNotes();
     updateTimerDisplay();
+    initTyping();
+    generatePalette();
+    generatePassword();
+    initMemory();
+    setConverterType('length', document.querySelector('#converterTabs button'));
+    renderDice();
+    startQuiz();
+
+    window.addEventListener('resize', () => {
+      const canvas = document.getElementById('drawingCanvas');
+      if (canvas && canvas.offsetWidth > 0) initCanvas();
+    });
+    setTimeout(initCanvas, 100);
   </script>
 </body>
 </html>
