@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交互式网页</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f5f5f5; color: #333; }
+    h1 { margin-bottom: 2rem; text-align: center; }
+    .section { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .section h2 { margin-bottom: 1rem; font-size: 1.2rem; }
+    button { padding: 0.5rem 1rem; border: none; border-radius: 4px; background: #4a90d9; color: #fff; cursor: pointer; font-size: 0.9rem; }
+    button:hover { background: #357abd; }
+    button:active { transform: scale(0.97); }
+    .counter { display: flex; align-items: center; gap: 1rem; }
+    .counter span { font-size: 2rem; min-width: 3rem; text-align: center; }
+    .todo-input { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .todo-input input { flex: 1; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; }
+    .todo-list { list-style: none; }
+    .todo-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+    .todo-list li.done span { text-decoration: line-through; color: #999; }
+    .todo-list li span { flex: 1; }
+    .todo-list li button { background: #e74c3c; padding: 0.3rem 0.6rem; font-size: 0.8rem; }
+    .color-box { width: 100px; height: 100px; border-radius: 8px; transition: background 0.3s; margin-top: 1rem; }
+    .tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .tabs button { background: #ddd; color: #333; }
+    .tabs button.active { background: #4a90d9; color: #fff; }
+    .tab-content { padding: 1rem; background: #f9f9f9; border-radius: 4px; min-height: 60px; }
+  </style>
+</head>
+<body>
+  <h1>交互式网页示例</h1>
+
+  <div class="section">
+    <h2>计数器</h2>
+    <div class="counter">
+      <button onclick="changeCount(-1)">-</button>
+      <span id="count">0</span>
+      <button onclick="changeCount(1)">+</button>
+      <button onclick="resetCount()" style="background:#6c757d">重置</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>待办事项</h2>
+    <div class="todo-input">
+      <input type="text" id="todoInput" placeholder="输入待办事项..." onkeydown="if(event.key==='Enter')addTodo()">
+      <button onclick="addTodo()">添加</button>
+    </div>
+    <ul class="todo-list" id="todoList"></ul>
+  </div>
+
+  <div class="section">
+    <h2>随机颜色</h2>
+    <button onclick="randomColor()">换个颜色</button>
+    <div class="color-box" id="colorBox" style="background:#4a90d9"></div>
+  </div>
+
+  <div class="section">
+    <h2>选项卡</h2>
+    <div class="tabs">
+      <button class="active" onclick="switchTab(0)">选项一</button>
+      <button onclick="switchTab(1)">选项二</button>
+      <button onclick="switchTab(2)">选项三</button>
+    </div>
+    <div class="tab-content" id="tabContent">这是第一个选项卡的内容。</div>
+  </div>
+
+  <script>
+    let count = 0;
+
+    function changeCount(delta) {
+      count += delta;
+      document.getElementById('count').textContent = count;
+    }
+
+    function resetCount() {
+      count = 0;
+      document.getElementById('count').textContent = count;
+    }
+
+    function addTodo() {
+      const input = document.getElementById('todoInput');
+      const text = input.value.trim();
+      if (!text) return;
+      const li = document.createElement('li');
+      li.innerHTML = `<input type="checkbox" onchange="this.parentElement.classList.toggle('done')"><span>${text}</span><button onclick="this.parentElement.remove()">删除</button>`;
+      document.getElementById('todoList').appendChild(li);
+      input.value = '';
+    }
+
+    function randomColor() {
+      const hex = '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
+      document.getElementById('colorBox').style.background = hex;
+    }
+
+    const tabContents = ['这是第一个选项卡的内容。', '这是第二个选项卡的内容，可以放不同的信息。', '第三个选项卡，支持自由切换。'];
+
+    function switchTab(index) {
+      document.getElementById('tabContent').textContent = tabContents[index];
+      document.querySelectorAll('.tabs button').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+    }
+  </script>
+</body>
+</html>
