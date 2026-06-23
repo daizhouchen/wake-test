@@ -426,6 +426,62 @@
     .countdown-progress { height: 4px; background: var(--border); border-radius: 2px; margin-top: 1rem; overflow: hidden; }
     .countdown-progress-bar { height: 100%; background: var(--primary); border-radius: 2px; transition: width 1s linear; }
 
+    /* Memory Game */
+    .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .memory-card { aspect-ratio: 1; border-radius: 8px; cursor: pointer; perspective: 600px; }
+    .memory-card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s; }
+    .memory-card.flipped .memory-card-inner { transform: rotateY(180deg); }
+    .memory-card.matched .memory-card-inner { transform: rotateY(180deg); }
+    .memory-card.matched { pointer-events: none; }
+    .memory-card-front, .memory-card-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+    .memory-card-front { background: var(--primary); color: #fff; }
+    .memory-card-back { background: var(--surface); border: 1px solid var(--border); transform: rotateY(180deg); }
+    .memory-card.matched .memory-card-back { background: rgba(16,185,129,0.15); border-color: var(--success); }
+    .memory-stats { display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* Unit Converter */
+    .converter-row { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.75rem; }
+    .converter-row input { flex: 1; padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--surface); color: var(--text); outline: none; }
+    .converter-row input:focus { border-color: var(--primary); }
+    .converter-row select { padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; cursor: pointer; }
+    .converter-row select:focus { border-color: var(--primary); }
+    .converter-arrow { font-size: 1.2rem; color: var(--text-secondary); }
+    .converter-tabs { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .converter-tabs button { padding: 0.35rem 0.7rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.75rem; transition: all var(--transition); }
+    .converter-tabs button:hover { border-color: var(--primary); color: var(--primary); }
+    .converter-tabs button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .converter-result { padding: 0.75rem; background: var(--bg); border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-align: center; }
+
+    /* Dice Roller */
+    .dice-container { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .dice { width: 60px; height: 60px; background: var(--surface); border: 2px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; cursor: pointer; transition: all var(--transition); }
+    .dice.rolling { animation: roll 0.5s ease; }
+    @keyframes roll { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(180deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
+    .dice-controls { display: flex; gap: 0.5rem; justify-content: center; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .dice-controls select { padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); cursor: pointer; outline: none; }
+    .dice-history { font-size: 0.75rem; color: var(--text-secondary); text-align: center; max-height: 60px; overflow-y: auto; }
+    .dice-history .roll-entry { padding: 0.2rem 0; border-bottom: 1px solid var(--border); }
+    .dice-total { font-size: 1.5rem; font-weight: 700; text-align: center; color: var(--primary); margin-bottom: 0.5rem; }
+
+    /* Stopwatch */
+    .stopwatch-display { text-align: center; margin-bottom: 1.5rem; }
+    .stopwatch-time { font-size: 3rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 1px; }
+    .stopwatch-controls { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 1rem; }
+    .stopwatch-laps { max-height: 150px; overflow-y: auto; }
+    .stopwatch-laps li { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+    .stopwatch-laps li:last-child { border-bottom: none; }
+
+    /* Quiz Game */
+    .quiz-question { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.5; }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .quiz-option { padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all var(--transition); font-size: 0.85rem; text-align: left; background: var(--surface); color: var(--text); }
+    .quiz-option:hover { border-color: var(--primary); background: rgba(99,102,241,0.05); }
+    .quiz-option.correct { border-color: var(--success); background: rgba(16,185,129,0.1); color: var(--success); }
+    .quiz-option.wrong { border-color: var(--danger); background: rgba(239,68,68,0.1); color: var(--danger); }
+    .quiz-option:disabled { cursor: not-allowed; }
+    .quiz-progress { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-secondary); }
+    .quiz-score { font-weight: 600; color: var(--primary); }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -812,6 +868,109 @@
           <span><span class="dot" style="background:var(--accent)"></span> 休息</span>
         </div>
       </div>
+    </div>
+
+    <!-- Memory Game -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🃏</span>
+        记忆翻牌
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="initMemory()">重新开始</button>
+      </div>
+      <div class="memory-stats">
+        <span>步数: <strong id="memMoves">0</strong></span>
+        <span>匹配: <strong id="memMatches">0</strong>/8</span>
+        <span>用时: <strong id="memTime">0s</strong></span>
+      </div>
+      <div class="memory-grid" id="memoryGrid"></div>
+    </div>
+
+    <!-- Unit Converter -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">📐</span>
+        单位换算
+      </div>
+      <div class="converter-tabs" id="converterTabs">
+        <button class="active" onclick="setConverterType('length', this)">长度</button>
+        <button onclick="setConverterType('weight', this)">重量</button>
+        <button onclick="setConverterType('temperature', this)">温度</button>
+        <button onclick="setConverterType('area', this)">面积</button>
+        <button onclick="setConverterType('speed', this)">速度</button>
+      </div>
+      <div class="converter-row">
+        <input type="number" id="converterInput" value="1" oninput="convertValue()">
+        <select id="converterFrom" onchange="convertValue()"></select>
+      </div>
+      <div style="text-align:center;font-size:1.2rem;color:var(--text-secondary);margin:0.3rem 0">⇅</div>
+      <div class="converter-row">
+        <input type="number" id="converterOutput" readonly>
+        <select id="converterTo" onchange="convertValue()"></select>
+      </div>
+      <div class="converter-result" id="converterResult"></div>
+    </div>
+
+    <!-- Dice Roller -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">🎲</span>
+        骰子投掷
+      </div>
+      <div class="dice-controls">
+        <label style="font-size:0.8rem;color:var(--text-secondary)">数量</label>
+        <select id="diceCount" onchange="renderDice()">
+          <option value="1">1个</option>
+          <option value="2" selected>2个</option>
+          <option value="3">3个</option>
+          <option value="4">4个</option>
+          <option value="5">5个</option>
+        </select>
+        <label style="font-size:0.8rem;color:var(--text-secondary)">面数</label>
+        <select id="diceSides">
+          <option value="6">D6</option>
+          <option value="8">D8</option>
+          <option value="10">D10</option>
+          <option value="12">D12</option>
+          <option value="20">D20</option>
+          <option value="100">D100</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="rollDice()">投掷</button>
+      </div>
+      <div class="dice-total" id="diceTotal">—</div>
+      <div class="dice-container" id="diceContainer"></div>
+      <div class="dice-history" id="diceHistory"></div>
+    </div>
+
+    <!-- Stopwatch -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">⏲</span>
+        秒表
+      </div>
+      <div class="stopwatch-display">
+        <div class="stopwatch-time" id="swTime">00:00.00</div>
+      </div>
+      <div class="stopwatch-controls">
+        <button class="btn btn-primary" id="swStartBtn" onclick="toggleStopwatch()">开始</button>
+        <button class="btn btn-secondary" onclick="lapStopwatch()">记圈</button>
+        <button class="btn btn-danger" onclick="resetStopwatch()">重置</button>
+      </div>
+      <ol class="stopwatch-laps" id="swLaps"></ol>
+    </div>
+
+    <!-- Quiz Game -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🧠</span>
+        趣味问答
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="startQuiz()">重新开始</button>
+      </div>
+      <div class="quiz-progress">
+        <span>第 <strong id="quizIndex">1</strong>/<span id="quizTotal">10</span> 题</span>
+        <span class="quiz-score">得分: <span id="quizScore">0</span></span>
+      </div>
+      <div class="quiz-question" id="quizQuestion">点击"重新开始"开始答题</div>
+      <div class="quiz-options" id="quizOptions"></div>
     </div>
   </main>
 
@@ -1670,6 +1829,253 @@
       document.getElementById('cdProgressBar').style.width = pct + '%';
     }
 
+    // === Memory Game ===
+    const memoryEmojis = ['🍎', '🍌', '🍒', '🍇', '🍊', '🍓', '🍑', '🍍'];
+    let memCards = [], memFlipped = [], memMoves = 0, memMatched = 0, memStartTime = null, memTimer = null, memLocked = false;
+
+    function initMemory() {
+      memCards = [...memoryEmojis, ...memoryEmojis].sort(() => Math.random() - 0.5);
+      memFlipped = []; memMoves = 0; memMatched = 0; memLocked = false;
+      if (memTimer) { clearInterval(memTimer); memTimer = null; }
+      memStartTime = null;
+      document.getElementById('memMoves').textContent = '0';
+      document.getElementById('memMatches').textContent = '0';
+      document.getElementById('memTime').textContent = '0s';
+      const grid = document.getElementById('memoryGrid');
+      grid.innerHTML = memCards.map((emoji, i) => `
+        <div class="memory-card" data-index="${i}" onclick="flipMemoryCard(${i})">
+          <div class="memory-card-inner">
+            <div class="memory-card-front">?</div>
+            <div class="memory-card-back">${emoji}</div>
+          </div>
+        </div>`).join('');
+    }
+
+    function flipMemoryCard(index) {
+      if (memLocked || memFlipped.includes(index)) return;
+      const card = document.querySelector(`.memory-card[data-index="${index}"]`);
+      if (card.classList.contains('matched') || card.classList.contains('flipped')) return;
+      if (!memStartTime) {
+        memStartTime = Date.now();
+        memTimer = setInterval(() => {
+          document.getElementById('memTime').textContent = Math.floor((Date.now() - memStartTime) / 1000) + 's';
+        }, 1000);
+      }
+      card.classList.add('flipped');
+      memFlipped.push(index);
+      if (memFlipped.length === 2) {
+        memMoves++;
+        document.getElementById('memMoves').textContent = memMoves;
+        memLocked = true;
+        const [a, b] = memFlipped;
+        if (memCards[a] === memCards[b]) {
+          setTimeout(() => {
+            document.querySelector(`.memory-card[data-index="${a}"]`).classList.add('matched');
+            document.querySelector(`.memory-card[data-index="${b}"]`).classList.add('matched');
+            memMatched++;
+            document.getElementById('memMatches').textContent = memMatched;
+            memFlipped = []; memLocked = false;
+            if (memMatched === 8) {
+              clearInterval(memTimer); memTimer = null;
+              notify(`完成！${memMoves}步，${Math.floor((Date.now() - memStartTime) / 1000)}秒`, 'success');
+            }
+          }, 300);
+        } else {
+          setTimeout(() => {
+            document.querySelector(`.memory-card[data-index="${a}"]`).classList.remove('flipped');
+            document.querySelector(`.memory-card[data-index="${b}"]`).classList.remove('flipped');
+            memFlipped = []; memLocked = false;
+          }, 800);
+        }
+      }
+    }
+
+    // === Unit Converter ===
+    const converterData = {
+      length: { units: { mm: '毫米', cm: '厘米', m: '米', km: '千米', in: '英寸', ft: '英尺', mi: '英里' }, factor: { mm: 0.001, cm: 0.01, m: 1, km: 1000, in: 0.0254, ft: 0.3048, mi: 1609.344 } },
+      weight: { units: { g: '克', kg: '千克', t: '吨', lb: '磅', oz: '盎司' }, factor: { g: 1, kg: 1000, t: 1000000, lb: 453.592, oz: 28.3495 } },
+      temperature: { units: { C: '摄氏度', F: '华氏度', K: '开尔文' } },
+      area: { units: { mm2: 'mm²', cm2: 'cm²', m2: 'm²', ha: '公顷', km2: 'km²', ft2: 'ft²', acre: '英亩' }, factor: { mm2: 0.000001, cm2: 0.0001, m2: 1, ha: 10000, km2: 1000000, ft2: 0.092903, acre: 4046.86 } },
+      speed: { units: { mps: 'm/s', kmh: 'km/h', mph: 'mph', knot: '节' }, factor: { mps: 1, kmh: 0.277778, mph: 0.44704, knot: 0.514444 } },
+    };
+    let converterType = 'length';
+
+    function setConverterType(type, btn) {
+      converterType = type;
+      document.querySelectorAll('#converterTabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const units = converterData[type].units;
+      const fromSel = document.getElementById('converterFrom');
+      const toSel = document.getElementById('converterTo');
+      fromSel.innerHTML = Object.entries(units).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+      toSel.innerHTML = Object.entries(units).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+      const keys = Object.keys(units);
+      fromSel.value = keys[0];
+      toSel.value = keys[1] || keys[0];
+      convertValue();
+    }
+
+    function convertValue() {
+      const input = parseFloat(document.getElementById('converterInput').value) || 0;
+      const from = document.getElementById('converterFrom').value;
+      const to = document.getElementById('converterTo').value;
+      let result;
+
+      if (converterType === 'temperature') {
+        let celsius;
+        if (from === 'C') celsius = input;
+        else if (from === 'F') celsius = (input - 32) * 5 / 9;
+        else celsius = input - 273.15;
+        if (to === 'C') result = celsius;
+        else if (to === 'F') result = celsius * 9 / 5 + 32;
+        else result = celsius + 273.15;
+      } else {
+        const factor = converterData[converterType].factor;
+        result = (input * factor[from]) / factor[to];
+      }
+      result = parseFloat(result.toFixed(6));
+      document.getElementById('converterOutput').value = result;
+      const unitLabel = converterData[converterType].units[to];
+      document.getElementById('converterResult').textContent = `${result} ${unitLabel}`;
+    }
+
+    // === Dice Roller ===
+    let diceValues = [];
+
+    function renderDice() {
+      const count = parseInt(document.getElementById('diceCount').value);
+      const container = document.getElementById('diceContainer');
+      if (diceValues.length !== count) diceValues = Array(count).fill(1);
+      container.innerHTML = diceValues.map((v, i) => `<div class="dice" id="dice-${i}">${v}</div>`).join('');
+    }
+
+    function rollDice() {
+      const count = parseInt(document.getElementById('diceCount').value);
+      const sides = parseInt(document.getElementById('diceSides').value);
+      diceValues = [];
+      for (let i = 0; i < count; i++) {
+        const die = document.getElementById(`dice-${i}`);
+        die.classList.add('rolling');
+        setTimeout(() => die.classList.remove('rolling'), 500);
+        const val = Math.floor(Math.random() * sides) + 1;
+        diceValues.push(val);
+        setTimeout(() => { die.textContent = val; }, 250);
+      }
+      const total = diceValues.reduce((a, b) => a + b, 0);
+      document.getElementById('diceTotal').textContent = `总计: ${total}`;
+      const history = document.getElementById('diceHistory');
+      const entry = document.createElement('div');
+      entry.className = 'roll-entry';
+      entry.textContent = `${count}×D${sides}: [${diceValues.join(', ')}] = ${total}`;
+      history.prepend(entry);
+      while (history.children.length > 10) history.lastChild.remove();
+    }
+
+    // === Stopwatch ===
+    let swInterval = null, swElapsed = 0, swRunning = false, swLaps = [], swLapTimes = [];
+
+    function toggleStopwatch() {
+      if (swRunning) {
+        clearInterval(swInterval); swRunning = false;
+        document.getElementById('swStartBtn').textContent = '继续';
+      } else {
+        swRunning = true;
+        document.getElementById('swStartBtn').textContent = '暂停';
+        const start = Date.now() - swElapsed;
+        swInterval = setInterval(() => {
+          swElapsed = Date.now() - start;
+          updateSwDisplay();
+        }, 10);
+      }
+    }
+
+    function updateSwDisplay() {
+      const min = Math.floor(swElapsed / 60000);
+      const sec = Math.floor((swElapsed % 60000) / 1000);
+      const ms = Math.floor((swElapsed % 1000) / 10);
+      document.getElementById('swTime').textContent = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}.${ms.toString().padStart(2,'0')}`;
+    }
+
+    function lapStopwatch() {
+      if (!swRunning) return;
+      swLapTimes.push(swElapsed);
+      const lapNum = swLapTimes.length;
+      const lapTime = lapNum === 1 ? swElapsed : swElapsed - swLapTimes[lapNum - 2];
+      const min = Math.floor(lapTime / 60000), sec = Math.floor((lapTime % 60000) / 1000), ms = Math.floor((lapTime % 1000) / 10);
+      const formatted = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}.${ms.toString().padStart(2,'0')}`;
+      const laps = document.getElementById('swLaps');
+      const li = document.createElement('li');
+      li.innerHTML = `<span>第 ${lapNum} 圈</span><span>${formatted}</span>`;
+      laps.prepend(li);
+    }
+
+    function resetStopwatch() {
+      clearInterval(swInterval); swRunning = false; swElapsed = 0;
+      document.getElementById('swStartBtn').textContent = '开始';
+      document.getElementById('swTime').textContent = '00:00.00';
+      document.getElementById('swLaps').innerHTML = '';
+      swLapTimes = [];
+    }
+
+    // === Quiz Game ===
+    const quizQuestions = [
+      { q: '太阳系中最大的行星是？', options: ['地球', '木星', '土星', '海王星'], answer: 1 },
+      { q: '世界上最高的山峰是？', options: ['乔戈里峰', '干城章嘉峰', '珠穆朗玛峰', '马卡鲁峰'], answer: 2 },
+      { q: 'JavaScript 是哪一年发布的？', options: ['1993年', '1995年', '1998年', '2000年'], answer: 1 },
+      { q: '一光年大约等于多少公里？', options: ['9.46万亿', '1万亿', '5万亿', '15万亿'], answer: 0 },
+      { q: '人体最大的器官是？', options: ['肝脏', '大脑', '皮肤', '肺'], answer: 2 },
+      { q: 'HTTP 协议默认端口号是？', options: ['21', '22', '80', '443'], answer: 2 },
+      { q: '下列哪种语言是编译型语言？', options: ['Python', 'JavaScript', 'C++', 'Ruby'], answer: 2 },
+      { q: 'DNA 的双螺旋结构是谁发现的？', options: ['爱因斯坦', '达尔文', '沃森和克里克', '孟德尔'], answer: 2 },
+      { q: '中国的国土面积约为多少？', options: ['960万平方公里', '1000万平方公里', '880万平方公里', '1100万平方公里'], answer: 0 },
+      { q: 'CSS 中 flex 布局的默认主轴方向是？', options: ['column', 'row', 'column-reverse', 'row-reverse'], answer: 1 },
+    ];
+    let quizIndex = 0, quizScore = 0, quizAnswered = false;
+
+    function startQuiz() {
+      quizIndex = 0; quizScore = 0; quizAnswered = false;
+      document.getElementById('quizTotal').textContent = quizQuestions.length;
+      showQuizQuestion();
+    }
+
+    function showQuizQuestion() {
+      if (quizIndex >= quizQuestions.length) {
+        document.getElementById('quizQuestion').textContent = `答题结束！得分：${quizScore}/${quizQuestions.length}`;
+        document.getElementById('quizOptions').innerHTML = '';
+        document.getElementById('quizIndex').textContent = quizQuestions.length;
+        notify(`答题完成！得分 ${quizScore}/${quizQuestions.length}`, 'success');
+        return;
+      }
+      quizAnswered = false;
+      const q = quizQuestions[quizIndex];
+      document.getElementById('quizIndex').textContent = quizIndex + 1;
+      document.getElementById('quizScore').textContent = quizScore;
+      document.getElementById('quizQuestion').textContent = q.q;
+      document.getElementById('quizOptions').innerHTML = q.options.map((opt, i) =>
+        `<button class="quiz-option" onclick="answerQuiz(${i})">${opt}</button>`
+      ).join('');
+    }
+
+    function answerQuiz(selected) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      const q = quizQuestions[quizIndex];
+      const options = document.querySelectorAll('.quiz-option');
+      options.forEach((opt, i) => {
+        opt.disabled = true;
+        if (i === q.answer) opt.classList.add('correct');
+        if (i === selected && i !== q.answer) opt.classList.add('wrong');
+      });
+      if (selected === q.answer) {
+        quizScore++;
+        document.getElementById('quizScore').textContent = quizScore;
+        notify('回答正确！', 'success');
+      } else {
+        notify('回答错误', 'warning');
+      }
+      setTimeout(() => { quizIndex++; showQuizQuestion(); }, 1500);
+    }
+
     // === Init ===
     document.getElementById('notesEditor').value = `# 欢迎使用 Markdown 笔记\n\n这是一个**实时预览**的编辑器。\n\n## 功能\n\n- 支持标题、列表、粗体\n- 实时渲染预览\n- 代码高亮 \`inline code\`\n\n> 引用文字样式\n\n### 开始编辑吧！\n\n在左侧输入 Markdown，右侧即时预览效果。`;
 
@@ -1684,6 +2090,10 @@
     initTyping();
     generatePalette();
     generatePassword();
+    initMemory();
+    setConverterType('length', document.querySelector('#converterTabs button'));
+    renderDice();
+    startQuiz();
 
     window.addEventListener('resize', () => {
       const canvas = document.getElementById('drawingCanvas');
