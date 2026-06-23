@@ -1,108 +1,1033 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>交互式网页</title>
+  <title>生产力仪表盘</title>
   <style>
+    :root {
+      --bg: #f0f2f5;
+      --surface: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --accent: #ec4899;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --border: #e5e7eb;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --radius: 12px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --border: #334155;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.3);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: system-ui, sans-serif; padding: 2rem; background: #f5f5f5; color: #333; }
-    h1 { margin-bottom: 2rem; text-align: center; }
-    .section { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .section h2 { margin-bottom: 1rem; font-size: 1.2rem; }
-    button { padding: 0.5rem 1rem; border: none; border-radius: 4px; background: #4a90d9; color: #fff; cursor: pointer; font-size: 0.9rem; }
-    button:hover { background: #357abd; }
-    button:active { transform: scale(0.97); }
-    .counter { display: flex; align-items: center; gap: 1rem; }
-    .counter span { font-size: 2rem; min-width: 3rem; text-align: center; }
-    .todo-input { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-    .todo-input input { flex: 1; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; }
-    .todo-list { list-style: none; }
-    .todo-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid #eee; }
-    .todo-list li.done span { text-decoration: line-through; color: #999; }
-    .todo-list li span { flex: 1; }
-    .todo-list li button { background: #e74c3c; padding: 0.3rem 0.6rem; font-size: 0.8rem; }
-    .color-box { width: 100px; height: 100px; border-radius: 8px; transition: background 0.3s; margin-top: 1rem; }
-    .tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-    .tabs button { background: #ddd; color: #333; }
-    .tabs button.active { background: #4a90d9; color: #fff; }
-    .tab-content { padding: 1rem; background: #f9f9f9; border-radius: 4px; min-height: 60px; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background var(--transition), color var(--transition);
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      padding: 2rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header h1 {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .header p {
+      color: rgba(255,255,255,0.8);
+      margin-top: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .theme-toggle {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+
+    .main {
+      max-width: 1200px;
+      margin: -1.5rem auto 2rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .main { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-title .icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .full-width { grid-column: 1 / -1; }
+
+    /* Pomodoro Timer */
+    .timer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .timer-circle {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .timer-circle svg {
+      transform: rotate(-90deg);
+      width: 200px;
+      height: 200px;
+    }
+
+    .timer-circle .bg { stroke: var(--border); }
+    .timer-circle .progress {
+      stroke: var(--primary);
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s linear, stroke 0.3s;
+    }
+
+    .timer-display {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .timer-display .time {
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-display .label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .timer-modes {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timer-modes button {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all var(--transition);
+    }
+
+    .timer-modes button.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); transform: scale(1.03); }
+    .btn-secondary { background: var(--border); color: var(--text); }
+    .btn-secondary:hover { background: #d1d5db; }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-danger:hover { background: #dc2626; }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-success:hover { background: #059669; }
+
+    /* Kanban */
+    .kanban {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      min-height: 300px;
+    }
+
+    @media (max-width: 768px) {
+      .kanban { grid-template-columns: 1fr; }
+    }
+
+    .kanban-column {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 0.75rem;
+      min-height: 200px;
+      transition: background var(--transition);
+    }
+
+    .kanban-column.drag-over {
+      background: rgba(99, 102, 241, 0.1);
+      outline: 2px dashed var(--primary);
+    }
+
+    .kanban-column-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kanban-column-title .count {
+      background: var(--border);
+      padding: 0.1rem 0.5rem;
+      border-radius: 10px;
+      font-size: 0.75rem;
+    }
+
+    .kanban-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      cursor: grab;
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .kanban-card:active { cursor: grabbing; }
+    .kanban-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+
+    .kanban-card.dragging {
+      opacity: 0.5;
+      transform: rotate(3deg);
+    }
+
+    .kanban-card .priority {
+      width: 4px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 8px 0 0 8px;
+    }
+
+    .kanban-card .card-text {
+      font-size: 0.85rem;
+      padding-left: 0.5rem;
+    }
+
+    .kanban-card .card-meta {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+
+    .kanban-card .tag {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .kanban-add {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px dashed var(--border);
+      background: transparent;
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all var(--transition);
+    }
+
+    .kanban-add:hover { border-color: var(--primary); color: var(--primary); }
+
+    .kanban-input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid var(--primary);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+    }
+
+    /* Chart */
+    .chart-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.75rem;
+      height: 160px;
+      padding: 0 0.5rem;
+    }
+
+    .chart-bar-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .chart-bar {
+      width: 100%;
+      max-width: 40px;
+      border-radius: 6px 6px 0 0;
+      transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .chart-bar:hover { opacity: 0.8; }
+
+    .chart-bar .tooltip {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity var(--transition);
+      pointer-events: none;
+    }
+
+    .chart-bar:hover .tooltip { opacity: 1; }
+
+    .chart-bar-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 0.4rem;
+    }
+
+    .chart-legend {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    .chart-legend span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .chart-legend .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .chart-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    /* Expense Tracker */
+    .expense-form {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .expense-form input, .expense-form select {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      background: var(--surface);
+      color: var(--text);
+      transition: border-color var(--transition);
+    }
+
+    .expense-form input:focus, .expense-form select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .expense-list {
+      list-style: none;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .expense-item {
+      display: flex;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .expense-item .category-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 0.75rem;
+    }
+
+    .expense-item .name { flex: 1; font-size: 0.85rem; }
+    .expense-item .amount { font-weight: 600; font-size: 0.85rem; }
+
+    .expense-item .delete-btn {
+      background: none;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      margin-left: 0.5rem;
+      opacity: 0;
+      transition: opacity var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .expense-item:hover .delete-btn { opacity: 1; }
+
+    .expense-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 2px solid var(--border);
+      font-weight: 600;
+    }
+
+    /* Notifications */
+    .notifications {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .notification {
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.85rem;
+      box-shadow: var(--shadow-lg);
+      animation: notifyIn 0.3s ease, notifyOut 0.3s ease 2.7s forwards;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .notification.success { background: var(--success); }
+    .notification.warning { background: var(--warning); }
+    .notification.error { background: var(--danger); }
+    .notification.info { background: var(--primary); }
+
+    @keyframes notifyIn {
+      from { opacity: 0; transform: translateX(100%); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes notifyOut {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(100%); }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      transform: scale(0.9) translateY(20px);
+      transition: transform var(--transition);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+
+    .modal h3 { margin-bottom: 1rem; }
+    .modal p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.5; }
+    .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   </style>
 </head>
 <body>
-  <h1>交互式网页示例</h1>
+  <div class="notifications" id="notifications"></div>
 
-  <div class="section">
-    <h2>计数器</h2>
-    <div class="counter">
-      <button onclick="changeCount(-1)">-</button>
-      <span id="count">0</span>
-      <button onclick="changeCount(1)">+</button>
-      <button onclick="resetCount()" style="background:#6c757d">重置</button>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3 id="modalTitle">确认操作</h3>
+      <p id="modalMessage">确定要执行此操作吗？</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal()">取消</button>
+        <button class="btn btn-primary" id="modalConfirm" onclick="closeModal()">确认</button>
+      </div>
     </div>
   </div>
 
-  <div class="section">
-    <h2>待办事项</h2>
-    <div class="todo-input">
-      <input type="text" id="todoInput" placeholder="输入待办事项..." onkeydown="if(event.key==='Enter')addTodo()">
-      <button onclick="addTodo()">添加</button>
+  <header class="header">
+    <div class="header-content">
+      <div>
+        <h1>生产力仪表盘</h1>
+        <p>管理任务 · 追踪时间 · 分析支出</p>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">暗色</span>
+      </button>
     </div>
-    <ul class="todo-list" id="todoList"></ul>
-  </div>
+  </header>
 
-  <div class="section">
-    <h2>随机颜色</h2>
-    <button onclick="randomColor()">换个颜色</button>
-    <div class="color-box" id="colorBox" style="background:#4a90d9"></div>
-  </div>
-
-  <div class="section">
-    <h2>选项卡</h2>
-    <div class="tabs">
-      <button class="active" onclick="switchTab(0)">选项一</button>
-      <button onclick="switchTab(1)">选项二</button>
-      <button onclick="switchTab(2)">选项三</button>
+  <main class="main">
+    <!-- Pomodoro Timer -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">⏱</span>
+        番茄钟
+      </div>
+      <div class="timer-container">
+        <div class="timer-modes">
+          <button class="active" onclick="setTimerMode(25, this)">专注</button>
+          <button onclick="setTimerMode(5, this)">短休</button>
+          <button onclick="setTimerMode(15, this)">长休</button>
+        </div>
+        <div class="timer-circle">
+          <svg viewBox="0 0 200 200">
+            <circle class="bg" cx="100" cy="100" r="88" fill="none" stroke-width="8"/>
+            <circle class="progress" id="timerProgress" cx="100" cy="100" r="88" fill="none" stroke-width="8"
+              stroke-dasharray="553" stroke-dashoffset="0"/>
+          </svg>
+          <div class="timer-display">
+            <div class="time" id="timerDisplay">25:00</div>
+            <div class="label" id="timerLabel">专注时间</div>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()">▶ 开始</button>
+          <button class="btn btn-secondary" onclick="resetTimer()">↺ 重置</button>
+        </div>
+      </div>
     </div>
-    <div class="tab-content" id="tabContent">这是第一个选项卡的内容。</div>
-  </div>
+
+    <!-- Expense Tracker -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">💰</span>
+        支出追踪
+      </div>
+      <div class="expense-form">
+        <input type="text" id="expenseName" placeholder="支出名称" style="flex:1;min-width:100px">
+        <input type="number" id="expenseAmount" placeholder="金额" style="width:80px">
+        <select id="expenseCategory">
+          <option value="food">餐饮</option>
+          <option value="transport">交通</option>
+          <option value="shopping">购物</option>
+          <option value="entertainment">娱乐</option>
+        </select>
+        <button class="btn btn-primary" onclick="addExpense()">添加</button>
+      </div>
+      <ul class="expense-list" id="expenseList"></ul>
+      <div class="expense-total">
+        <span>总计</span>
+        <span id="expenseTotal">¥0.00</span>
+      </div>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">📋</span>
+        任务看板
+        <span style="font-size:0.75rem;color:var(--text-secondary);font-weight:400;margin-left:auto">拖拽卡片以改变状态</span>
+      </div>
+      <div class="kanban" id="kanban">
+        <div class="kanban-column" data-status="todo" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragleave="handleDragLeave(event)">
+          <div class="kanban-column-title">待办 <span class="count" id="countTodo">3</span></div>
+          <div class="kanban-cards" id="cardsTodo"></div>
+          <button class="kanban-add" onclick="showAddCard('todo')">+ 添加任务</button>
+        </div>
+        <div class="kanban-column" data-status="doing" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragleave="handleDragLeave(event)">
+          <div class="kanban-column-title">进行中 <span class="count" id="countDoing">1</span></div>
+          <div class="kanban-cards" id="cardsDoing"></div>
+          <button class="kanban-add" onclick="showAddCard('doing')">+ 添加任务</button>
+        </div>
+        <div class="kanban-column" data-status="done" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragleave="handleDragLeave(event)">
+          <div class="kanban-column-title">已完成 <span class="count" id="countDone">1</span></div>
+          <div class="kanban-cards" id="cardsDone"></div>
+          <button class="kanban-add" onclick="showAddCard('done')">+ 添加任务</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">📊</span>
+        本周专注时长
+        <div class="chart-actions" style="margin-left:auto">
+          <button class="btn btn-secondary" onclick="randomizeChart()" style="font-size:0.75rem;padding:0.3rem 0.8rem">刷新数据</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-bars" id="chartBars"></div>
+        <div class="chart-legend">
+          <span><span class="dot" style="background:var(--primary)"></span> 专注</span>
+          <span><span class="dot" style="background:var(--accent)"></span> 休息</span>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <script>
-    let count = 0;
-
-    function changeCount(delta) {
-      count += delta;
-      document.getElementById('count').textContent = count;
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+      document.getElementById('themeText').textContent = isDark ? '暗色' : '亮色';
+      notify(isDark ? '已切换为亮色模式' : '已切换为暗色模式', 'info');
     }
 
-    function resetCount() {
-      count = 0;
-      document.getElementById('count').textContent = count;
+    // Notifications
+    function notify(message, type = 'info') {
+      const container = document.getElementById('notifications');
+      const el = document.createElement('div');
+      el.className = `notification ${type}`;
+      const icons = { success: '✓', warning: '⚠', error: '✗', info: 'ℹ' };
+      el.innerHTML = `<span>${icons[type]}</span> ${message}`;
+      container.appendChild(el);
+      setTimeout(() => el.remove(), 3000);
     }
 
-    function addTodo() {
-      const input = document.getElementById('todoInput');
-      const text = input.value.trim();
-      if (!text) return;
-      const li = document.createElement('li');
-      li.innerHTML = `<input type="checkbox" onchange="this.parentElement.classList.toggle('done')"><span>${text}</span><button onclick="this.parentElement.remove()">删除</button>`;
-      document.getElementById('todoList').appendChild(li);
-      input.value = '';
+    // Modal
+    function showModal(title, message, onConfirm) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalMessage').textContent = message;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.getElementById('modalConfirm').onclick = () => { closeModal(); onConfirm(); };
     }
 
-    function randomColor() {
-      const hex = '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
-      document.getElementById('colorBox').style.background = hex;
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
     }
 
-    const tabContents = ['这是第一个选项卡的内容。', '这是第二个选项卡的内容，可以放不同的信息。', '第三个选项卡，支持自由切换。'];
+    // Pomodoro Timer
+    let timerInterval = null;
+    let timerSeconds = 25 * 60;
+    let timerTotal = 25 * 60;
+    let timerRunning = false;
 
-    function switchTab(index) {
-      document.getElementById('tabContent').textContent = tabContents[index];
-      document.querySelectorAll('.tabs button').forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
+    function setTimerMode(minutes, btn) {
+      if (timerRunning) return;
+      timerSeconds = minutes * 60;
+      timerTotal = minutes * 60;
+      updateTimerDisplay();
+      document.querySelectorAll('.timer-modes button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const labels = { 25: '专注时间', 5: '短休息', 15: '长休息' };
+      document.getElementById('timerLabel').textContent = labels[minutes];
+    }
+
+    function toggleTimer() {
+      if (timerRunning) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        document.getElementById('timerStartBtn').innerHTML = '▶ 继续';
+      } else {
+        timerRunning = true;
+        document.getElementById('timerStartBtn').innerHTML = '⏸ 暂停';
+        timerInterval = setInterval(() => {
+          timerSeconds--;
+          if (timerSeconds <= 0) {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            document.getElementById('timerStartBtn').innerHTML = '▶ 开始';
+            notify('时间到！休息一下吧 🎉', 'success');
+            timerSeconds = 0;
+          }
+          updateTimerDisplay();
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      timerSeconds = timerTotal;
+      document.getElementById('timerStartBtn').innerHTML = '▶ 开始';
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(timerSeconds / 60);
+      const s = timerSeconds % 60;
+      document.getElementById('timerDisplay').textContent =
+        `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      const circumference = 2 * Math.PI * 88;
+      const offset = circumference * (1 - timerSeconds / timerTotal);
+      const progress = document.getElementById('timerProgress');
+      progress.style.strokeDashoffset = offset;
+      if (timerSeconds < timerTotal * 0.2) {
+        progress.style.stroke = 'var(--danger)';
+      } else if (timerSeconds < timerTotal * 0.5) {
+        progress.style.stroke = 'var(--warning)';
+      } else {
+        progress.style.stroke = 'var(--primary)';
+      }
+    }
+
+    // Kanban Board
+    let kanbanData = [
+      { id: 1, text: '设计新的着陆页', status: 'todo', priority: 'high', tags: ['设计'] },
+      { id: 2, text: '编写 API 文档', status: 'todo', priority: 'medium', tags: ['文档'] },
+      { id: 3, text: '修复移动端样式问题', status: 'todo', priority: 'low', tags: ['Bug'] },
+      { id: 4, text: '实现用户认证模块', status: 'doing', priority: 'high', tags: ['开发'] },
+      { id: 5, text: '配置 CI/CD 流水线', status: 'done', priority: 'medium', tags: ['运维'] },
+    ];
+
+    let draggedId = null;
+
+    function renderKanban() {
+      ['todo', 'doing', 'done'].forEach(status => {
+        const container = document.getElementById(`cards${status.charAt(0).toUpperCase() + status.slice(1)}`);
+        const cards = kanbanData.filter(c => c.status === status);
+        container.innerHTML = cards.map(card => {
+          const colors = { high: 'var(--danger)', medium: 'var(--warning)', low: 'var(--success)' };
+          return `
+            <div class="kanban-card" draggable="true" data-id="${card.id}"
+              ondragstart="handleDragStart(event, ${card.id})" ondragend="handleDragEnd(event)">
+              <div class="priority" style="background:${colors[card.priority]}"></div>
+              <div class="card-text">${card.text}</div>
+              <div class="card-meta">
+                ${card.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+              </div>
+            </div>`;
+        }).join('');
+        document.getElementById(`count${status.charAt(0).toUpperCase() + status.slice(1)}`).textContent = cards.length;
       });
     }
+
+    function handleDragStart(e, id) {
+      draggedId = id;
+      e.target.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+
+    function handleDragEnd(e) {
+      e.target.classList.remove('dragging');
+      document.querySelectorAll('.kanban-column').forEach(col => col.classList.remove('drag-over'));
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    }
+
+    function handleDragLeave(e) {
+      e.currentTarget.classList.remove('drag-over');
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      const column = e.currentTarget;
+      column.classList.remove('drag-over');
+      const newStatus = column.getAttribute('data-status');
+      const card = kanbanData.find(c => c.id === draggedId);
+      if (card && card.status !== newStatus) {
+        card.status = newStatus;
+        renderKanban();
+        const statusNames = { todo: '待办', doing: '进行中', done: '已完成' };
+        notify(`"${card.text}" 已移至${statusNames[newStatus]}`, 'success');
+      }
+    }
+
+    function showAddCard(status) {
+      const container = document.getElementById(`cards${status.charAt(0).toUpperCase() + status.slice(1)}`);
+      const existing = container.querySelector('.kanban-input');
+      if (existing) { existing.focus(); return; }
+      const input = document.createElement('input');
+      input.className = 'kanban-input';
+      input.placeholder = '输入任务名称，回车添加';
+      input.onkeydown = (e) => {
+        if (e.key === 'Enter' && input.value.trim()) {
+          kanbanData.push({
+            id: Date.now(),
+            text: input.value.trim(),
+            status: status,
+            priority: ['high', 'medium', 'low'][Math.floor(Math.random() * 3)],
+            tags: ['新任务']
+          });
+          renderKanban();
+          notify('任务已添加', 'success');
+        }
+        if (e.key === 'Escape') input.remove();
+      };
+      input.onblur = () => setTimeout(() => input.remove(), 150);
+      container.appendChild(input);
+      input.focus();
+    }
+
+    // Chart
+    const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+    let chartData = { focus: [4, 3, 5, 2, 6, 3, 4], rest: [1, 1, 2, 1, 2, 1, 1] };
+
+    function renderChart() {
+      const container = document.getElementById('chartBars');
+      const maxVal = Math.max(...chartData.focus, ...chartData.rest);
+      container.innerHTML = days.map((day, i) => `
+        <div class="chart-bar-wrapper">
+          <div class="chart-bar" style="height:${(chartData.focus[i] / maxVal) * 100}%;background:var(--primary)">
+            <span class="tooltip">${chartData.focus[i]}h 专注</span>
+          </div>
+          <div class="chart-bar" style="height:${(chartData.rest[i] / maxVal) * 100}%;background:var(--accent);margin-top:4px;border-radius:0 0 6px 6px">
+            <span class="tooltip">${chartData.rest[i]}h 休息</span>
+          </div>
+          <span class="chart-bar-label">${day}</span>
+        </div>`).join('');
+
+      setTimeout(() => {
+        container.querySelectorAll('.chart-bar').forEach(bar => {
+          const h = bar.style.height;
+          bar.style.height = '0';
+          requestAnimationFrame(() => { bar.style.height = h; });
+        });
+      }, 50);
+    }
+
+    function randomizeChart() {
+      chartData.focus = days.map(() => Math.floor(Math.random() * 6) + 1);
+      chartData.rest = days.map(() => Math.floor(Math.random() * 3) + 1);
+      renderChart();
+      notify('数据已刷新', 'info');
+    }
+
+    // Expense Tracker
+    let expenses = [
+      { id: 1, name: '午餐', amount: 35, category: 'food' },
+      { id: 2, name: '地铁', amount: 6, category: 'transport' },
+      { id: 3, name: '咖啡', amount: 28, category: 'food' },
+    ];
+
+    const categoryColors = {
+      food: '#ef4444',
+      transport: '#6366f1',
+      shopping: '#ec4899',
+      entertainment: '#f59e0b'
+    };
+
+    const categoryNames = {
+      food: '餐饮',
+      transport: '交通',
+      shopping: '购物',
+      entertainment: '娱乐'
+    };
+
+    function renderExpenses() {
+      const list = document.getElementById('expenseList');
+      list.innerHTML = expenses.map(exp => `
+        <li class="expense-item">
+          <span class="category-dot" style="background:${categoryColors[exp.category]}"></span>
+          <span class="name">${exp.name} <small style="color:var(--text-secondary)">${categoryNames[exp.category]}</small></span>
+          <span class="amount">¥${exp.amount.toFixed(2)}</span>
+          <button class="delete-btn" onclick="deleteExpense(${exp.id})">×</button>
+        </li>`).join('');
+      const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+      document.getElementById('expenseTotal').textContent = `¥${total.toFixed(2)}`;
+    }
+
+    function addExpense() {
+      const name = document.getElementById('expenseName').value.trim();
+      const amount = parseFloat(document.getElementById('expenseAmount').value);
+      const category = document.getElementById('expenseCategory').value;
+      if (!name || !amount || amount <= 0) {
+        notify('请填写完整的支出信息', 'warning');
+        return;
+      }
+      expenses.unshift({ id: Date.now(), name, amount, category });
+      renderExpenses();
+      document.getElementById('expenseName').value = '';
+      document.getElementById('expenseAmount').value = '';
+      notify(`已添加支出：${name} ¥${amount.toFixed(2)}`, 'success');
+    }
+
+    function deleteExpense(id) {
+      const exp = expenses.find(e => e.id === id);
+      showModal('删除支出', `确定要删除"${exp.name}"吗？`, () => {
+        expenses = expenses.filter(e => e.id !== id);
+        renderExpenses();
+        notify('支出已删除', 'info');
+      });
+    }
+
+    // Init
+    renderKanban();
+    renderChart();
+    renderExpenses();
+    updateTimerDisplay();
   </script>
 </body>
 </html>
