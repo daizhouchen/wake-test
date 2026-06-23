@@ -555,6 +555,55 @@
     .json-output .json-null { color: var(--danger); }
     .json-error { color: var(--danger); font-size: 0.8rem; margin-top: 0.5rem; }
 
+    /* World Clock */
+    .world-clocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+    .clock-card { text-align: center; padding: 0.75rem; background: var(--bg); border-radius: 8px; position: relative; }
+    .clock-card .clock-city { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.3rem; }
+    .clock-card .clock-time { font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .clock-card .clock-date { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .clock-card .clock-remove { position: absolute; top: 4px; right: 6px; background: none; border: none; color: var(--danger); cursor: pointer; opacity: 0; font-size: 0.8rem; transition: opacity 0.2s; }
+    .clock-card:hover .clock-remove { opacity: 1; }
+    .clock-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    .clock-add select { flex: 1; padding: 0.4rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; }
+
+    /* Quote Generator */
+    .quote-card { padding: 1.5rem; text-align: center; position: relative; }
+    .quote-text { font-size: 1.1rem; line-height: 1.7; font-style: italic; margin-bottom: 1rem; position: relative; }
+    .quote-text::before { content: '"'; position: absolute; top: -0.5rem; left: -0.5rem; font-size: 3rem; color: var(--primary); opacity: 0.3; font-style: normal; }
+    .quote-author { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+    .quote-tags { display: flex; gap: 0.3rem; justify-content: center; margin-top: 0.75rem; flex-wrap: wrap; }
+    .quote-tag { font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 10px; background: rgba(99,102,241,0.1); color: var(--primary); }
+
+    /* Regex Tester */
+    .regex-input-row { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; align-items: center; }
+    .regex-input-row input { flex: 1; padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; font-family: 'SF Mono', monospace; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .regex-input-row input:focus { border-color: var(--primary); }
+    .regex-flags { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .regex-flags label { font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem; cursor: pointer; color: var(--text-secondary); }
+    .regex-flags input { accent-color: var(--primary); }
+    .regex-test-area { width: 100%; min-height: 80px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', monospace; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; resize: vertical; line-height: 1.6; }
+    .regex-test-area:focus { border-color: var(--primary); }
+    .regex-matches { margin-top: 0.75rem; font-size: 0.8rem; }
+    .regex-matches .match-count { color: var(--primary); font-weight: 600; }
+    .regex-matches .match-item { display: inline-block; background: rgba(99,102,241,0.15); padding: 0.1rem 0.4rem; border-radius: 3px; margin: 0.2rem; font-family: monospace; font-size: 0.8rem; }
+    .regex-error { color: var(--danger); font-size: 0.8rem; margin-top: 0.5rem; }
+
+    /* Morse Code */
+    .morse-container { display: flex; flex-direction: column; gap: 0.75rem; }
+    .morse-input { width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--surface); color: var(--text); outline: none; resize: none; min-height: 60px; }
+    .morse-input:focus { border-color: var(--primary); }
+    .morse-output { width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'SF Mono', monospace; font-size: 0.85rem; background: var(--bg); color: var(--text); min-height: 60px; word-break: break-all; line-height: 1.6; }
+    .morse-controls { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .morse-direction { font-size: 0.8rem; color: var(--text-secondary); text-align: center; }
+
+    /* Base64 Encoder */
+    .b64-container { display: flex; flex-direction: column; gap: 0.75rem; }
+    .b64-textarea { width: 100%; min-height: 80px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', monospace; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; resize: vertical; }
+    .b64-textarea:focus { border-color: var(--primary); }
+    .b64-controls { display: flex; gap: 0.5rem; align-items: center; }
+    .b64-arrow { font-size: 1.2rem; color: var(--text-secondary); }
+    .b64-stats { font-size: 0.75rem; color: var(--text-secondary); display: flex; gap: 1rem; }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -1118,6 +1167,98 @@
         <button class="btn btn-danger btn-sm" onclick="clearJSON()">清空</button>
       </div>
       <div class="json-output" id="jsonOutput">结果将显示在这里...</div>
+    </div>
+
+    <!-- World Clock -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🕐</span>
+        世界时钟
+      </div>
+      <div class="world-clocks" id="worldClocks"></div>
+      <div class="clock-add">
+        <select id="clockSelect">
+          <option value="Asia/Shanghai">上海</option>
+          <option value="Asia/Tokyo">东京</option>
+          <option value="America/New_York">纽约</option>
+          <option value="Europe/London">伦敦</option>
+          <option value="Europe/Paris">巴黎</option>
+          <option value="Australia/Sydney">悉尼</option>
+          <option value="America/Los_Angeles">洛杉矶</option>
+          <option value="Asia/Dubai">迪拜</option>
+          <option value="Asia/Singapore">新加坡</option>
+          <option value="Asia/Seoul">首尔</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="addClock()">添加</button>
+      </div>
+    </div>
+
+    <!-- Quote Generator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">💬</span>
+        名言生成器
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="newQuote()">换一条</button>
+      </div>
+      <div class="quote-card" id="quoteCard"></div>
+    </div>
+
+    <!-- Regex Tester -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">.*</span>
+        正则测试器
+      </div>
+      <div class="regex-input-row">
+        <span style="color:var(--text-secondary);font-family:monospace">/</span>
+        <input type="text" id="regexPattern" placeholder="输入正则表达式..." oninput="testRegex()">
+        <span style="color:var(--text-secondary);font-family:monospace">/</span>
+      </div>
+      <div class="regex-flags">
+        <label><input type="checkbox" id="regexG" checked onchange="testRegex()"> g (全局)</label>
+        <label><input type="checkbox" id="regexI" onchange="testRegex()"> i (忽略大小写)</label>
+        <label><input type="checkbox" id="regexM" onchange="testRegex()"> m (多行)</label>
+      </div>
+      <textarea class="regex-test-area" id="regexTestText" oninput="testRegex()" placeholder="输入测试文本...">Hello World 123, hello world 456</textarea>
+      <div class="regex-matches" id="regexMatches"></div>
+    </div>
+
+    <!-- Morse Code Translator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">📡</span>
+        摩尔斯电码
+      </div>
+      <div class="morse-container">
+        <textarea class="morse-input" id="morseInput" oninput="translateMorse()" placeholder="输入文本或摩尔斯电码...">SOS</textarea>
+        <div class="morse-controls">
+          <button class="btn btn-primary btn-sm" onclick="toggleMorseDirection()">切换方向</button>
+          <button class="btn btn-secondary btn-sm" onclick="copyMorseOutput()">复制结果</button>
+          <button class="btn btn-secondary btn-sm" onclick="playMorse()">播放</button>
+          <span class="morse-direction" id="morseDirection">文本 → 摩尔斯</span>
+        </div>
+        <div class="morse-output" id="morseOutput"></div>
+      </div>
+    </div>
+
+    <!-- Base64 Encoder/Decoder -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(239,68,68,0.1)">🔑</span>
+        Base64 编解码
+      </div>
+      <div class="b64-container">
+        <textarea class="b64-textarea" id="b64Input" placeholder="输入要编码的文本..." oninput="encodeBase64()">Hello, World!</textarea>
+        <div class="b64-controls">
+          <button class="btn btn-primary btn-sm" onclick="encodeBase64()">编码</button>
+          <span class="b64-arrow">⇅</span>
+          <button class="btn btn-secondary btn-sm" onclick="decodeBase64()">解码</button>
+          <button class="btn btn-secondary btn-sm" onclick="copyB64Output()">复制</button>
+          <button class="btn btn-sm btn-secondary" onclick="swapB64()">交换</button>
+        </div>
+        <textarea class="b64-textarea" id="b64Output" placeholder="结果..." readonly></textarea>
+        <div class="b64-stats" id="b64Stats"></div>
+      </div>
     </div>
   </main>
 
@@ -2474,6 +2615,189 @@
       });
     }
 
+    // === World Clock ===
+    const tzNames = { 'Asia/Shanghai': '上海', 'Asia/Tokyo': '东京', 'America/New_York': '纽约', 'Europe/London': '伦敦', 'Europe/Paris': '巴黎', 'Australia/Sydney': '悉尼', 'America/Los_Angeles': '洛杉矶', 'Asia/Dubai': '迪拜', 'Asia/Singapore': '新加坡', 'Asia/Seoul': '首尔' };
+    let worldClocks = ['Asia/Shanghai', 'America/New_York', 'Europe/London', 'Asia/Tokyo'];
+
+    function renderWorldClocks() {
+      const container = document.getElementById('worldClocks');
+      container.innerHTML = worldClocks.map(tz => {
+        const now = new Date();
+        const opts = { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        const dateOpts = { timeZone: tz, month: 'short', day: 'numeric', weekday: 'short' };
+        const time = now.toLocaleTimeString('zh-CN', opts);
+        const date = now.toLocaleDateString('zh-CN', dateOpts);
+        return `<div class="clock-card">
+          <button class="clock-remove" onclick="removeClock('${tz}')">×</button>
+          <div class="clock-city">${tzNames[tz] || tz}</div>
+          <div class="clock-time">${time}</div>
+          <div class="clock-date">${date}</div>
+        </div>`;
+      }).join('');
+    }
+
+    function addClock() {
+      const tz = document.getElementById('clockSelect').value;
+      if (worldClocks.includes(tz)) { notify('该时区已添加', 'warning'); return; }
+      worldClocks.push(tz);
+      renderWorldClocks();
+      notify(`已添加${tzNames[tz]}时钟`, 'success');
+    }
+
+    function removeClock(tz) {
+      worldClocks = worldClocks.filter(t => t !== tz);
+      renderWorldClocks();
+    }
+
+    setInterval(renderWorldClocks, 1000);
+
+    // === Quote Generator ===
+    const quotes = [
+      { text: '生活中唯一的失败，就是从未去尝试。', author: '佚名', tags: ['励志'] },
+      { text: '不积跬步，无以至千里；不积小流，无以成江海。', author: '荀子', tags: ['古文', '坚持'] },
+      { text: '代码如诗，简洁即美。', author: '程序员哲学', tags: ['编程'] },
+      { text: 'Stay hungry, stay foolish.', author: 'Steve Jobs', tags: ['科技', '励志'] },
+      { text: '任何足够先进的技术，都与魔法无异。', author: 'Arthur C. Clarke', tags: ['科技'] },
+      { text: '简单是终极的复杂。', author: 'Leonardo da Vinci', tags: ['设计'] },
+      { text: '最好的时间是十年前，其次是现在。', author: '中国谚语', tags: ['行动'] },
+      { text: '先解决问题，再写优雅的代码。', author: 'Jon Johnson', tags: ['编程'] },
+      { text: '学而不思则罔，思而不学则殆。', author: '孔子', tags: ['古文', '学习'] },
+      { text: '调试代码的难度是写代码的两倍。', author: 'Brian Kernighan', tags: ['编程', '幽默'] },
+      { text: '成功不是终点，失败也不是末日，继续前进的勇气才是关键。', author: 'Winston Churchill', tags: ['励志'] },
+      { text: '好的设计是尽可能少的设计。', author: 'Dieter Rams', tags: ['设计'] },
+    ];
+
+    function newQuote() {
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('quoteCard').innerHTML = `
+        <div class="quote-text">${q.text}</div>
+        <div class="quote-author">— ${q.author}</div>
+        <div class="quote-tags">${q.tags.map(t => `<span class="quote-tag">${t}</span>`).join('')}</div>`;
+    }
+
+    // === Regex Tester ===
+    function testRegex() {
+      const pattern = document.getElementById('regexPattern').value;
+      const text = document.getElementById('regexTestText').value;
+      const container = document.getElementById('regexMatches');
+
+      if (!pattern) { container.innerHTML = ''; return; }
+
+      let flags = '';
+      if (document.getElementById('regexG').checked) flags += 'g';
+      if (document.getElementById('regexI').checked) flags += 'i';
+      if (document.getElementById('regexM').checked) flags += 'm';
+
+      try {
+        const regex = new RegExp(pattern, flags);
+        const matches = [...text.matchAll(new RegExp(pattern, flags.includes('g') ? flags : flags + 'g'))];
+        if (matches.length === 0) {
+          container.innerHTML = '<span style="color:var(--text-secondary)">无匹配结果</span>';
+        } else {
+          container.innerHTML = `<span class="match-count">${matches.length} 个匹配</span><div style="margin-top:0.4rem">${matches.map(m => `<span class="match-item">${m[0]}</span>`).join('')}</div>`;
+        }
+      } catch (e) {
+        container.innerHTML = `<span class="regex-error">${e.message}</span>`;
+      }
+    }
+
+    // === Morse Code ===
+    const morseMap = {'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.', ' ':' '};
+    const reverseMorse = Object.fromEntries(Object.entries(morseMap).map(([k,v]) => [v, k]));
+    let morseToText = false;
+
+    function translateMorse() {
+      const input = document.getElementById('morseInput').value;
+      let output;
+      if (morseToText) {
+        output = input.split('   ').map(word => word.split(' ').map(c => reverseMorse[c] || '?').join('')).join(' ');
+      } else {
+        output = input.toUpperCase().split('').map(c => morseMap[c] || '').join(' ').replace(/  /g, '   ');
+      }
+      document.getElementById('morseOutput').textContent = output;
+    }
+
+    function toggleMorseDirection() {
+      morseToText = !morseToText;
+      document.getElementById('morseDirection').textContent = morseToText ? '摩尔斯 → 文本' : '文本 → 摩尔斯';
+      document.getElementById('morseInput').placeholder = morseToText ? '输入摩尔斯电码 (用空格分隔)...' : '输入文本...';
+      document.getElementById('morseInput').value = '';
+      document.getElementById('morseOutput').textContent = '';
+    }
+
+    function copyMorseOutput() {
+      const text = document.getElementById('morseOutput').textContent;
+      if (!text) { notify('没有可复制的内容', 'warning'); return; }
+      navigator.clipboard.writeText(text).then(() => notify('已复制', 'success'));
+    }
+
+    function playMorse() {
+      const output = document.getElementById('morseOutput').textContent;
+      if (!output) return;
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      let time = ctx.currentTime;
+      const dot = 0.08, dash = 0.24, gap = 0.08, letterGap = 0.24;
+      for (const char of output) {
+        if (char === '.') {
+          const osc = ctx.createOscillator(); const gain = ctx.createGain();
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.frequency.value = 600; osc.start(time); osc.stop(time + dot);
+          time += dot + gap;
+        } else if (char === '-') {
+          const osc = ctx.createOscillator(); const gain = ctx.createGain();
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.frequency.value = 600; osc.start(time); osc.stop(time + dash);
+          time += dash + gap;
+        } else if (char === ' ') {
+          time += letterGap;
+        }
+      }
+      notify('正在播放摩尔斯电码...', 'info');
+    }
+
+    // === Base64 Encoder/Decoder ===
+    function encodeBase64() {
+      const input = document.getElementById('b64Input').value;
+      try {
+        const encoded = btoa(unescape(encodeURIComponent(input)));
+        document.getElementById('b64Output').value = encoded;
+        updateB64Stats(input, encoded);
+      } catch (e) {
+        document.getElementById('b64Output').value = '编码错误: ' + e.message;
+      }
+    }
+
+    function decodeBase64() {
+      const input = document.getElementById('b64Input').value;
+      try {
+        const decoded = decodeURIComponent(escape(atob(input)));
+        document.getElementById('b64Output').value = decoded;
+        updateB64Stats(input, decoded);
+        notify('解码成功', 'success');
+      } catch (e) {
+        document.getElementById('b64Output').value = '解码错误: 输入不是有效的 Base64';
+        notify('解码失败', 'error');
+      }
+    }
+
+    function copyB64Output() {
+      const text = document.getElementById('b64Output').value;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => notify('已复制', 'success'));
+    }
+
+    function swapB64() {
+      const input = document.getElementById('b64Input');
+      const output = document.getElementById('b64Output');
+      const tmp = input.value;
+      input.value = output.value;
+      output.value = tmp;
+    }
+
+    function updateB64Stats(input, output) {
+      document.getElementById('b64Stats').innerHTML = `<span>输入: ${input.length} 字符</span><span>输出: ${output.length} 字符</span><span>比率: ${input.length ? (output.length / input.length).toFixed(2) : '—'}x</span>`;
+    }
+
     // === Init ===
     document.getElementById('notesEditor').value = `# 欢迎使用 Markdown 笔记\n\n这是一个**实时预览**的编辑器。\n\n## 功能\n\n- 支持标题、列表、粗体\n- 实时渲染预览\n- 代码高亮 \`inline code\`\n\n> 引用文字样式\n\n### 开始编辑吧！\n\n在左侧输入 Markdown，右侧即时预览效果。`;
 
@@ -2496,6 +2820,10 @@
     renderBookmarks();
     renderProgress();
     initEmojiPicker();
+    renderWorldClocks();
+    newQuote();
+    translateMorse();
+    encodeBase64();
 
     window.addEventListener('resize', () => {
       const canvas = document.getElementById('drawingCanvas');
