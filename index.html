@@ -85,7 +85,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -102,7 +102,13 @@
       font-size: 0.9rem;
     }
 
-    .theme-toggle {
+    .header-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .theme-toggle, .header-btn {
       background: rgba(255,255,255,0.2);
       border: none;
       border-radius: 50px;
@@ -117,10 +123,10 @@
       gap: 0.5rem;
     }
 
-    .theme-toggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+    .theme-toggle:hover, .header-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
 
     .main {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: -1.5rem auto 2rem;
       padding: 0 1.5rem;
       display: grid;
@@ -128,7 +134,7 @@
       gap: 1.5rem;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .main { grid-template-columns: 1fr; }
     }
 
@@ -164,81 +170,6 @@
 
     .full-width { grid-column: 1 / -1; }
 
-    /* Pomodoro Timer */
-    .timer-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .timer-circle {
-      position: relative;
-      width: 200px;
-      height: 200px;
-    }
-
-    .timer-circle svg {
-      transform: rotate(-90deg);
-      width: 200px;
-      height: 200px;
-    }
-
-    .timer-circle .bg { stroke: var(--border); }
-    .timer-circle .progress {
-      stroke: var(--primary);
-      stroke-linecap: round;
-      transition: stroke-dashoffset 1s linear, stroke 0.3s;
-    }
-
-    .timer-display {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-
-    .timer-display .time {
-      font-size: 2.5rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .timer-display .label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-top: 0.2rem;
-    }
-
-    .timer-controls {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .timer-modes {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timer-modes button {
-      padding: 0.4rem 0.8rem;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-secondary);
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all var(--transition);
-    }
-
-    .timer-modes button.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
     .btn {
       padding: 0.6rem 1.2rem;
       border: none;
@@ -260,355 +191,174 @@
     .btn-danger:hover { background: #dc2626; }
     .btn-success { background: var(--success); color: #fff; }
     .btn-success:hover { background: #059669; }
+    .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
+
+    /* Pomodoro Timer */
+    .timer-container { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .timer-circle { position: relative; width: 200px; height: 200px; }
+    .timer-circle svg { transform: rotate(-90deg); width: 200px; height: 200px; }
+    .timer-circle .bg { stroke: var(--border); }
+    .timer-circle .progress { stroke: var(--primary); stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.3s; }
+    .timer-display { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .timer-display .time { font-size: 2.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .timer-display .label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .timer-controls { display: flex; gap: 0.75rem; }
+    .timer-modes { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .timer-modes button { padding: 0.4rem 0.8rem; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all var(--transition); }
+    .timer-modes button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
     /* Kanban */
-    .kanban {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      min-height: 300px;
-    }
-
-    @media (max-width: 768px) {
-      .kanban { grid-template-columns: 1fr; }
-    }
-
-    .kanban-column {
-      background: var(--bg);
-      border-radius: 8px;
-      padding: 0.75rem;
-      min-height: 200px;
-      transition: background var(--transition);
-    }
-
-    .kanban-column.drag-over {
-      background: rgba(99, 102, 241, 0.1);
-      outline: 2px dashed var(--primary);
-    }
-
-    .kanban-column-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-secondary);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .kanban-column-title .count {
-      background: var(--border);
-      padding: 0.1rem 0.5rem;
-      border-radius: 10px;
-      font-size: 0.75rem;
-    }
-
-    .kanban-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem;
-      margin-bottom: 0.5rem;
-      cursor: grab;
-      transition: all var(--transition);
-      position: relative;
-    }
-
+    .kanban { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; min-height: 300px; }
+    @media (max-width: 900px) { .kanban { grid-template-columns: 1fr; } }
+    .kanban-column { background: var(--bg); border-radius: 8px; padding: 0.75rem; min-height: 200px; transition: background var(--transition); }
+    .kanban-column.drag-over { background: rgba(99, 102, 241, 0.1); outline: 2px dashed var(--primary); }
+    .kanban-column-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; }
+    .kanban-column-title .count { background: var(--border); padding: 0.1rem 0.5rem; border-radius: 10px; font-size: 0.75rem; }
+    .kanban-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; margin-bottom: 0.5rem; cursor: grab; transition: all var(--transition); position: relative; }
     .kanban-card:active { cursor: grabbing; }
     .kanban-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
-
-    .kanban-card.dragging {
-      opacity: 0.5;
-      transform: rotate(3deg);
-    }
-
-    .kanban-card .priority {
-      width: 4px;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      border-radius: 8px 0 0 8px;
-    }
-
-    .kanban-card .card-text {
-      font-size: 0.85rem;
-      padding-left: 0.5rem;
-    }
-
-    .kanban-card .card-meta {
-      display: flex;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-      padding-left: 0.5rem;
-    }
-
-    .kanban-card .tag {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--primary);
-    }
-
-    .kanban-add {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px dashed var(--border);
-      background: transparent;
-      border-radius: 6px;
-      color: var(--text-secondary);
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all var(--transition);
-    }
-
+    .kanban-card.dragging { opacity: 0.5; transform: rotate(3deg); }
+    .kanban-card .priority { width: 4px; height: 100%; position: absolute; left: 0; top: 0; border-radius: 8px 0 0 8px; }
+    .kanban-card .card-text { font-size: 0.85rem; padding-left: 0.5rem; }
+    .kanban-card .card-meta { display: flex; gap: 0.4rem; margin-top: 0.4rem; padding-left: 0.5rem; }
+    .kanban-card .tag { font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 4px; background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+    .kanban-add { width: 100%; padding: 0.5rem; border: 1px dashed var(--border); background: transparent; border-radius: 6px; color: var(--text-secondary); cursor: pointer; font-size: 0.8rem; transition: all var(--transition); }
     .kanban-add:hover { border-color: var(--primary); color: var(--primary); }
-
-    .kanban-input {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid var(--primary);
-      border-radius: 6px;
-      font-size: 0.85rem;
-      background: var(--surface);
-      color: var(--text);
-      outline: none;
-    }
+    .kanban-input { width: 100%; padding: 0.5rem; border: 1px solid var(--primary); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
 
     /* Chart */
-    .chart-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .chart-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 0.75rem;
-      height: 160px;
-      padding: 0 0.5rem;
-    }
-
-    .chart-bar-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-      justify-content: flex-end;
-    }
-
-    .chart-bar {
-      width: 100%;
-      max-width: 40px;
-      border-radius: 6px 6px 0 0;
-      transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      cursor: pointer;
-    }
-
+    .chart-container { display: flex; flex-direction: column; gap: 1rem; }
+    .chart-bars { display: flex; align-items: flex-end; gap: 0.75rem; height: 160px; padding: 0 0.5rem; }
+    .chart-bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+    .chart-bar { width: 100%; max-width: 40px; border-radius: 6px 6px 0 0; transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; cursor: pointer; }
     .chart-bar:hover { opacity: 0.8; }
-
-    .chart-bar .tooltip {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--text);
-      color: var(--bg);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity var(--transition);
-      pointer-events: none;
-    }
-
+    .chart-bar .tooltip { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; white-space: nowrap; opacity: 0; transition: opacity var(--transition); pointer-events: none; }
     .chart-bar:hover .tooltip { opacity: 1; }
-
-    .chart-bar-label {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      margin-top: 0.4rem;
-    }
-
-    .chart-legend {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      font-size: 0.8rem;
-    }
-
-    .chart-legend span {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .chart-legend .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .chart-actions {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-    }
+    .chart-bar-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.4rem; }
+    .chart-legend { display: flex; justify-content: center; gap: 1.5rem; font-size: 0.8rem; }
+    .chart-legend span { display: flex; align-items: center; gap: 0.3rem; }
+    .chart-legend .dot { width: 10px; height: 10px; border-radius: 50%; }
 
     /* Expense Tracker */
-    .expense-form {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .expense-form input, .expense-form select {
-      padding: 0.5rem 0.75rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.85rem;
-      background: var(--surface);
-      color: var(--text);
-      transition: border-color var(--transition);
-    }
-
-    .expense-form input:focus, .expense-form select:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    .expense-list {
-      list-style: none;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    .expense-item {
-      display: flex;
-      align-items: center;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-      animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-10px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    .expense-item .category-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin-right: 0.75rem;
-    }
-
+    .expense-form { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .expense-form input, .expense-form select { padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; background: var(--surface); color: var(--text); transition: border-color var(--transition); }
+    .expense-form input:focus, .expense-form select:focus { outline: none; border-color: var(--primary); }
+    .expense-list { list-style: none; max-height: 200px; overflow-y: auto; }
+    .expense-item { display: flex; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--border); animation: slideIn 0.3s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+    .expense-item .category-dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 0.75rem; }
     .expense-item .name { flex: 1; font-size: 0.85rem; }
     .expense-item .amount { font-weight: 600; font-size: 0.85rem; }
-
-    .expense-item .delete-btn {
-      background: none;
-      border: none;
-      color: var(--danger);
-      cursor: pointer;
-      margin-left: 0.5rem;
-      opacity: 0;
-      transition: opacity var(--transition);
-      font-size: 1.1rem;
-    }
-
+    .expense-item .delete-btn { background: none; border: none; color: var(--danger); cursor: pointer; margin-left: 0.5rem; opacity: 0; transition: opacity var(--transition); font-size: 1.1rem; }
     .expense-item:hover .delete-btn { opacity: 1; }
+    .expense-total { display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 0.75rem; border-top: 2px solid var(--border); font-weight: 600; }
 
-    .expense-total {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1rem;
-      padding-top: 0.75rem;
-      border-top: 2px solid var(--border);
-      font-weight: 600;
-    }
+    /* Drawing Canvas */
+    .canvas-toolbar { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .canvas-toolbar input[type="color"] { width: 32px; height: 32px; border: none; border-radius: 6px; cursor: pointer; padding: 0; }
+    .canvas-toolbar input[type="range"] { width: 80px; accent-color: var(--primary); }
+    .canvas-toolbar label { font-size: 0.75rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.3rem; }
+    #drawingCanvas { border: 1px solid var(--border); border-radius: 8px; cursor: crosshair; width: 100%; height: 280px; background: #fff; touch-action: none; }
+    [data-theme="dark"] #drawingCanvas { background: #1a1a2e; }
+
+    /* Notes Editor */
+    .notes-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; min-height: 250px; }
+    @media (max-width: 600px) { .notes-container { grid-template-columns: 1fr; } }
+    .notes-editor { width: 100%; height: 250px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85rem; resize: none; background: var(--bg); color: var(--text); outline: none; transition: border-color var(--transition); }
+    .notes-editor:focus { border-color: var(--primary); }
+    .notes-preview { border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; overflow-y: auto; height: 250px; font-size: 0.85rem; line-height: 1.6; background: var(--bg); }
+    .notes-preview h1, .notes-preview h2, .notes-preview h3 { margin: 0.5rem 0; }
+    .notes-preview h1 { font-size: 1.4rem; }
+    .notes-preview h2 { font-size: 1.2rem; }
+    .notes-preview h3 { font-size: 1rem; }
+    .notes-preview p { margin: 0.4rem 0; }
+    .notes-preview code { background: var(--border); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.8rem; }
+    .notes-preview pre { background: var(--border); padding: 0.75rem; border-radius: 6px; overflow-x: auto; margin: 0.5rem 0; }
+    .notes-preview pre code { background: none; padding: 0; }
+    .notes-preview ul, .notes-preview ol { padding-left: 1.5rem; margin: 0.4rem 0; }
+    .notes-preview blockquote { border-left: 3px solid var(--primary); padding-left: 0.75rem; color: var(--text-secondary); margin: 0.4rem 0; }
+    .notes-preview strong { color: var(--primary); }
+
+    /* Habit Tracker */
+    .habits-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    .habit-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; }
+    .habit-name { width: 80px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .habit-days { display: flex; gap: 4px; flex: 1; }
+    .habit-day { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--text-secondary); }
+    .habit-day:hover { border-color: var(--primary); transform: scale(1.1); }
+    .habit-day.checked { background: var(--success); border-color: var(--success); color: #fff; }
+    .habit-day.checked::after { content: ''; }
+    .habit-streak { font-size: 0.75rem; color: var(--warning); font-weight: 600; min-width: 40px; text-align: right; }
+    .habit-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    .habit-add input { flex: 1; padding: 0.4rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; }
+    .habit-add input:focus { border-color: var(--primary); }
+
+    /* Sound Mixer */
+    .mixer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.75rem; }
+    .mixer-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: all var(--transition); }
+    .mixer-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .mixer-item.active { background: rgba(99,102,241,0.1); border-color: var(--primary); }
+    .mixer-item .mixer-icon { font-size: 1.5rem; }
+    .mixer-item .mixer-label { font-size: 0.7rem; color: var(--text-secondary); }
+    .mixer-item input[type="range"] { width: 70px; accent-color: var(--primary); height: 4px; }
+    .mixer-master { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .mixer-master label { font-size: 0.8rem; font-weight: 500; }
+    .mixer-master input[type="range"] { flex: 1; accent-color: var(--primary); }
+    .mixer-visualizer { height: 40px; display: flex; align-items: flex-end; gap: 2px; margin-top: 0.75rem; }
+    .mixer-bar { flex: 1; background: var(--primary); border-radius: 2px 2px 0 0; transition: height 0.15s ease; min-height: 2px; }
+
+    /* Data Table */
+    .table-controls { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
+    .table-controls input { padding: 0.4rem 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; min-width: 180px; }
+    .table-controls input:focus { border-color: var(--primary); }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .data-table th { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 2px solid var(--border); color: var(--text-secondary); font-weight: 600; cursor: pointer; user-select: none; transition: color var(--transition); white-space: nowrap; }
+    .data-table th:hover { color: var(--primary); }
+    .data-table th .sort-icon { margin-left: 0.3rem; font-size: 0.7rem; }
+    .data-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .data-table tr { transition: background var(--transition); }
+    .data-table tbody tr:hover { background: rgba(99,102,241,0.05); }
+    .data-table .status-badge { padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.7rem; font-weight: 500; }
+    .badge-active { background: rgba(16,185,129,0.15); color: var(--success); }
+    .badge-inactive { background: rgba(239,68,68,0.15); color: var(--danger); }
+    .badge-pending { background: rgba(245,158,11,0.15); color: var(--warning); }
+    .table-pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); }
+    .table-pagination button { padding: 0.3rem 0.6rem; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .table-pagination button:hover { border-color: var(--primary); }
+    .table-pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
 
     /* Notifications */
-    .notifications {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .notification {
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 0.85rem;
-      box-shadow: var(--shadow-lg);
-      animation: notifyIn 0.3s ease, notifyOut 0.3s ease 2.7s forwards;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
+    .notifications { position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: flex; flex-direction: column; gap: 0.5rem; }
+    .notification { padding: 0.75rem 1.25rem; border-radius: 8px; color: #fff; font-size: 0.85rem; box-shadow: var(--shadow-lg); animation: notifyIn 0.3s ease, notifyOut 0.3s ease 2.7s forwards; display: flex; align-items: center; gap: 0.5rem; }
     .notification.success { background: var(--success); }
     .notification.warning { background: var(--warning); }
     .notification.error { background: var(--danger); }
     .notification.info { background: var(--primary); }
-
-    @keyframes notifyIn {
-      from { opacity: 0; transform: translateX(100%); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes notifyOut {
-      from { opacity: 1; transform: translateX(0); }
-      to { opacity: 0; transform: translateX(100%); }
-    }
+    @keyframes notifyIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes notifyOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
 
     /* Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 999; opacity: 0; pointer-events: none; transition: opacity var(--transition); }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-
-    .modal {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 2rem;
-      max-width: 400px;
-      width: 90%;
-      transform: scale(0.9) translateY(20px);
-      transition: transform var(--transition);
-      box-shadow: var(--shadow-lg);
-    }
-
+    .modal { background: var(--surface); border-radius: var(--radius); padding: 2rem; max-width: 400px; width: 90%; transform: scale(0.9) translateY(20px); transition: transform var(--transition); box-shadow: var(--shadow-lg); }
     .modal-overlay.active .modal { transform: scale(1) translateY(0); }
-
     .modal h3 { margin-bottom: 1rem; }
     .modal p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.5; }
     .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
 
-    /* Scrollbar */
+    /* Command Palette */
+    .cmd-palette-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(2px); z-index: 1001; opacity: 0; pointer-events: none; transition: opacity 0.2s; display: flex; align-items: flex-start; justify-content: center; padding-top: 15vh; }
+    .cmd-palette-overlay.active { opacity: 1; pointer-events: all; }
+    .cmd-palette { background: var(--surface); border-radius: var(--radius); width: 90%; max-width: 500px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); transform: translateY(-10px) scale(0.98); transition: transform 0.2s; overflow: hidden; }
+    .cmd-palette-overlay.active .cmd-palette { transform: translateY(0) scale(1); }
+    .cmd-palette input { width: 100%; padding: 1rem 1.25rem; border: none; border-bottom: 1px solid var(--border); background: transparent; font-size: 1rem; color: var(--text); outline: none; }
+    .cmd-palette-results { max-height: 300px; overflow-y: auto; }
+    .cmd-palette-item { padding: 0.7rem 1.25rem; cursor: pointer; display: flex; align-items: center; gap: 0.75rem; transition: background 0.15s; font-size: 0.85rem; }
+    .cmd-palette-item:hover, .cmd-palette-item.selected { background: rgba(99,102,241,0.1); }
+    .cmd-palette-item .cmd-icon { width: 24px; text-align: center; }
+    .cmd-palette-item .cmd-shortcut { margin-left: auto; font-size: 0.7rem; color: var(--text-secondary); background: var(--bg); padding: 0.15rem 0.4rem; border-radius: 4px; }
+    .cmd-hint { text-align: center; padding: 0.5rem; font-size: 0.7rem; color: var(--text-secondary); border-top: 1px solid var(--border); }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -628,16 +378,29 @@
     </div>
   </div>
 
+  <div class="cmd-palette-overlay" id="cmdPalette">
+    <div class="cmd-palette">
+      <input type="text" id="cmdInput" placeholder="输入命令或搜索..." oninput="filterCommands()" onkeydown="handleCmdKey(event)">
+      <div class="cmd-palette-results" id="cmdResults"></div>
+      <div class="cmd-hint">↑↓ 导航 · Enter 执行 · Esc 关闭</div>
+    </div>
+  </div>
+
   <header class="header">
     <div class="header-content">
       <div>
         <h1>生产力仪表盘</h1>
-        <p>管理任务 · 追踪时间 · 分析支出</p>
+        <p>管理任务 · 追踪时间 · 分析支出 · 培养习惯</p>
       </div>
-      <button class="theme-toggle" onclick="toggleTheme()">
-        <span id="themeIcon">🌙</span>
-        <span id="themeText">暗色</span>
-      </button>
+      <div class="header-actions">
+        <button class="header-btn" onclick="openCmdPalette()">
+          <span>⌘</span> <span>命令面板</span>
+        </button>
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">暗色</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -657,8 +420,7 @@
         <div class="timer-circle">
           <svg viewBox="0 0 200 200">
             <circle class="bg" cx="100" cy="100" r="88" fill="none" stroke-width="8"/>
-            <circle class="progress" id="timerProgress" cx="100" cy="100" r="88" fill="none" stroke-width="8"
-              stroke-dasharray="553" stroke-dashoffset="0"/>
+            <circle class="progress" id="timerProgress" cx="100" cy="100" r="88" fill="none" stroke-width="8" stroke-dasharray="553" stroke-dashoffset="0"/>
           </svg>
           <div class="timer-display">
             <div class="time" id="timerDisplay">25:00</div>
@@ -669,6 +431,20 @@
           <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()">▶ 开始</button>
           <button class="btn btn-secondary" onclick="resetTimer()">↺ 重置</button>
         </div>
+      </div>
+    </div>
+
+    <!-- Habit Tracker -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">🎯</span>
+        习惯打卡
+        <span style="font-size:0.7rem;color:var(--text-secondary);margin-left:auto;font-weight:400">本周</span>
+      </div>
+      <div class="habits-grid" id="habitsGrid"></div>
+      <div class="habit-add">
+        <input type="text" id="habitInput" placeholder="添加新习惯..." onkeydown="if(event.key==='Enter')addHabit()">
+        <button class="btn btn-primary btn-sm" onclick="addHabit()">添加</button>
       </div>
     </div>
 
@@ -694,6 +470,42 @@
         <span>总计</span>
         <span id="expenseTotal">¥0.00</span>
       </div>
+    </div>
+
+    <!-- Sound Mixer -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">🎵</span>
+        白噪音混合器
+      </div>
+      <div class="mixer-grid" id="mixerGrid"></div>
+      <div class="mixer-visualizer" id="mixerVisualizer"></div>
+      <div class="mixer-master">
+        <label>主音量</label>
+        <input type="range" min="0" max="100" value="70" id="masterVolume" oninput="updateMasterVolume()">
+        <span id="masterVolumeLabel" style="font-size:0.75rem;min-width:30px">70%</span>
+      </div>
+    </div>
+
+    <!-- Drawing Canvas -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🎨</span>
+        画板
+      </div>
+      <div class="canvas-toolbar">
+        <input type="color" id="brushColor" value="#6366f1" title="画笔颜色">
+        <label>粗细 <input type="range" id="brushSize" min="1" max="30" value="4"></label>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('pen')">画笔</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('eraser')">橡皮</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('rect')">矩形</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('circle')">圆形</button>
+        <button class="btn btn-sm btn-secondary" onclick="setDrawTool('line')">直线</button>
+        <button class="btn btn-sm btn-danger" onclick="clearCanvas()">清空</button>
+        <button class="btn btn-sm btn-success" onclick="downloadCanvas()">下载</button>
+        <button class="btn btn-sm btn-secondary" onclick="undoCanvas()">撤销</button>
+      </div>
+      <canvas id="drawingCanvas"></canvas>
     </div>
 
     <!-- Kanban Board -->
@@ -722,13 +534,62 @@
       </div>
     </div>
 
-    <!-- Chart -->
+    <!-- Notes Editor -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">📝</span>
+        Markdown 笔记
+        <span style="font-size:0.7rem;color:var(--text-secondary);margin-left:auto;font-weight:400">实时预览</span>
+      </div>
+      <div class="notes-container">
+        <textarea class="notes-editor" id="notesEditor" oninput="renderNotes()" placeholder="在这里写 Markdown..."></textarea>
+        <div class="notes-preview" id="notesPreview"></div>
+      </div>
+    </div>
+
+    <!-- Data Table -->
     <div class="card full-width">
       <div class="card-title">
         <span class="icon" style="background:rgba(245,158,11,0.1)">📊</span>
+        数据管理
+      </div>
+      <div class="table-controls">
+        <input type="text" id="tableSearch" placeholder="搜索姓名、邮箱..." oninput="renderTable()">
+        <button class="btn btn-sm btn-secondary" onclick="addRandomRow()">+ 添加数据</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteSelected()">删除选中</button>
+        <span style="font-size:0.75rem;color:var(--text-secondary);margin-left:auto" id="tableInfo"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:30px"><input type="checkbox" id="selectAll" onchange="toggleSelectAll()"></th>
+              <th onclick="sortTable('name')">姓名 <span class="sort-icon" id="sort-name"></span></th>
+              <th onclick="sortTable('email')">邮箱 <span class="sort-icon" id="sort-email"></span></th>
+              <th onclick="sortTable('role')">角色 <span class="sort-icon" id="sort-role"></span></th>
+              <th onclick="sortTable('status')">状态 <span class="sort-icon" id="sort-status"></span></th>
+              <th onclick="sortTable('score')">评分 <span class="sort-icon" id="sort-score"></span></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div class="table-pagination">
+        <span id="paginationInfo"></span>
+        <div style="display:flex;gap:0.3rem">
+          <button onclick="changePage(-1)" id="prevPage">上一页</button>
+          <button onclick="changePage(1)" id="nextPage">下一页</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">📈</span>
         本周专注时长
-        <div class="chart-actions" style="margin-left:auto">
-          <button class="btn btn-secondary" onclick="randomizeChart()" style="font-size:0.75rem;padding:0.3rem 0.8rem">刷新数据</button>
+        <div style="margin-left:auto">
+          <button class="btn btn-secondary btn-sm" onclick="randomizeChart()">刷新数据</button>
         </div>
       </div>
       <div class="chart-container">
@@ -742,7 +603,7 @@
   </main>
 
   <script>
-    // Theme Toggle
+    // === Theme Toggle ===
     function toggleTheme() {
       const html = document.documentElement;
       const isDark = html.getAttribute('data-theme') === 'dark';
@@ -752,7 +613,7 @@
       notify(isDark ? '已切换为亮色模式' : '已切换为暗色模式', 'info');
     }
 
-    // Notifications
+    // === Notifications ===
     function notify(message, type = 'info') {
       const container = document.getElementById('notifications');
       const el = document.createElement('div');
@@ -763,28 +624,79 @@
       setTimeout(() => el.remove(), 3000);
     }
 
-    // Modal
+    // === Modal ===
     function showModal(title, message, onConfirm) {
       document.getElementById('modalTitle').textContent = title;
       document.getElementById('modalMessage').textContent = message;
       document.getElementById('modalOverlay').classList.add('active');
       document.getElementById('modalConfirm').onclick = () => { closeModal(); onConfirm(); };
     }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
 
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('active');
+    // === Command Palette ===
+    const commands = [
+      { icon: '🌙', label: '切换主题', action: toggleTheme, shortcut: 'Alt+T' },
+      { icon: '⏱', label: '开始/暂停番茄钟', action: toggleTimer, shortcut: '' },
+      { icon: '↺', label: '重置番茄钟', action: resetTimer, shortcut: '' },
+      { icon: '🎨', label: '清空画板', action: clearCanvas, shortcut: '' },
+      { icon: '📊', label: '刷新图表数据', action: randomizeChart, shortcut: '' },
+      { icon: '🗑', label: '清空支出记录', action: () => { expenses = []; renderExpenses(); notify('支出已清空', 'info'); }, shortcut: '' },
+      { icon: '➕', label: '添加随机数据行', action: addRandomRow, shortcut: '' },
+      { icon: '🎵', label: '停止所有声音', action: stopAllSounds, shortcut: '' },
+    ];
+    let cmdSelectedIndex = 0;
+
+    function openCmdPalette() {
+      document.getElementById('cmdPalette').classList.add('active');
+      document.getElementById('cmdInput').value = '';
+      cmdSelectedIndex = 0;
+      filterCommands();
+      setTimeout(() => document.getElementById('cmdInput').focus(), 50);
     }
 
-    // Pomodoro Timer
-    let timerInterval = null;
-    let timerSeconds = 25 * 60;
-    let timerTotal = 25 * 60;
-    let timerRunning = false;
+    function closeCmdPalette() { document.getElementById('cmdPalette').classList.remove('active'); }
+
+    function filterCommands() {
+      const query = document.getElementById('cmdInput').value.toLowerCase();
+      const filtered = commands.filter(c => c.label.toLowerCase().includes(query));
+      cmdSelectedIndex = 0;
+      const container = document.getElementById('cmdResults');
+      container.innerHTML = filtered.map((cmd, i) => `
+        <div class="cmd-palette-item ${i === 0 ? 'selected' : ''}" onclick="executeCmd(${commands.indexOf(cmd)})" data-index="${i}">
+          <span class="cmd-icon">${cmd.icon}</span>
+          <span>${cmd.label}</span>
+          ${cmd.shortcut ? `<span class="cmd-shortcut">${cmd.shortcut}</span>` : ''}
+        </div>`).join('');
+    }
+
+    function handleCmdKey(e) {
+      const items = document.querySelectorAll('.cmd-palette-item');
+      if (e.key === 'Escape') { closeCmdPalette(); return; }
+      if (e.key === 'ArrowDown') { e.preventDefault(); cmdSelectedIndex = Math.min(cmdSelectedIndex + 1, items.length - 1); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); cmdSelectedIndex = Math.max(cmdSelectedIndex - 1, 0); }
+      if (e.key === 'Enter') {
+        const query = document.getElementById('cmdInput').value.toLowerCase();
+        const filtered = commands.filter(c => c.label.toLowerCase().includes(query));
+        if (filtered[cmdSelectedIndex]) { filtered[cmdSelectedIndex].action(); closeCmdPalette(); }
+        return;
+      }
+      items.forEach((item, i) => item.classList.toggle('selected', i === cmdSelectedIndex));
+    }
+
+    function executeCmd(index) { commands[index].action(); closeCmdPalette(); }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openCmdPalette(); }
+      if (e.key === 'Escape') closeCmdPalette();
+      if (e.altKey && e.key === 't') { e.preventDefault(); toggleTheme(); }
+    });
+
+    // === Pomodoro Timer ===
+    let timerInterval = null, timerSeconds = 25 * 60, timerTotal = 25 * 60, timerRunning = false;
 
     function setTimerMode(minutes, btn) {
       if (timerRunning) return;
-      timerSeconds = minutes * 60;
-      timerTotal = minutes * 60;
+      timerSeconds = minutes * 60; timerTotal = minutes * 60;
       updateTimerDisplay();
       document.querySelectorAll('.timer-modes button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -794,8 +706,7 @@
 
     function toggleTimer() {
       if (timerRunning) {
-        clearInterval(timerInterval);
-        timerRunning = false;
+        clearInterval(timerInterval); timerRunning = false;
         document.getElementById('timerStartBtn').innerHTML = '▶ 继续';
       } else {
         timerRunning = true;
@@ -803,10 +714,9 @@
         timerInterval = setInterval(() => {
           timerSeconds--;
           if (timerSeconds <= 0) {
-            clearInterval(timerInterval);
-            timerRunning = false;
+            clearInterval(timerInterval); timerRunning = false;
             document.getElementById('timerStartBtn').innerHTML = '▶ 开始';
-            notify('时间到！休息一下吧 🎉', 'success');
+            notify('时间到！休息一下吧', 'success');
             timerSeconds = 0;
           }
           updateTimerDisplay();
@@ -815,32 +725,239 @@
     }
 
     function resetTimer() {
-      clearInterval(timerInterval);
-      timerRunning = false;
-      timerSeconds = timerTotal;
+      clearInterval(timerInterval); timerRunning = false; timerSeconds = timerTotal;
       document.getElementById('timerStartBtn').innerHTML = '▶ 开始';
       updateTimerDisplay();
     }
 
     function updateTimerDisplay() {
-      const m = Math.floor(timerSeconds / 60);
-      const s = timerSeconds % 60;
-      document.getElementById('timerDisplay').textContent =
-        `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      const m = Math.floor(timerSeconds / 60), s = timerSeconds % 60;
+      document.getElementById('timerDisplay').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
       const circumference = 2 * Math.PI * 88;
       const offset = circumference * (1 - timerSeconds / timerTotal);
       const progress = document.getElementById('timerProgress');
       progress.style.strokeDashoffset = offset;
-      if (timerSeconds < timerTotal * 0.2) {
-        progress.style.stroke = 'var(--danger)';
-      } else if (timerSeconds < timerTotal * 0.5) {
-        progress.style.stroke = 'var(--warning)';
-      } else {
-        progress.style.stroke = 'var(--primary)';
+      progress.style.stroke = timerSeconds < timerTotal * 0.2 ? 'var(--danger)' : timerSeconds < timerTotal * 0.5 ? 'var(--warning)' : 'var(--primary)';
+    }
+
+    // === Habit Tracker ===
+    const weekDays = ['一', '二', '三', '四', '五', '六', '日'];
+    let habits = [
+      { id: 1, name: '早起', days: [true, true, false, true, true, false, false] },
+      { id: 2, name: '锻炼', days: [true, false, true, false, true, false, false] },
+      { id: 3, name: '阅读', days: [true, true, true, true, false, false, false] },
+      { id: 4, name: '冥想', days: [false, true, false, true, true, false, false] },
+    ];
+
+    function renderHabits() {
+      const grid = document.getElementById('habitsGrid');
+      grid.innerHTML = habits.map(h => {
+        const streak = h.days.filter(Boolean).length;
+        return `
+          <div class="habit-row">
+            <span class="habit-name" title="${h.name}">${h.name}</span>
+            <div class="habit-days">
+              ${h.days.map((checked, i) => `
+                <div class="habit-day ${checked ? 'checked' : ''}" onclick="toggleHabit(${h.id},${i})" title="周${weekDays[i]}">
+                  ${weekDays[i]}
+                </div>`).join('')}
+            </div>
+            <span class="habit-streak">${streak}/7</span>
+          </div>`;
+      }).join('');
+    }
+
+    function toggleHabit(id, dayIndex) {
+      const habit = habits.find(h => h.id === id);
+      habit.days[dayIndex] = !habit.days[dayIndex];
+      renderHabits();
+      if (habit.days[dayIndex]) notify(`${habit.name} 打卡成功!`, 'success');
+    }
+
+    function addHabit() {
+      const input = document.getElementById('habitInput');
+      const name = input.value.trim();
+      if (!name) return;
+      habits.push({ id: Date.now(), name, days: [false,false,false,false,false,false,false] });
+      input.value = '';
+      renderHabits();
+      notify(`已添加习惯：${name}`, 'success');
+    }
+
+    // === Sound Mixer ===
+    const sounds = [
+      { id: 'rain', icon: '🌧', label: '雨声', active: false, volume: 50 },
+      { id: 'fire', icon: '🔥', label: '篝火', active: false, volume: 50 },
+      { id: 'wind', icon: '🍃', label: '风声', active: false, volume: 50 },
+      { id: 'wave', icon: '🌊', label: '海浪', active: false, volume: 50 },
+      { id: 'bird', icon: '🐦', label: '鸟鸣', active: false, volume: 50 },
+      { id: 'thunder', icon: '⚡', label: '雷声', active: false, volume: 50 },
+      { id: 'cafe', icon: '☕', label: '咖啡厅', active: false, volume: 50 },
+      { id: 'night', icon: '🌙', label: '夜虫', active: false, volume: 50 },
+    ];
+    let mixerAnimFrame = null;
+
+    function renderMixer() {
+      const grid = document.getElementById('mixerGrid');
+      grid.innerHTML = sounds.map(s => `
+        <div class="mixer-item ${s.active ? 'active' : ''}" onclick="toggleSound('${s.id}')">
+          <span class="mixer-icon">${s.icon}</span>
+          <span class="mixer-label">${s.label}</span>
+          <input type="range" min="0" max="100" value="${s.volume}" onclick="event.stopPropagation()" oninput="setSoundVolume('${s.id}', this.value)">
+        </div>`).join('');
+
+      const vis = document.getElementById('mixerVisualizer');
+      if (!vis.children.length) {
+        vis.innerHTML = Array.from({length: 32}, () => '<div class="mixer-bar"></div>').join('');
       }
     }
 
-    // Kanban Board
+    function toggleSound(id) {
+      const sound = sounds.find(s => s.id === id);
+      sound.active = !sound.active;
+      renderMixer();
+      if (sounds.some(s => s.active)) startVisualizer();
+      else stopVisualizer();
+      notify(sound.active ? `${sound.label} 已开启` : `${sound.label} 已关闭`, 'info');
+    }
+
+    function setSoundVolume(id, val) { sounds.find(s => s.id === id).volume = parseInt(val); }
+    function updateMasterVolume() {
+      const v = document.getElementById('masterVolume').value;
+      document.getElementById('masterVolumeLabel').textContent = v + '%';
+    }
+    function stopAllSounds() {
+      sounds.forEach(s => s.active = false);
+      renderMixer(); stopVisualizer();
+      notify('所有声音已停止', 'info');
+    }
+
+    function startVisualizer() {
+      if (mixerAnimFrame) return;
+      const bars = document.querySelectorAll('.mixer-bar');
+      function animate() {
+        const activeSounds = sounds.filter(s => s.active);
+        const masterVol = parseInt(document.getElementById('masterVolume').value) / 100;
+        bars.forEach(bar => {
+          const intensity = activeSounds.length > 0 ? (activeSounds.reduce((sum, s) => sum + s.volume, 0) / activeSounds.length / 100) * masterVol : 0;
+          const h = Math.random() * intensity * 38 + 2;
+          bar.style.height = h + 'px';
+          bar.style.background = h > 25 ? 'var(--accent)' : h > 15 ? 'var(--warning)' : 'var(--primary)';
+        });
+        mixerAnimFrame = requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    function stopVisualizer() {
+      if (mixerAnimFrame) { cancelAnimationFrame(mixerAnimFrame); mixerAnimFrame = null; }
+      document.querySelectorAll('.mixer-bar').forEach(bar => bar.style.height = '2px');
+    }
+
+    // === Drawing Canvas ===
+    let drawTool = 'pen', isDrawing = false, lastX = 0, lastY = 0, shapeStartX = 0, shapeStartY = 0;
+    let canvasHistory = [];
+
+    function initCanvas() {
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth * 2;
+      canvas.height = canvas.offsetHeight * 2;
+      ctx.scale(2, 2);
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      saveCanvasState();
+
+      canvas.addEventListener('pointerdown', startDraw);
+      canvas.addEventListener('pointermove', draw);
+      canvas.addEventListener('pointerup', endDraw);
+      canvas.addEventListener('pointerleave', endDraw);
+    }
+
+    function startDraw(e) {
+      isDrawing = true;
+      const rect = e.target.getBoundingClientRect();
+      lastX = e.clientX - rect.left;
+      lastY = e.clientY - rect.top;
+      shapeStartX = lastX; shapeStartY = lastY;
+      if (drawTool === 'pen' || drawTool === 'eraser') {
+        const ctx = e.target.getContext('2d');
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+      }
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const canvas = e.target;
+      const ctx = canvas.getContext('2d');
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (drawTool === 'pen' || drawTool === 'eraser') {
+        ctx.strokeStyle = drawTool === 'eraser' ? (document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff') : document.getElementById('brushColor').value;
+        ctx.lineWidth = document.getElementById('brushSize').value;
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+      lastX = x; lastY = y;
+    }
+
+    function endDraw(e) {
+      if (!isDrawing) return;
+      isDrawing = false;
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      ctx.strokeStyle = document.getElementById('brushColor').value;
+      ctx.lineWidth = document.getElementById('brushSize').value;
+
+      if (drawTool === 'rect') {
+        ctx.strokeRect(shapeStartX, shapeStartY, x - shapeStartX, y - shapeStartY);
+      } else if (drawTool === 'circle') {
+        const rx = Math.abs(x - shapeStartX) / 2, ry = Math.abs(y - shapeStartY) / 2;
+        const cx = shapeStartX + (x - shapeStartX) / 2, cy = shapeStartY + (y - shapeStartY) / 2;
+        ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
+      } else if (drawTool === 'line') {
+        ctx.beginPath(); ctx.moveTo(shapeStartX, shapeStartY); ctx.lineTo(x, y); ctx.stroke();
+      }
+      saveCanvasState();
+    }
+
+    function setDrawTool(tool) { drawTool = tool; notify(`已切换为${({pen:'画笔',eraser:'橡皮',rect:'矩形',circle:'圆形',line:'直线'})[tool]}`, 'info'); }
+    function clearCanvas() {
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      saveCanvasState();
+      notify('画板已清空', 'info');
+    }
+    function downloadCanvas() {
+      const link = document.createElement('a');
+      link.download = 'drawing.png';
+      link.href = document.getElementById('drawingCanvas').toDataURL();
+      link.click();
+      notify('画作已下载', 'success');
+    }
+    function saveCanvasState() {
+      const canvas = document.getElementById('drawingCanvas');
+      canvasHistory.push(canvas.toDataURL());
+      if (canvasHistory.length > 30) canvasHistory.shift();
+    }
+    function undoCanvas() {
+      if (canvasHistory.length <= 1) return;
+      canvasHistory.pop();
+      const canvas = document.getElementById('drawingCanvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.onload = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.drawImage(img, 0, 0, canvas.width / 2, canvas.height / 2); };
+      img.src = canvasHistory[canvasHistory.length - 1];
+    }
+
+    // === Kanban Board ===
     let kanbanData = [
       { id: 1, text: '设计新的着陆页', status: 'todo', priority: 'high', tags: ['设计'] },
       { id: 2, text: '编写 API 文档', status: 'todo', priority: 'medium', tags: ['文档'] },
@@ -848,7 +965,6 @@
       { id: 4, text: '实现用户认证模块', status: 'doing', priority: 'high', tags: ['开发'] },
       { id: 5, text: '配置 CI/CD 流水线', status: 'done', priority: 'medium', tags: ['运维'] },
     ];
-
     let draggedId = null;
 
     function renderKanban() {
@@ -857,81 +973,155 @@
         const cards = kanbanData.filter(c => c.status === status);
         container.innerHTML = cards.map(card => {
           const colors = { high: 'var(--danger)', medium: 'var(--warning)', low: 'var(--success)' };
-          return `
-            <div class="kanban-card" draggable="true" data-id="${card.id}"
-              ondragstart="handleDragStart(event, ${card.id})" ondragend="handleDragEnd(event)">
-              <div class="priority" style="background:${colors[card.priority]}"></div>
-              <div class="card-text">${card.text}</div>
-              <div class="card-meta">
-                ${card.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-              </div>
-            </div>`;
+          return `<div class="kanban-card" draggable="true" data-id="${card.id}" ondragstart="handleDragStart(event, ${card.id})" ondragend="handleDragEnd(event)">
+            <div class="priority" style="background:${colors[card.priority]}"></div>
+            <div class="card-text">${card.text}</div>
+            <div class="card-meta">${card.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          </div>`;
         }).join('');
         document.getElementById(`count${status.charAt(0).toUpperCase() + status.slice(1)}`).textContent = cards.length;
       });
     }
 
-    function handleDragStart(e, id) {
-      draggedId = id;
-      e.target.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    }
-
-    function handleDragEnd(e) {
-      e.target.classList.remove('dragging');
-      document.querySelectorAll('.kanban-column').forEach(col => col.classList.remove('drag-over'));
-    }
-
-    function handleDragOver(e) {
-      e.preventDefault();
-      e.currentTarget.classList.add('drag-over');
-    }
-
-    function handleDragLeave(e) {
-      e.currentTarget.classList.remove('drag-over');
-    }
-
+    function handleDragStart(e, id) { draggedId = id; e.target.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+    function handleDragEnd(e) { e.target.classList.remove('dragging'); document.querySelectorAll('.kanban-column').forEach(col => col.classList.remove('drag-over')); }
+    function handleDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+    function handleDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
     function handleDrop(e) {
       e.preventDefault();
-      const column = e.currentTarget;
-      column.classList.remove('drag-over');
+      const column = e.currentTarget; column.classList.remove('drag-over');
       const newStatus = column.getAttribute('data-status');
       const card = kanbanData.find(c => c.id === draggedId);
       if (card && card.status !== newStatus) {
-        card.status = newStatus;
-        renderKanban();
-        const statusNames = { todo: '待办', doing: '进行中', done: '已完成' };
-        notify(`"${card.text}" 已移至${statusNames[newStatus]}`, 'success');
+        card.status = newStatus; renderKanban();
+        notify(`"${card.text}" 已移至${{todo:'待办',doing:'进行中',done:'已完成'}[newStatus]}`, 'success');
       }
     }
-
     function showAddCard(status) {
       const container = document.getElementById(`cards${status.charAt(0).toUpperCase() + status.slice(1)}`);
-      const existing = container.querySelector('.kanban-input');
-      if (existing) { existing.focus(); return; }
+      if (container.querySelector('.kanban-input')) { container.querySelector('.kanban-input').focus(); return; }
       const input = document.createElement('input');
-      input.className = 'kanban-input';
-      input.placeholder = '输入任务名称，回车添加';
+      input.className = 'kanban-input'; input.placeholder = '输入任务名称，回车添加';
       input.onkeydown = (e) => {
         if (e.key === 'Enter' && input.value.trim()) {
-          kanbanData.push({
-            id: Date.now(),
-            text: input.value.trim(),
-            status: status,
-            priority: ['high', 'medium', 'low'][Math.floor(Math.random() * 3)],
-            tags: ['新任务']
-          });
-          renderKanban();
-          notify('任务已添加', 'success');
+          kanbanData.push({ id: Date.now(), text: input.value.trim(), status, priority: ['high','medium','low'][Math.floor(Math.random()*3)], tags: ['新任务'] });
+          renderKanban(); notify('任务已添加', 'success');
         }
         if (e.key === 'Escape') input.remove();
       };
       input.onblur = () => setTimeout(() => input.remove(), 150);
-      container.appendChild(input);
-      input.focus();
+      container.appendChild(input); input.focus();
     }
 
-    // Chart
+    // === Notes Editor ===
+    function renderNotes() {
+      const md = document.getElementById('notesEditor').value;
+      document.getElementById('notesPreview').innerHTML = parseMarkdown(md);
+    }
+
+    function parseMarkdown(text) {
+      return text
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(?!<[hublop])(.+)$/gm, '<p>$1</p>');
+    }
+
+    // === Data Table ===
+    let tableData = [
+      { id: 1, name: '张三', email: 'zhangsan@example.com', role: '工程师', status: 'active', score: 92 },
+      { id: 2, name: '李四', email: 'lisi@example.com', role: '设计师', status: 'active', score: 87 },
+      { id: 3, name: '王五', email: 'wangwu@example.com', role: '产品经理', status: 'pending', score: 78 },
+      { id: 4, name: '赵六', email: 'zhaoliu@example.com', role: '工程师', status: 'inactive', score: 65 },
+      { id: 5, name: '孙七', email: 'sunqi@example.com', role: '设计师', status: 'active', score: 95 },
+      { id: 6, name: '周八', email: 'zhouba@example.com', role: '产品经理', status: 'active', score: 81 },
+      { id: 7, name: '吴九', email: 'wujiu@example.com', role: '工程师', status: 'pending', score: 73 },
+      { id: 8, name: '郑十', email: 'zhengshi@example.com', role: '设计师', status: 'inactive', score: 69 },
+      { id: 9, name: '陈一', email: 'chenyi@example.com', role: '工程师', status: 'active', score: 88 },
+      { id: 10, name: '林二', email: 'liner@example.com', role: '产品经理', status: 'active', score: 91 },
+      { id: 11, name: '黄三', email: 'huangsan@example.com', role: '工程师', status: 'pending', score: 76 },
+      { id: 12, name: '杨四', email: 'yangsi@example.com', role: '设计师', status: 'active', score: 84 },
+    ];
+    let sortCol = 'name', sortDir = 'asc', currentPage = 1, pageSize = 5, selectedRows = new Set();
+
+    function renderTable() {
+      const search = document.getElementById('tableSearch').value.toLowerCase();
+      let filtered = tableData.filter(r => r.name.toLowerCase().includes(search) || r.email.toLowerCase().includes(search) || r.role.includes(search));
+      filtered.sort((a, b) => {
+        let va = a[sortCol], vb = b[sortCol];
+        if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+        return sortDir === 'asc' ? (va > vb ? 1 : -1) : (va < vb ? 1 : -1);
+      });
+
+      const totalPages = Math.ceil(filtered.length / pageSize);
+      if (currentPage > totalPages) currentPage = totalPages || 1;
+      const start = (currentPage - 1) * pageSize;
+      const pageData = filtered.slice(start, start + pageSize);
+
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = pageData.map(row => {
+        const statusClass = { active: 'badge-active', inactive: 'badge-inactive', pending: 'badge-pending' }[row.status];
+        const statusLabel = { active: '活跃', inactive: '停用', pending: '待审' }[row.status];
+        return `<tr>
+          <td><input type="checkbox" ${selectedRows.has(row.id) ? 'checked' : ''} onchange="toggleRowSelect(${row.id})"></td>
+          <td><strong>${row.name}</strong></td>
+          <td>${row.email}</td>
+          <td>${row.role}</td>
+          <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+          <td>${row.score}</td>
+        </tr>`;
+      }).join('');
+
+      document.getElementById('paginationInfo').textContent = `第 ${start + 1}-${Math.min(start + pageSize, filtered.length)} 条，共 ${filtered.length} 条`;
+      document.getElementById('prevPage').disabled = currentPage <= 1;
+      document.getElementById('nextPage').disabled = currentPage >= totalPages;
+      document.getElementById('tableInfo').textContent = selectedRows.size > 0 ? `已选 ${selectedRows.size} 项` : '';
+
+      document.querySelectorAll('.sort-icon').forEach(el => el.textContent = '');
+      const sortEl = document.getElementById(`sort-${sortCol}`);
+      if (sortEl) sortEl.textContent = sortDir === 'asc' ? '↑' : '↓';
+    }
+
+    function sortTable(col) {
+      if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      else { sortCol = col; sortDir = 'asc'; }
+      renderTable();
+    }
+
+    function changePage(delta) { currentPage += delta; renderTable(); }
+    function toggleRowSelect(id) { selectedRows.has(id) ? selectedRows.delete(id) : selectedRows.add(id); renderTable(); }
+    function toggleSelectAll() {
+      const search = document.getElementById('tableSearch').value.toLowerCase();
+      const filtered = tableData.filter(r => r.name.toLowerCase().includes(search) || r.email.toLowerCase().includes(search));
+      if (selectedRows.size === filtered.length) selectedRows.clear();
+      else filtered.forEach(r => selectedRows.add(r.id));
+      renderTable();
+    }
+    function deleteSelected() {
+      if (selectedRows.size === 0) { notify('请先选择要删除的数据', 'warning'); return; }
+      showModal('确认删除', `确定要删除选中的 ${selectedRows.size} 条数据吗？`, () => {
+        tableData = tableData.filter(r => !selectedRows.has(r.id));
+        selectedRows.clear(); renderTable();
+        notify('已删除选中数据', 'success');
+      });
+    }
+    function addRandomRow() {
+      const names = ['钱一','何二','冯三','褚四','卫五','蒋六','沈七','韩八','朱九','秦十'];
+      const roles = ['工程师','设计师','产品经理','运营','测试'];
+      const statuses = ['active','inactive','pending'];
+      const name = names[Math.floor(Math.random() * names.length)];
+      tableData.push({ id: Date.now(), name, email: `${name}@example.com`, role: roles[Math.floor(Math.random()*roles.length)], status: statuses[Math.floor(Math.random()*statuses.length)], score: Math.floor(Math.random()*40)+60 });
+      renderTable(); notify(`已添加：${name}`, 'success');
+    }
+
+    // === Chart ===
     const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
     let chartData = { focus: [4, 3, 5, 2, 6, 3, 4], rest: [1, 1, 2, 1, 2, 1, 1] };
 
@@ -940,51 +1130,36 @@
       const maxVal = Math.max(...chartData.focus, ...chartData.rest);
       container.innerHTML = days.map((day, i) => `
         <div class="chart-bar-wrapper">
-          <div class="chart-bar" style="height:${(chartData.focus[i] / maxVal) * 100}%;background:var(--primary)">
+          <div class="chart-bar" style="height:${(chartData.focus[i]/maxVal)*100}%;background:var(--primary)">
             <span class="tooltip">${chartData.focus[i]}h 专注</span>
           </div>
-          <div class="chart-bar" style="height:${(chartData.rest[i] / maxVal) * 100}%;background:var(--accent);margin-top:4px;border-radius:0 0 6px 6px">
+          <div class="chart-bar" style="height:${(chartData.rest[i]/maxVal)*100}%;background:var(--accent);margin-top:4px;border-radius:0 0 6px 6px">
             <span class="tooltip">${chartData.rest[i]}h 休息</span>
           </div>
           <span class="chart-bar-label">${day}</span>
         </div>`).join('');
-
       setTimeout(() => {
         container.querySelectorAll('.chart-bar').forEach(bar => {
-          const h = bar.style.height;
-          bar.style.height = '0';
+          const h = bar.style.height; bar.style.height = '0';
           requestAnimationFrame(() => { bar.style.height = h; });
         });
       }, 50);
     }
 
     function randomizeChart() {
-      chartData.focus = days.map(() => Math.floor(Math.random() * 6) + 1);
-      chartData.rest = days.map(() => Math.floor(Math.random() * 3) + 1);
-      renderChart();
-      notify('数据已刷新', 'info');
+      chartData.focus = days.map(() => Math.floor(Math.random()*6)+1);
+      chartData.rest = days.map(() => Math.floor(Math.random()*3)+1);
+      renderChart(); notify('数据已刷新', 'info');
     }
 
-    // Expense Tracker
+    // === Expense Tracker ===
     let expenses = [
       { id: 1, name: '午餐', amount: 35, category: 'food' },
       { id: 2, name: '地铁', amount: 6, category: 'transport' },
       { id: 3, name: '咖啡', amount: 28, category: 'food' },
     ];
-
-    const categoryColors = {
-      food: '#ef4444',
-      transport: '#6366f1',
-      shopping: '#ec4899',
-      entertainment: '#f59e0b'
-    };
-
-    const categoryNames = {
-      food: '餐饮',
-      transport: '交通',
-      shopping: '购物',
-      entertainment: '娱乐'
-    };
+    const categoryColors = { food: '#ef4444', transport: '#6366f1', shopping: '#ec4899', entertainment: '#f59e0b' };
+    const categoryNames = { food: '餐饮', transport: '交通', shopping: '购物', entertainment: '娱乐' };
 
     function renderExpenses() {
       const list = document.getElementById('expenseList');
@@ -995,18 +1170,14 @@
           <span class="amount">¥${exp.amount.toFixed(2)}</span>
           <button class="delete-btn" onclick="deleteExpense(${exp.id})">×</button>
         </li>`).join('');
-      const total = expenses.reduce((sum, e) => sum + e.amount, 0);
-      document.getElementById('expenseTotal').textContent = `¥${total.toFixed(2)}`;
+      document.getElementById('expenseTotal').textContent = `¥${expenses.reduce((s,e) => s+e.amount, 0).toFixed(2)}`;
     }
 
     function addExpense() {
       const name = document.getElementById('expenseName').value.trim();
       const amount = parseFloat(document.getElementById('expenseAmount').value);
       const category = document.getElementById('expenseCategory').value;
-      if (!name || !amount || amount <= 0) {
-        notify('请填写完整的支出信息', 'warning');
-        return;
-      }
+      if (!name || !amount || amount <= 0) { notify('请填写完整的支出信息', 'warning'); return; }
       expenses.unshift({ id: Date.now(), name, amount, category });
       renderExpenses();
       document.getElementById('expenseName').value = '';
@@ -1017,17 +1188,27 @@
     function deleteExpense(id) {
       const exp = expenses.find(e => e.id === id);
       showModal('删除支出', `确定要删除"${exp.name}"吗？`, () => {
-        expenses = expenses.filter(e => e.id !== id);
-        renderExpenses();
-        notify('支出已删除', 'info');
+        expenses = expenses.filter(e => e.id !== id); renderExpenses(); notify('支出已删除', 'info');
       });
     }
 
-    // Init
+    // === Init ===
+    document.getElementById('notesEditor').value = `# 欢迎使用 Markdown 笔记\n\n这是一个**实时预览**的编辑器。\n\n## 功能\n\n- 支持标题、列表、粗体\n- 实时渲染预览\n- 代码高亮 \`inline code\`\n\n> 引用文字样式\n\n### 开始编辑吧！\n\n在左侧输入 Markdown，右侧即时预览效果。`;
+
     renderKanban();
     renderChart();
     renderExpenses();
+    renderHabits();
+    renderMixer();
+    renderTable();
+    renderNotes();
     updateTimerDisplay();
+
+    window.addEventListener('resize', () => {
+      const canvas = document.getElementById('drawingCanvas');
+      if (canvas && canvas.offsetWidth > 0) initCanvas();
+    });
+    setTimeout(initCanvas, 100);
   </script>
 </body>
 </html>
