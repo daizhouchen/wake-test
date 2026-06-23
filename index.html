@@ -554,6 +554,10 @@
           <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()">▶ 开始</button>
           <button class="btn btn-secondary" onclick="resetTimer()">↺ 重置</button>
         </div>
+        <div style="display:flex;gap:1.5rem;margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);font-size:0.8rem;color:var(--text-secondary)">
+          <span>今日专注: <strong id="focusSessions" style="color:var(--primary)">0</strong> 次</span>
+          <span>累计: <strong id="focusTotal" style="color:var(--primary)">0</strong> 分钟</span>
+        </div>
       </div>
     </div>
 
@@ -1065,6 +1069,7 @@
 
     // === Pomodoro Timer ===
     let timerInterval = null, timerSeconds = 25 * 60, timerTotal = 25 * 60, timerRunning = false;
+    let focusSessions = 0, focusTotalMinutes = 0;
 
     function setTimerMode(minutes, btn) {
       if (timerRunning) return;
@@ -1090,6 +1095,10 @@
             document.getElementById('timerStartBtn').innerHTML = '▶ 开始';
             notify('时间到！休息一下吧', 'success');
             playTimerBeep();
+            focusSessions++;
+            focusTotalMinutes += Math.round(timerTotal / 60);
+            document.getElementById('focusSessions').textContent = focusSessions;
+            document.getElementById('focusTotal').textContent = focusTotalMinutes;
             timerSeconds = 0;
           }
           updateTimerDisplay();
