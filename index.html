@@ -482,6 +482,128 @@
     .quiz-progress { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-secondary); }
     .quiz-score { font-weight: 600; color: var(--primary); }
 
+    /* Weather Widget */
+    .weather-display { text-align: center; padding: 1rem 0; }
+    .weather-icon { font-size: 4rem; margin-bottom: 0.5rem; }
+    .weather-temp { font-size: 2.5rem; font-weight: 700; }
+    .weather-desc { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.3rem; }
+    .weather-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1rem; }
+    .weather-detail { text-align: center; padding: 0.5rem; background: var(--bg); border-radius: 8px; }
+    .weather-detail .wd-value { font-weight: 600; font-size: 0.9rem; }
+    .weather-detail .wd-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .weather-forecast { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .weather-forecast-day { flex: 1; text-align: center; padding: 0.5rem; background: var(--bg); border-radius: 8px; font-size: 0.75rem; }
+    .weather-forecast-day .wf-icon { font-size: 1.2rem; margin: 0.2rem 0; }
+    .weather-city { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .weather-city input { flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .weather-city input:focus { border-color: var(--primary); }
+
+    /* Bookmark Manager */
+    .bookmark-form { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .bookmark-form input { flex: 1; min-width: 100px; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .bookmark-form input:focus { border-color: var(--primary); }
+    .bookmark-list { display: flex; flex-direction: column; gap: 0.5rem; max-height: 250px; overflow-y: auto; }
+    .bookmark-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; transition: all var(--transition); }
+    .bookmark-item:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+    .bookmark-item .bm-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; background: rgba(99,102,241,0.1); }
+    .bookmark-item .bm-info { flex: 1; overflow: hidden; }
+    .bookmark-item .bm-title { font-size: 0.85rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bookmark-item .bm-url { font-size: 0.7rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bookmark-item .bm-delete { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1rem; opacity: 0; transition: opacity 0.2s; }
+    .bookmark-item:hover .bm-delete { opacity: 1; }
+    .bookmark-tags { display: flex; gap: 0.3rem; margin-top: 0.5rem; flex-wrap: wrap; }
+    .bookmark-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 4px; background: rgba(99,102,241,0.1); color: var(--primary); cursor: pointer; }
+    .bookmark-tag:hover { background: var(--primary); color: #fff; }
+
+    /* Progress Tracker */
+    .progress-list { display: flex; flex-direction: column; gap: 1rem; }
+    .progress-item { display: flex; flex-direction: column; gap: 0.4rem; }
+    .progress-item-header { display: flex; justify-content: space-between; align-items: center; }
+    .progress-item-header .pi-title { font-size: 0.85rem; font-weight: 500; }
+    .progress-item-header .pi-pct { font-size: 0.8rem; font-weight: 600; color: var(--primary); }
+    .progress-bar-bg { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .progress-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    .progress-add input { flex: 1; padding: 0.4rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; }
+    .progress-add input:focus { border-color: var(--primary); }
+
+    /* Emoji Picker */
+    .emoji-search { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .emoji-search input { flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .emoji-search input:focus { border-color: var(--primary); }
+    .emoji-categories { display: flex; gap: 0.3rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .emoji-categories button { padding: 0.3rem 0.5rem; border: none; background: transparent; font-size: 1.1rem; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+    .emoji-categories button:hover { background: var(--border); }
+    .emoji-categories button.active { background: rgba(99,102,241,0.15); }
+    .emoji-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.3rem; max-height: 200px; overflow-y: auto; }
+    .emoji-cell { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; padding: 0.4rem; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .emoji-cell:hover { background: var(--border); transform: scale(1.2); }
+    .emoji-recent { display: flex; gap: 0.3rem; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .emoji-recent-label { font-size: 0.7rem; color: var(--text-secondary); width: 100%; margin-bottom: 0.2rem; }
+    .emoji-copied { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: var(--text); color: var(--bg); padding: 0.5rem 1rem; border-radius: 8px; font-size: 1rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1002; }
+    .emoji-copied.show { opacity: 1; }
+
+    /* JSON Formatter */
+    .json-input { width: 100%; height: 120px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; resize: vertical; background: var(--surface); color: var(--text); outline: none; }
+    .json-input:focus { border-color: var(--primary); }
+    .json-toolbar { display: flex; gap: 0.5rem; margin: 0.75rem 0; flex-wrap: wrap; }
+    .json-output { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; max-height: 250px; overflow: auto; white-space: pre-wrap; word-break: break-all; line-height: 1.5; }
+    .json-output .json-key { color: var(--primary); }
+    .json-output .json-string { color: var(--success); }
+    .json-output .json-number { color: var(--accent); }
+    .json-output .json-bool { color: var(--warning); }
+    .json-output .json-null { color: var(--danger); }
+    .json-error { color: var(--danger); font-size: 0.8rem; margin-top: 0.5rem; }
+
+    /* World Clock */
+    .world-clocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+    .clock-card { text-align: center; padding: 0.75rem; background: var(--bg); border-radius: 8px; position: relative; }
+    .clock-card .clock-city { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.3rem; }
+    .clock-card .clock-time { font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .clock-card .clock-date { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    .clock-card .clock-remove { position: absolute; top: 4px; right: 6px; background: none; border: none; color: var(--danger); cursor: pointer; opacity: 0; font-size: 0.8rem; transition: opacity 0.2s; }
+    .clock-card:hover .clock-remove { opacity: 1; }
+    .clock-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    .clock-add select { flex: 1; padding: 0.4rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; }
+
+    /* Quote Generator */
+    .quote-card { padding: 1.5rem; text-align: center; position: relative; }
+    .quote-text { font-size: 1.1rem; line-height: 1.7; font-style: italic; margin-bottom: 1rem; position: relative; }
+    .quote-text::before { content: '"'; position: absolute; top: -0.5rem; left: -0.5rem; font-size: 3rem; color: var(--primary); opacity: 0.3; font-style: normal; }
+    .quote-author { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+    .quote-tags { display: flex; gap: 0.3rem; justify-content: center; margin-top: 0.75rem; flex-wrap: wrap; }
+    .quote-tag { font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 10px; background: rgba(99,102,241,0.1); color: var(--primary); }
+
+    /* Regex Tester */
+    .regex-input-row { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; align-items: center; }
+    .regex-input-row input { flex: 1; padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; font-family: 'SF Mono', monospace; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; }
+    .regex-input-row input:focus { border-color: var(--primary); }
+    .regex-flags { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .regex-flags label { font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem; cursor: pointer; color: var(--text-secondary); }
+    .regex-flags input { accent-color: var(--primary); }
+    .regex-test-area { width: 100%; min-height: 80px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', monospace; font-size: 0.85rem; background: var(--surface); color: var(--text); outline: none; resize: vertical; line-height: 1.6; }
+    .regex-test-area:focus { border-color: var(--primary); }
+    .regex-matches { margin-top: 0.75rem; font-size: 0.8rem; }
+    .regex-matches .match-count { color: var(--primary); font-weight: 600; }
+    .regex-matches .match-item { display: inline-block; background: rgba(99,102,241,0.15); padding: 0.1rem 0.4rem; border-radius: 3px; margin: 0.2rem; font-family: monospace; font-size: 0.8rem; }
+    .regex-error { color: var(--danger); font-size: 0.8rem; margin-top: 0.5rem; }
+
+    /* Morse Code */
+    .morse-container { display: flex; flex-direction: column; gap: 0.75rem; }
+    .morse-input { width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--surface); color: var(--text); outline: none; resize: none; min-height: 60px; }
+    .morse-input:focus { border-color: var(--primary); }
+    .morse-output { width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'SF Mono', monospace; font-size: 0.85rem; background: var(--bg); color: var(--text); min-height: 60px; word-break: break-all; line-height: 1.6; }
+    .morse-controls { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .morse-direction { font-size: 0.8rem; color: var(--text-secondary); text-align: center; }
+
+    /* Base64 Encoder */
+    .b64-container { display: flex; flex-direction: column; gap: 0.75rem; }
+    .b64-textarea { width: 100%; min-height: 80px; border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; font-family: 'SF Mono', monospace; font-size: 0.8rem; background: var(--surface); color: var(--text); outline: none; resize: vertical; }
+    .b64-textarea:focus { border-color: var(--primary); }
+    .b64-controls { display: flex; gap: 0.5rem; align-items: center; }
+    .b64-arrow { font-size: 1.2rem; color: var(--text-secondary); }
+    .b64-stats { font-size: 0.75rem; color: var(--text-secondary); display: flex; gap: 1rem; }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -975,6 +1097,172 @@
       </div>
       <div class="quiz-question" id="quizQuestion">点击"重新开始"开始答题</div>
       <div class="quiz-options" id="quizOptions"></div>
+    </div>
+
+    <!-- Weather Widget -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🌤</span>
+        天气模拟
+      </div>
+      <div class="weather-city">
+        <input type="text" id="weatherCity" placeholder="输入城市名..." value="北京" onkeydown="if(event.key==='Enter')refreshWeather()">
+        <button class="btn btn-primary btn-sm" onclick="refreshWeather()">刷新</button>
+      </div>
+      <div class="weather-display" id="weatherDisplay"></div>
+    </div>
+
+    <!-- Bookmark Manager -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">🔖</span>
+        书签管理
+      </div>
+      <div class="bookmark-form">
+        <input type="text" id="bmTitle" placeholder="标题">
+        <input type="text" id="bmUrl" placeholder="链接 (如 example.com)">
+        <button class="btn btn-primary btn-sm" onclick="addBookmark()">添加</button>
+      </div>
+      <div class="bookmark-tags" id="bmTags"></div>
+      <div class="bookmark-list" id="bookmarkList"></div>
+    </div>
+
+    <!-- Progress Tracker -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">📊</span>
+        进度追踪
+      </div>
+      <div class="progress-list" id="progressList"></div>
+      <div class="progress-add">
+        <input type="text" id="progressName" placeholder="目标名称" onkeydown="if(event.key==='Enter')addProgress()">
+        <button class="btn btn-primary btn-sm" onclick="addProgress()">添加</button>
+      </div>
+    </div>
+
+    <!-- Emoji Picker -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">😊</span>
+        Emoji 选择器
+      </div>
+      <div class="emoji-search">
+        <input type="text" id="emojiSearch" placeholder="搜索 emoji..." oninput="filterEmojis()">
+      </div>
+      <div class="emoji-categories" id="emojiCategories"></div>
+      <div class="emoji-grid" id="emojiGrid"></div>
+      <div class="emoji-recent">
+        <span class="emoji-recent-label">最近使用</span>
+        <div id="emojiRecent"></div>
+      </div>
+    </div>
+
+    <!-- JSON Formatter -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">{ }</span>
+        JSON 格式化
+      </div>
+      <textarea class="json-input" id="jsonInput" placeholder='粘贴 JSON 内容，如 {"name":"hello","value":123}...'></textarea>
+      <div class="json-toolbar">
+        <button class="btn btn-primary btn-sm" onclick="formatJSON()">格式化</button>
+        <button class="btn btn-secondary btn-sm" onclick="minifyJSON()">压缩</button>
+        <button class="btn btn-secondary btn-sm" onclick="copyJSON()">复制结果</button>
+        <button class="btn btn-danger btn-sm" onclick="clearJSON()">清空</button>
+      </div>
+      <div class="json-output" id="jsonOutput">结果将显示在这里...</div>
+    </div>
+
+    <!-- World Clock -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(99,102,241,0.1)">🕐</span>
+        世界时钟
+      </div>
+      <div class="world-clocks" id="worldClocks"></div>
+      <div class="clock-add">
+        <select id="clockSelect">
+          <option value="Asia/Shanghai">上海</option>
+          <option value="Asia/Tokyo">东京</option>
+          <option value="America/New_York">纽约</option>
+          <option value="Europe/London">伦敦</option>
+          <option value="Europe/Paris">巴黎</option>
+          <option value="Australia/Sydney">悉尼</option>
+          <option value="America/Los_Angeles">洛杉矶</option>
+          <option value="Asia/Dubai">迪拜</option>
+          <option value="Asia/Singapore">新加坡</option>
+          <option value="Asia/Seoul">首尔</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="addClock()">添加</button>
+      </div>
+    </div>
+
+    <!-- Quote Generator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(236,72,153,0.1)">💬</span>
+        名言生成器
+        <button class="btn btn-sm btn-secondary" style="margin-left:auto" onclick="newQuote()">换一条</button>
+      </div>
+      <div class="quote-card" id="quoteCard"></div>
+    </div>
+
+    <!-- Regex Tester -->
+    <div class="card full-width">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(16,185,129,0.1)">.*</span>
+        正则测试器
+      </div>
+      <div class="regex-input-row">
+        <span style="color:var(--text-secondary);font-family:monospace">/</span>
+        <input type="text" id="regexPattern" placeholder="输入正则表达式..." oninput="testRegex()">
+        <span style="color:var(--text-secondary);font-family:monospace">/</span>
+      </div>
+      <div class="regex-flags">
+        <label><input type="checkbox" id="regexG" checked onchange="testRegex()"> g (全局)</label>
+        <label><input type="checkbox" id="regexI" onchange="testRegex()"> i (忽略大小写)</label>
+        <label><input type="checkbox" id="regexM" onchange="testRegex()"> m (多行)</label>
+      </div>
+      <textarea class="regex-test-area" id="regexTestText" oninput="testRegex()" placeholder="输入测试文本...">Hello World 123, hello world 456</textarea>
+      <div class="regex-matches" id="regexMatches"></div>
+    </div>
+
+    <!-- Morse Code Translator -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(245,158,11,0.1)">📡</span>
+        摩尔斯电码
+      </div>
+      <div class="morse-container">
+        <textarea class="morse-input" id="morseInput" oninput="translateMorse()" placeholder="输入文本或摩尔斯电码...">SOS</textarea>
+        <div class="morse-controls">
+          <button class="btn btn-primary btn-sm" onclick="toggleMorseDirection()">切换方向</button>
+          <button class="btn btn-secondary btn-sm" onclick="copyMorseOutput()">复制结果</button>
+          <button class="btn btn-secondary btn-sm" onclick="playMorse()">播放</button>
+          <span class="morse-direction" id="morseDirection">文本 → 摩尔斯</span>
+        </div>
+        <div class="morse-output" id="morseOutput"></div>
+      </div>
+    </div>
+
+    <!-- Base64 Encoder/Decoder -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon" style="background:rgba(239,68,68,0.1)">🔑</span>
+        Base64 编解码
+      </div>
+      <div class="b64-container">
+        <textarea class="b64-textarea" id="b64Input" placeholder="输入要编码的文本..." oninput="encodeBase64()">Hello, World!</textarea>
+        <div class="b64-controls">
+          <button class="btn btn-primary btn-sm" onclick="encodeBase64()">编码</button>
+          <span class="b64-arrow">⇅</span>
+          <button class="btn btn-secondary btn-sm" onclick="decodeBase64()">解码</button>
+          <button class="btn btn-secondary btn-sm" onclick="copyB64Output()">复制</button>
+          <button class="btn btn-sm btn-secondary" onclick="swapB64()">交换</button>
+        </div>
+        <textarea class="b64-textarea" id="b64Output" placeholder="结果..." readonly></textarea>
+        <div class="b64-stats" id="b64Stats"></div>
+      </div>
     </div>
   </main>
 
@@ -2103,6 +2391,440 @@
       setTimeout(() => { quizIndex++; showQuizQuestion(); }, 1500);
     }
 
+    // === Weather Widget ===
+    const weatherConditions = [
+      { icon: '☀️', desc: '晴天', tempRange: [25, 38] },
+      { icon: '⛅', desc: '多云', tempRange: [18, 28] },
+      { icon: '☁️', desc: '阴天', tempRange: [15, 22] },
+      { icon: '🌧', desc: '小雨', tempRange: [12, 20] },
+      { icon: '⛈', desc: '雷阵雨', tempRange: [18, 30] },
+      { icon: '🌨', desc: '小雪', tempRange: [-5, 2] },
+      { icon: '🌫', desc: '雾', tempRange: [5, 15] },
+      { icon: '💨', desc: '大风', tempRange: [10, 20] },
+    ];
+    const forecastDays = ['今天', '明天', '后天', '大后天', '第五天'];
+
+    function refreshWeather() {
+      const city = document.getElementById('weatherCity').value.trim() || '未知';
+      const cond = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+      const temp = Math.floor(Math.random() * (cond.tempRange[1] - cond.tempRange[0])) + cond.tempRange[0];
+      const humidity = Math.floor(Math.random() * 50) + 30;
+      const wind = Math.floor(Math.random() * 30) + 1;
+      const uv = Math.floor(Math.random() * 11);
+
+      let forecast = forecastDays.map(day => {
+        const fc = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+        const ft = Math.floor(Math.random() * (fc.tempRange[1] - fc.tempRange[0])) + fc.tempRange[0];
+        return `<div class="weather-forecast-day"><div>${day}</div><div class="wf-icon">${fc.icon}</div><div>${ft}°</div></div>`;
+      }).join('');
+
+      document.getElementById('weatherDisplay').innerHTML = `
+        <div class="weather-icon">${cond.icon}</div>
+        <div class="weather-temp">${temp}°C</div>
+        <div class="weather-desc">${city} · ${cond.desc}</div>
+        <div class="weather-details">
+          <div class="weather-detail"><div class="wd-value">${humidity}%</div><div class="wd-label">湿度</div></div>
+          <div class="weather-detail"><div class="wd-value">${wind} km/h</div><div class="wd-label">风速</div></div>
+          <div class="weather-detail"><div class="wd-value">${uv}</div><div class="wd-label">UV指数</div></div>
+        </div>
+        <div class="weather-forecast">${forecast}</div>`;
+      notify(`${city}天气已刷新`, 'info');
+    }
+
+    // === Bookmark Manager ===
+    let bookmarks = [
+      { id: 1, title: 'GitHub', url: 'github.com', tag: '开发' },
+      { id: 2, title: 'MDN', url: 'developer.mozilla.org', tag: '文档' },
+      { id: 3, title: 'Stack Overflow', url: 'stackoverflow.com', tag: '开发' },
+      { id: 4, title: 'Dribbble', url: 'dribbble.com', tag: '设计' },
+    ];
+
+    function renderBookmarks(filter) {
+      const list = document.getElementById('bookmarkList');
+      const filtered = filter ? bookmarks.filter(b => b.tag === filter) : bookmarks;
+      list.innerHTML = filtered.map(bm => `
+        <div class="bookmark-item">
+          <div class="bm-icon">🔗</div>
+          <div class="bm-info">
+            <div class="bm-title">${bm.title}</div>
+            <div class="bm-url">${bm.url}</div>
+          </div>
+          <button class="bm-delete" onclick="deleteBookmark(${bm.id})">×</button>
+        </div>`).join('');
+
+      const tags = [...new Set(bookmarks.map(b => b.tag))];
+      document.getElementById('bmTags').innerHTML = `<span class="bookmark-tag" onclick="renderBookmarks()">全部</span>` +
+        tags.map(t => `<span class="bookmark-tag" onclick="renderBookmarks('${t}')">${t}</span>`).join('');
+    }
+
+    function addBookmark() {
+      const title = document.getElementById('bmTitle').value.trim();
+      const url = document.getElementById('bmUrl').value.trim();
+      if (!title || !url) { notify('请填写标题和链接', 'warning'); return; }
+      bookmarks.push({ id: Date.now(), title, url, tag: '未分类' });
+      document.getElementById('bmTitle').value = '';
+      document.getElementById('bmUrl').value = '';
+      renderBookmarks();
+      notify(`书签"${title}"已添加`, 'success');
+    }
+
+    function deleteBookmark(id) {
+      bookmarks = bookmarks.filter(b => b.id !== id);
+      renderBookmarks();
+      notify('书签已删除', 'info');
+    }
+
+    // === Progress Tracker ===
+    let progressItems = [
+      { id: 1, name: '学习 TypeScript', progress: 65 },
+      { id: 2, name: '完成毕业论文', progress: 40 },
+      { id: 3, name: '健身计划', progress: 80 },
+      { id: 4, name: '阅读 10 本书', progress: 30 },
+    ];
+
+    function renderProgress() {
+      const list = document.getElementById('progressList');
+      const colors = ['var(--primary)', 'var(--success)', 'var(--accent)', 'var(--warning)'];
+      list.innerHTML = progressItems.map((item, i) => `
+        <div class="progress-item">
+          <div class="progress-item-header">
+            <span class="pi-title">${item.name}</span>
+            <span class="pi-pct">${item.progress}%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width:${item.progress}%;background:${colors[i % colors.length]}"></div>
+          </div>
+          <div style="display:flex;gap:0.3rem;margin-top:0.2rem">
+            <button class="btn btn-sm btn-secondary" onclick="updateProgress(${item.id},-10)">-10</button>
+            <button class="btn btn-sm btn-primary" onclick="updateProgress(${item.id},10)">+10</button>
+            <button class="btn btn-sm btn-danger" onclick="removeProgress(${item.id})" style="margin-left:auto">删除</button>
+          </div>
+        </div>`).join('');
+    }
+
+    function updateProgress(id, delta) {
+      const item = progressItems.find(p => p.id === id);
+      item.progress = Math.max(0, Math.min(100, item.progress + delta));
+      renderProgress();
+      if (item.progress >= 100) notify(`"${item.name}" 已完成！`, 'success');
+    }
+
+    function addProgress() {
+      const name = document.getElementById('progressName').value.trim();
+      if (!name) return;
+      progressItems.push({ id: Date.now(), name, progress: 0 });
+      document.getElementById('progressName').value = '';
+      renderProgress();
+      notify(`已添加目标：${name}`, 'success');
+    }
+
+    function removeProgress(id) {
+      progressItems = progressItems.filter(p => p.id !== id);
+      renderProgress();
+    }
+
+    // === Emoji Picker ===
+    const emojiData = {
+      '😀': { name: 'smile', cat: 'face' }, '😂': { name: 'laugh', cat: 'face' }, '🥰': { name: 'love', cat: 'face' },
+      '😎': { name: 'cool', cat: 'face' }, '🤔': { name: 'think', cat: 'face' }, '😴': { name: 'sleep', cat: 'face' },
+      '🤯': { name: 'explode', cat: 'face' }, '😤': { name: 'angry', cat: 'face' }, '🥺': { name: 'plead', cat: 'face' },
+      '👍': { name: 'up', cat: 'hand' }, '👎': { name: 'down', cat: 'hand' }, '👋': { name: 'wave', cat: 'hand' },
+      '✌️': { name: 'peace', cat: 'hand' }, '🤝': { name: 'handshake', cat: 'hand' }, '👏': { name: 'clap', cat: 'hand' },
+      '💪': { name: 'strong', cat: 'hand' }, '🙏': { name: 'pray', cat: 'hand' },
+      '❤️': { name: 'heart', cat: 'symbol' }, '⭐': { name: 'star', cat: 'symbol' }, '🔥': { name: 'fire', cat: 'symbol' },
+      '✨': { name: 'sparkle', cat: 'symbol' }, '💯': { name: 'hundred', cat: 'symbol' }, '🎉': { name: 'party', cat: 'symbol' },
+      '💡': { name: 'idea', cat: 'symbol' }, '⚡': { name: 'bolt', cat: 'symbol' },
+      '🐶': { name: 'dog', cat: 'animal' }, '🐱': { name: 'cat', cat: 'animal' }, '🦊': { name: 'fox', cat: 'animal' },
+      '🐼': { name: 'panda', cat: 'animal' }, '🦋': { name: 'butterfly', cat: 'animal' }, '🐢': { name: 'turtle', cat: 'animal' },
+      '🍎': { name: 'apple', cat: 'food' }, '🍕': { name: 'pizza', cat: 'food' }, '🍺': { name: 'beer', cat: 'food' },
+      '☕': { name: 'coffee', cat: 'food' }, '🍰': { name: 'cake', cat: 'food' }, '🍜': { name: 'noodle', cat: 'food' },
+    };
+    const emojiCategories = { face: '😀', hand: '👍', symbol: '❤️', animal: '🐶', food: '🍎' };
+    let currentEmojiCat = null, recentEmojis = [];
+
+    function initEmojiPicker() {
+      const catContainer = document.getElementById('emojiCategories');
+      catContainer.innerHTML = `<button class="active" onclick="setEmojiCat(null, this)">全部</button>` +
+        Object.entries(emojiCategories).map(([cat, icon]) =>
+          `<button onclick="setEmojiCat('${cat}', this)">${icon}</button>`
+        ).join('');
+      renderEmojiGrid();
+    }
+
+    function setEmojiCat(cat, btn) {
+      currentEmojiCat = cat;
+      document.querySelectorAll('#emojiCategories button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderEmojiGrid();
+    }
+
+    function renderEmojiGrid() {
+      const search = (document.getElementById('emojiSearch').value || '').toLowerCase();
+      const grid = document.getElementById('emojiGrid');
+      const filtered = Object.entries(emojiData).filter(([emoji, data]) => {
+        if (currentEmojiCat && data.cat !== currentEmojiCat) return false;
+        if (search && !data.name.includes(search) && !emoji.includes(search)) return false;
+        return true;
+      });
+      grid.innerHTML = filtered.map(([emoji]) =>
+        `<div class="emoji-cell" onclick="pickEmoji('${emoji}')">${emoji}</div>`
+      ).join('');
+    }
+
+    function filterEmojis() { renderEmojiGrid(); }
+
+    function pickEmoji(emoji) {
+      navigator.clipboard.writeText(emoji).then(() => {
+        notify(`已复制 ${emoji}`, 'success');
+        if (!recentEmojis.includes(emoji)) {
+          recentEmojis.unshift(emoji);
+          if (recentEmojis.length > 10) recentEmojis.pop();
+        }
+        renderRecentEmojis();
+      });
+    }
+
+    function renderRecentEmojis() {
+      document.getElementById('emojiRecent').innerHTML = recentEmojis.map(e =>
+        `<div class="emoji-cell" style="display:inline-flex;font-size:1.2rem;padding:0.2rem" onclick="pickEmoji('${e}')">${e}</div>`
+      ).join('');
+    }
+
+    // === JSON Formatter ===
+    function formatJSON() {
+      const input = document.getElementById('jsonInput').value.trim();
+      if (!input) { notify('请输入 JSON 内容', 'warning'); return; }
+      try {
+        const obj = JSON.parse(input);
+        const formatted = JSON.stringify(obj, null, 2);
+        document.getElementById('jsonOutput').innerHTML = syntaxHighlight(formatted);
+      } catch (e) {
+        document.getElementById('jsonOutput').innerHTML = `<span class="json-error">解析错误: ${e.message}</span>`;
+        notify('JSON 格式不正确', 'error');
+      }
+    }
+
+    function minifyJSON() {
+      const input = document.getElementById('jsonInput').value.trim();
+      if (!input) return;
+      try {
+        const obj = JSON.parse(input);
+        const minified = JSON.stringify(obj);
+        document.getElementById('jsonOutput').textContent = minified;
+        notify('已压缩', 'success');
+      } catch (e) {
+        document.getElementById('jsonOutput').innerHTML = `<span class="json-error">解析错误: ${e.message}</span>`;
+      }
+    }
+
+    function copyJSON() {
+      const output = document.getElementById('jsonOutput').textContent;
+      if (!output || output === '结果将显示在这里...') { notify('没有可复制的内容', 'warning'); return; }
+      navigator.clipboard.writeText(output).then(() => notify('已复制到剪贴板', 'success'));
+    }
+
+    function clearJSON() {
+      document.getElementById('jsonInput').value = '';
+      document.getElementById('jsonOutput').innerHTML = '结果将显示在这里...';
+    }
+
+    function syntaxHighlight(json) {
+      return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) => {
+        let cls = 'json-number';
+        if (/^"/.test(match)) {
+          cls = /:$/.test(match) ? 'json-key' : 'json-string';
+        } else if (/true|false/.test(match)) {
+          cls = 'json-bool';
+        } else if (/null/.test(match)) {
+          cls = 'json-null';
+        }
+        return `<span class="${cls}">${match}</span>`;
+      });
+    }
+
+    // === World Clock ===
+    const tzNames = { 'Asia/Shanghai': '上海', 'Asia/Tokyo': '东京', 'America/New_York': '纽约', 'Europe/London': '伦敦', 'Europe/Paris': '巴黎', 'Australia/Sydney': '悉尼', 'America/Los_Angeles': '洛杉矶', 'Asia/Dubai': '迪拜', 'Asia/Singapore': '新加坡', 'Asia/Seoul': '首尔' };
+    let worldClocks = ['Asia/Shanghai', 'America/New_York', 'Europe/London', 'Asia/Tokyo'];
+
+    function renderWorldClocks() {
+      const container = document.getElementById('worldClocks');
+      container.innerHTML = worldClocks.map(tz => {
+        const now = new Date();
+        const opts = { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        const dateOpts = { timeZone: tz, month: 'short', day: 'numeric', weekday: 'short' };
+        const time = now.toLocaleTimeString('zh-CN', opts);
+        const date = now.toLocaleDateString('zh-CN', dateOpts);
+        return `<div class="clock-card">
+          <button class="clock-remove" onclick="removeClock('${tz}')">×</button>
+          <div class="clock-city">${tzNames[tz] || tz}</div>
+          <div class="clock-time">${time}</div>
+          <div class="clock-date">${date}</div>
+        </div>`;
+      }).join('');
+    }
+
+    function addClock() {
+      const tz = document.getElementById('clockSelect').value;
+      if (worldClocks.includes(tz)) { notify('该时区已添加', 'warning'); return; }
+      worldClocks.push(tz);
+      renderWorldClocks();
+      notify(`已添加${tzNames[tz]}时钟`, 'success');
+    }
+
+    function removeClock(tz) {
+      worldClocks = worldClocks.filter(t => t !== tz);
+      renderWorldClocks();
+    }
+
+    setInterval(renderWorldClocks, 1000);
+
+    // === Quote Generator ===
+    const quotes = [
+      { text: '生活中唯一的失败，就是从未去尝试。', author: '佚名', tags: ['励志'] },
+      { text: '不积跬步，无以至千里；不积小流，无以成江海。', author: '荀子', tags: ['古文', '坚持'] },
+      { text: '代码如诗，简洁即美。', author: '程序员哲学', tags: ['编程'] },
+      { text: 'Stay hungry, stay foolish.', author: 'Steve Jobs', tags: ['科技', '励志'] },
+      { text: '任何足够先进的技术，都与魔法无异。', author: 'Arthur C. Clarke', tags: ['科技'] },
+      { text: '简单是终极的复杂。', author: 'Leonardo da Vinci', tags: ['设计'] },
+      { text: '最好的时间是十年前，其次是现在。', author: '中国谚语', tags: ['行动'] },
+      { text: '先解决问题，再写优雅的代码。', author: 'Jon Johnson', tags: ['编程'] },
+      { text: '学而不思则罔，思而不学则殆。', author: '孔子', tags: ['古文', '学习'] },
+      { text: '调试代码的难度是写代码的两倍。', author: 'Brian Kernighan', tags: ['编程', '幽默'] },
+      { text: '成功不是终点，失败也不是末日，继续前进的勇气才是关键。', author: 'Winston Churchill', tags: ['励志'] },
+      { text: '好的设计是尽可能少的设计。', author: 'Dieter Rams', tags: ['设计'] },
+    ];
+
+    function newQuote() {
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('quoteCard').innerHTML = `
+        <div class="quote-text">${q.text}</div>
+        <div class="quote-author">— ${q.author}</div>
+        <div class="quote-tags">${q.tags.map(t => `<span class="quote-tag">${t}</span>`).join('')}</div>`;
+    }
+
+    // === Regex Tester ===
+    function testRegex() {
+      const pattern = document.getElementById('regexPattern').value;
+      const text = document.getElementById('regexTestText').value;
+      const container = document.getElementById('regexMatches');
+
+      if (!pattern) { container.innerHTML = ''; return; }
+
+      let flags = '';
+      if (document.getElementById('regexG').checked) flags += 'g';
+      if (document.getElementById('regexI').checked) flags += 'i';
+      if (document.getElementById('regexM').checked) flags += 'm';
+
+      try {
+        const regex = new RegExp(pattern, flags);
+        const matches = [...text.matchAll(new RegExp(pattern, flags.includes('g') ? flags : flags + 'g'))];
+        if (matches.length === 0) {
+          container.innerHTML = '<span style="color:var(--text-secondary)">无匹配结果</span>';
+        } else {
+          container.innerHTML = `<span class="match-count">${matches.length} 个匹配</span><div style="margin-top:0.4rem">${matches.map(m => `<span class="match-item">${m[0]}</span>`).join('')}</div>`;
+        }
+      } catch (e) {
+        container.innerHTML = `<span class="regex-error">${e.message}</span>`;
+      }
+    }
+
+    // === Morse Code ===
+    const morseMap = {'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.', ' ':' '};
+    const reverseMorse = Object.fromEntries(Object.entries(morseMap).map(([k,v]) => [v, k]));
+    let morseToText = false;
+
+    function translateMorse() {
+      const input = document.getElementById('morseInput').value;
+      let output;
+      if (morseToText) {
+        output = input.split('   ').map(word => word.split(' ').map(c => reverseMorse[c] || '?').join('')).join(' ');
+      } else {
+        output = input.toUpperCase().split('').map(c => morseMap[c] || '').join(' ').replace(/  /g, '   ');
+      }
+      document.getElementById('morseOutput').textContent = output;
+    }
+
+    function toggleMorseDirection() {
+      morseToText = !morseToText;
+      document.getElementById('morseDirection').textContent = morseToText ? '摩尔斯 → 文本' : '文本 → 摩尔斯';
+      document.getElementById('morseInput').placeholder = morseToText ? '输入摩尔斯电码 (用空格分隔)...' : '输入文本...';
+      document.getElementById('morseInput').value = '';
+      document.getElementById('morseOutput').textContent = '';
+    }
+
+    function copyMorseOutput() {
+      const text = document.getElementById('morseOutput').textContent;
+      if (!text) { notify('没有可复制的内容', 'warning'); return; }
+      navigator.clipboard.writeText(text).then(() => notify('已复制', 'success'));
+    }
+
+    function playMorse() {
+      const output = document.getElementById('morseOutput').textContent;
+      if (!output) return;
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      let time = ctx.currentTime;
+      const dot = 0.08, dash = 0.24, gap = 0.08, letterGap = 0.24;
+      for (const char of output) {
+        if (char === '.') {
+          const osc = ctx.createOscillator(); const gain = ctx.createGain();
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.frequency.value = 600; osc.start(time); osc.stop(time + dot);
+          time += dot + gap;
+        } else if (char === '-') {
+          const osc = ctx.createOscillator(); const gain = ctx.createGain();
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.frequency.value = 600; osc.start(time); osc.stop(time + dash);
+          time += dash + gap;
+        } else if (char === ' ') {
+          time += letterGap;
+        }
+      }
+      notify('正在播放摩尔斯电码...', 'info');
+    }
+
+    // === Base64 Encoder/Decoder ===
+    function encodeBase64() {
+      const input = document.getElementById('b64Input').value;
+      try {
+        const encoded = btoa(unescape(encodeURIComponent(input)));
+        document.getElementById('b64Output').value = encoded;
+        updateB64Stats(input, encoded);
+      } catch (e) {
+        document.getElementById('b64Output').value = '编码错误: ' + e.message;
+      }
+    }
+
+    function decodeBase64() {
+      const input = document.getElementById('b64Input').value;
+      try {
+        const decoded = decodeURIComponent(escape(atob(input)));
+        document.getElementById('b64Output').value = decoded;
+        updateB64Stats(input, decoded);
+        notify('解码成功', 'success');
+      } catch (e) {
+        document.getElementById('b64Output').value = '解码错误: 输入不是有效的 Base64';
+        notify('解码失败', 'error');
+      }
+    }
+
+    function copyB64Output() {
+      const text = document.getElementById('b64Output').value;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => notify('已复制', 'success'));
+    }
+
+    function swapB64() {
+      const input = document.getElementById('b64Input');
+      const output = document.getElementById('b64Output');
+      const tmp = input.value;
+      input.value = output.value;
+      output.value = tmp;
+    }
+
+    function updateB64Stats(input, output) {
+      document.getElementById('b64Stats').innerHTML = `<span>输入: ${input.length} 字符</span><span>输出: ${output.length} 字符</span><span>比率: ${input.length ? (output.length / input.length).toFixed(2) : '—'}x</span>`;
+    }
+
     // === Init ===
     document.getElementById('notesEditor').value = `# 欢迎使用 Markdown 笔记\n\n这是一个**实时预览**的编辑器。\n\n## 功能\n\n- 支持标题、列表、粗体\n- 实时渲染预览\n- 代码高亮 \`inline code\`\n\n> 引用文字样式\n\n### 开始编辑吧！\n\n在左侧输入 Markdown，右侧即时预览效果。`;
 
@@ -2121,6 +2843,14 @@
     setConverterType('length', document.querySelector('#converterTabs button'));
     renderDice();
     startQuiz();
+    refreshWeather();
+    renderBookmarks();
+    renderProgress();
+    initEmojiPicker();
+    renderWorldClocks();
+    newQuote();
+    translateMorse();
+    encodeBase64();
 
     window.addEventListener('resize', () => {
       const canvas = document.getElementById('drawingCanvas');
